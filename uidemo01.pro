@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,16 +16,22 @@ UI_DIR      = temp/ui
 OBJECTS_DIR = temp/obj
 #DESTDIR     = $$PWD/../bin
 
-SOURCES     += main.cpp
+SOURCES     += main.cpp \
+    pagewidget.cpp \
+    querysetdialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
 
-HEADERS     += iconhelper.h
+HEADERS     += iconhelper.h \
+    pagewidget.h \
+    querysetdialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
-FORMS       += uidemo01.ui
+FORMS       += uidemo01.ui \
+    pagewidget.ui \
+    querysetdialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

@@ -247,6 +247,7 @@ Makefile: uidemo01.pro ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\win32-
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\qtmain.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Widgets.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Gui.prl \
+		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Sql.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Core.prl
 	$(QMAKE) -o Makefile uidemo01.pro -spec win32-msvc2015
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\spec_pre.prf:
@@ -423,6 +424,7 @@ uidemo01.pro:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\qtmain.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Widgets.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Gui.prl:
+..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Sql.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile uidemo01.pro -spec win32-msvc2015

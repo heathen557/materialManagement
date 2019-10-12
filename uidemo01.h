@@ -2,6 +2,14 @@
 #define UIDEMO01_H
 
 #include <QDialog>
+#include<pagewidget.h>
+#include<QWidget>
+
+#include <QtSql>
+#include <QSqlQueryModel>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include<QMessageBox>
 
 namespace Ui {
 class UIDemo01;
@@ -14,6 +22,8 @@ class UIDemo01 : public QDialog
 public:
     explicit UIDemo01(QWidget *parent = 0);
     ~UIDemo01();
+
+    PageWidget *pageWidget;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);

@@ -52,11 +52,17 @@ public:
     QPushButton *btnMenu_Max;
     QStackedWidget *stackedWidget;
     QWidget *page1;
-    QTableWidget *tableWidget;
-    QWidget *widget;
+    QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QToolButton *toolButton;
+    QTableWidget *tableWidget;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *page2;
     QVBoxLayout *verticalLayout_3;
     QLabel *lab2;
@@ -228,26 +234,65 @@ public:
         stackedWidget->setStyleSheet(QStringLiteral(""));
         page1 = new QWidget();
         page1->setObjectName(QStringLiteral("page1"));
-        tableWidget = new QTableWidget(page1);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(40, 60, 1001, 461));
-        widget = new QWidget(page1);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(50, 20, 971, 31));
-        horizontalLayout = new QHBoxLayout(widget);
+        gridLayout = new QGridLayout(page1);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer_2 = new QSpacerItem(918, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        toolButton = new QToolButton(widget);
+        toolButton = new QToolButton(page1);
         toolButton->setObjectName(QStringLiteral("toolButton"));
 
         horizontalLayout->addWidget(toolButton);
 
         horizontalLayout->setStretch(0, 5);
         horizontalLayout->setStretch(1, 1);
+
+        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
+
+        tableWidget = new QTableWidget(page1);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+
+        gridLayout->addWidget(tableWidget, 1, 0, 1, 1);
+
+        widget = new QWidget(page1);
+        widget->setObjectName(QStringLiteral("widget"));
+
+        gridLayout->addWidget(widget, 2, 0, 1, 1);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_3);
+
+        pushButton = new QPushButton(page1);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        horizontalLayout_4->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(page1);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        horizontalLayout_4->addWidget(pushButton_2);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_4);
+
+        horizontalLayout_4->setStretch(0, 6);
+        horizontalLayout_4->setStretch(1, 1);
+        horizontalLayout_4->setStretch(2, 1);
+        horizontalLayout_4->setStretch(3, 6);
+
+        gridLayout->addLayout(horizontalLayout_4, 3, 0, 1, 1);
+
+        gridLayout->setRowStretch(0, 1);
+        gridLayout->setRowStretch(1, 14);
+        gridLayout->setRowStretch(2, 1);
+        gridLayout->setRowStretch(3, 1);
         stackedWidget->addWidget(page1);
         page2 = new QWidget();
         page2->setObjectName(QStringLiteral("page2"));
@@ -314,6 +359,8 @@ public:
         btnMenu_Close->setText(QString());
         btnMenu_Max->setText(QString());
         toolButton->setText(QApplication::translate("UIDemo01", "\346\237\245\350\257\242", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("UIDemo01", "\345\205\245\345\272\223", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("UIDemo01", "\345\207\272\345\272\223", Q_NULLPTR));
         lab2->setText(QApplication::translate("UIDemo01", "\347\263\273\347\273\237\350\256\276\347\275\256", Q_NULLPTR));
         lab3->setText(QApplication::translate("UIDemo01", "\350\255\246\346\203\205\346\237\245\350\257\242", Q_NULLPTR));
         lab4->setText(QApplication::translate("UIDemo01", "\350\260\203\350\257\225\345\270\256\345\212\251", Q_NULLPTR));
