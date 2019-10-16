@@ -23,6 +23,8 @@ public:
     explicit UIDemo01(QWidget *parent = 0);
     ~UIDemo01();
 
+    void initSql();
+
     PageWidget *pageWidget;
 
 protected:

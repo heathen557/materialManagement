@@ -12,32 +12,30 @@ UIDemo01::UIDemo01(QWidget *parent) :
     ui->setupUi(this);
     this->initForm();
 
+    //界面上添加分页控件
     pageWidget = new PageWidget();
-
     QWidget *tmpwidget = new QWidget();
     QHBoxLayout *hLayout = new QHBoxLayout(ui->widget);
     hLayout->addWidget(tmpwidget,3);
     hLayout->addWidget(pageWidget, 1);
 
+    initSql();
 
 
 
+}
 
-
+//数据库初始化函数
+void UIDemo01::initSql()
+{
+    //数据库连接部分
     QSqlDatabase db;
     QStringList drivers = QSqlDatabase::drivers();
     foreach(QString driver, drivers)
         qDebug() << "\t " << driver;
     qDebug() << "End";
 
-//     db = QSqlDatabase::addDatabase("QMYSQL");
-
-
-    if (QSqlDatabase::contains("test"))
-      {
-
-      }
-      else
+    if (!QSqlDatabase::contains("test"))
       {
           db = QSqlDatabase::addDatabase("QMYSQL");   //, "localhost@3306"
           db.setHostName("localhost");    //数据库主机名
@@ -49,21 +47,57 @@ UIDemo01::UIDemo01(QWidget *parent) :
       bool bisOpenn = db.open();          //打开数据库连接
       qDebug()<<"bisOpenn="<<bisOpenn;
 
-      if (db.open())
+      if (!db.open())
       {
-          QMessageBox::warning(NULL, QStringLiteral("提示"), "open ok", QMessageBox::Yes);
+          QMessageBox::information(NULL,QString::fromLocal8Bit("提示"),QString::fromLocal8Bit("数据库连接失败"));
       }
-      else
-      {
-          QMessageBox::warning(NULL, QStringLiteral("提示"), "open failed", QMessageBox::Yes);
-      }
+
+
+      //创建数据表
       QSqlQuery sql_query(db);
-//      bool buscess = sql_query.exec("create table person (ID int primary key, USE_TYPE varchar(20),NAME varchar(20), MODEL varchar(20),NUMBER int, MANUFACTOR varchar(100),PRICE float)");
-//      sql_query.exec("insert into person values(01, 'A4', 'de'，'SR-400',5,'wer'，15.63)");
-//      sql_query.exec("insert into person values(02, 'A3', 'pix'，'R-400',3,'sdf'，4.63)");
+      QString sqlStr;
+      bool buscess;
+      // 1 创建用户表
+      sqlStr = "create table USER_TABLE(ID int primary key, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION int)";
+      buscess = sql_query.exec(sqlStr);
+      if (!buscess)
+      {
+          qDebug("create USER_TABLE  error");
+      }
+
+      //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
+      sqlStr = "create table INVENTORY_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300))";
+      buscess = sql_query.exec(sqlStr);
+      if (!buscess)
+      {
+          qDebug("create USER_TABLE  error");
+      }
+
+      //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
+      sqlStr = "create table INBOUND_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
+      buscess = sql_query.exec(sqlStr);
+      if (!buscess)
+      {
+          qDebug("create USER_TABLE  error");
+      }
+
+      //3 存储物料的入库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
+      sqlStr = "create table OUTBOUND_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
+      buscess = sql_query.exec(sqlStr);
+      if (!buscess)
+      {
+          qDebug("create USER_TABLE  error");
+      }
 
 
-      bool buscess = sql_query.exec("create table person (ID int primary key, USE_TYPE varchar(20), NAME varchar(20),MODEL varchar(20),NUMBER int,MANUFACTOR varchar(100),PRICE float)");
+
+
+
+
+
+
+
+
       sql_query.exec("insert into person values(1, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
       sql_query.exec("insert into person values(2, 'A3333', 'pixng','R-400',3,'sdf',4.63)");
       sql_query.exec("insert into person values(3, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
@@ -71,32 +105,16 @@ UIDemo01::UIDemo01(QWidget *parent) :
       sql_query.exec("insert into person values(5, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
       sql_query.exec("insert into person values(6, 'A3333', 'pixng','R-400',3,'sdf',4.63)");
 
-
-      if (!buscess)
-      {
-
-          qDebug("table is error");
-      }
-      else
-      {
-          qDebug("table is sucess");
-      }
-
       QSqlQuery query;
       query.exec("select * from person");
       while (query.next())
       {
           qDebug() << query.value(0).toInt() << query.value(1).toString() << query.value(2).toString();
       }
-
-
-
-
-
-
-
-
 }
+
+
+
 
 UIDemo01::~UIDemo01()
 {

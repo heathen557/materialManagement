@@ -77,7 +77,7 @@ public:
     {
         if (UIDemo01->objectName().isEmpty())
             UIDemo01->setObjectName(QStringLiteral("UIDemo01"));
-        UIDemo01->resize(1068, 700);
+        UIDemo01->resize(1152, 700);
         UIDemo01->setSizeGripEnabled(true);
         verticalLayout = new QVBoxLayout(UIDemo01);
         verticalLayout->setSpacing(0);
