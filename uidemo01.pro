@@ -10,16 +10,19 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET      = materialManagement
 TEMPLATE    = app
-MOC_DIR     = temp/moc
-RCC_DIR     = temp/rcc
-UI_DIR      = temp/ui
-OBJECTS_DIR = temp/obj
+#MOC_DIR     = temp/moc
+#RCC_DIR     = temp/rcc
+#UI_DIR      = temp/ui
+#OBJECTS_DIR = temp/obj
 #DESTDIR     = $$PWD/../bin
 
 SOURCES     += main.cpp \
     pagewidget.cpp \
     querysetdialog.cpp \
-    addmaterial_dialog.cpp
+    addmaterial_dialog.cpp \
+    inbound_dialog.cpp \
+    outbound_dialog.cpp \
+    altermaterial_dialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
@@ -27,14 +30,20 @@ SOURCES     += uidemo01.cpp
 HEADERS     += iconhelper.h \
     pagewidget.h \
     querysetdialog.h \
-    addmaterial_dialog.h
+    addmaterial_dialog.h \
+    inbound_dialog.h \
+    outbound_dialog.h \
+    altermaterial_dialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
 FORMS       += uidemo01.ui \
     pagewidget.ui \
     querysetdialog.ui \
-    addmaterial_dialog.ui
+    addmaterial_dialog.ui \
+    inbound_dialog.ui \
+    outbound_dialog.ui \
+    altermaterial_dialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

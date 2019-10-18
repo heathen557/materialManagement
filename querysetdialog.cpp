@@ -28,6 +28,7 @@ void querySetDialog::initSelect()
         QString tmpStr = sql_query.value(0).toString();
         useTypeList.append(tmpStr);
     }
+    ui->useType_comboBox->clear();
     ui->useType_comboBox->addItems(useTypeList);
 
 
@@ -46,6 +47,7 @@ void querySetDialog::initSelect()
         QString tmpStr = sql_query.value(0).toString();
         materialList.append(tmpStr);
     }
+    ui->name_comboBox->clear();
     ui->name_comboBox->addItems(materialList);
 
     //查询所有的型号
@@ -63,6 +65,7 @@ void querySetDialog::initSelect()
         QString tmpStr = sql_query.value(0).toString();
         materialModelList.append(tmpStr);
     }
+    ui->model_comboBox->clear();
     ui->model_comboBox->addItems(materialModelList);
 
     //查询所有的厂家
@@ -80,6 +83,7 @@ void querySetDialog::initSelect()
         QString tmpStr = sql_query.value(0).toString();
         manuFactorList.append(tmpStr);
     }
+    ui->factory_comboBox->clear();
     ui->factory_comboBox->addItems(manuFactorList);
 
 
@@ -87,6 +91,7 @@ void querySetDialog::initSelect()
 
 void querySetDialog::initTableWidget()
 {
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setRowCount(50);
     ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
@@ -155,6 +160,9 @@ void querySetDialog::on_select_pushButton_clicked()
     QString sqlStr,tmpStr;
     QString userType,materialName,materialModel,factory,note;
     int num;
+
+    this->hide();
+
     for(int i=0; i<currentItemIndex; i++)
     {
         userType = userTypeItem[i].text();
@@ -213,7 +221,7 @@ void querySetDialog::on_select_pushButton_clicked()
 
 
 
-    this->hide();
+
 }
 
 

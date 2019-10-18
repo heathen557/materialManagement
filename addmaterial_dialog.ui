@@ -11,13 +11,17 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>新增物料界面</string>
+   <string>新增</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon_1.png</normaloff>icon_1.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>新增物料信息：</string>
+      <string>新增物资信息：</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">

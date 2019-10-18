@@ -16,6 +16,7 @@ addMaterial_Dialog::addMaterial_Dialog(QWidget *parent) :
 
 void addMaterial_Dialog::initTableWidget()
 {
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setRowCount(50);
     ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
