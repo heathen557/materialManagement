@@ -1,5 +1,5 @@
-﻿#ifndef QUERYSETDIALOG_H
-#define QUERYSETDIALOG_H
+﻿#ifndef ADDMATERIAL_DIALOG_H
+#define ADDMATERIAL_DIALOG_H
 
 #include <QDialog>
 #include<QTableWidgetItem>
@@ -7,28 +7,26 @@
 #include<QDebug>
 
 namespace Ui {
-class querySetDialog;
+class addMaterial_Dialog;
 }
 
-class querySetDialog : public QDialog
+class addMaterial_Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit querySetDialog(QWidget *parent = 0);
-    ~querySetDialog();
+    explicit addMaterial_Dialog(QWidget *parent = 0);
+    ~addMaterial_Dialog();
 
-    void initSelect();
     void initTableWidget();
+
 private slots:
-    void on_pushButton_clicked();
+    void on_ok_pushButton_clicked();
 
-    void on_select_pushButton_clicked();
-
+    void on_pushButton_2_clicked();
 
 private:
-    Ui::querySetDialog *ui;
-
+    Ui::addMaterial_Dialog *ui;
 
     int currentItemIndex;      //item的当前序号
 
@@ -37,13 +35,11 @@ private:
     QTableWidgetItem  materialNameItem[50];
     QTableWidgetItem  materialModelItem[50];
     QTableWidgetItem  factoryItem[50];
-    QTableWidgetItem  numItem[50];
+    QTableWidgetItem  singlePriceItem[50];
     QTableWidgetItem  noteItem[50];
 
     QString sqlStr;
 
-signals:
-   void selectResult_signal(QStringList);
 };
 
-#endif // QUERYSETDIALOG_H
+#endif // ADDMATERIAL_DIALOG_H

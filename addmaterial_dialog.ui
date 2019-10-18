@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>querySetDialog</class>
- <widget class="QDialog" name="querySetDialog">
+ <class>addMaterial_Dialog</class>
+ <widget class="QDialog" name="addMaterial_Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>507</height>
+    <width>794</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>查询条件设置界面</string>
+   <string>新增物料界面</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>设置查询条件：</string>
+      <string>新增物料信息：</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
@@ -33,7 +33,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="useType_comboBox"/>
+         <widget class="QLineEdit" name="userType_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
@@ -46,7 +46,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="name_comboBox"/>
+         <widget class="QLineEdit" name="materialName_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_3">
@@ -59,7 +59,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="model_comboBox"/>
+         <widget class="QLineEdit" name="materialModel_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_5">
@@ -72,12 +72,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="factory_comboBox"/>
+         <widget class="QLineEdit" name="factory_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>最少数量：</string>
+           <string>单价：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -85,14 +85,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="number_lineEdit">
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>16777215</height>
-           </size>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="price_lineEdit"/>
         </item>
        </layout>
       </item>
@@ -103,13 +96,16 @@
           <property name="text">
            <string>备注：</string>
           </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="note_lineEdit"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="ok_pushButton">
           <property name="text">
            <string>确定</string>
           </property>
@@ -144,7 +140,7 @@
      </column>
      <column>
       <property name="text">
-       <string>数量</string>
+       <string>单价</string>
       </property>
      </column>
      <column>
@@ -170,9 +166,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="select_pushButton">
+      <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>查询</string>
+        <string>添加</string>
        </property>
       </widget>
      </item>

@@ -18,20 +18,23 @@ OBJECTS_DIR = temp/obj
 
 SOURCES     += main.cpp \
     pagewidget.cpp \
-    querysetdialog.cpp
+    querysetdialog.cpp \
+    addmaterial_dialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
 
 HEADERS     += iconhelper.h \
     pagewidget.h \
-    querysetdialog.h
+    querysetdialog.h \
+    addmaterial_dialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
 FORMS       += uidemo01.ui \
     pagewidget.ui \
-    querysetdialog.ui
+    querysetdialog.ui \
+    addmaterial_dialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

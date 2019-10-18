@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon_1.png</normaloff>icon_1.png</iconset>
+  </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
@@ -106,7 +110,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>主界面</string>
+            <string>物料管理</string>
            </property>
            <property name="icon">
             <iconset resource="main.qrc">
@@ -126,7 +130,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>系统设置</string>
+            <string>入库查询</string>
            </property>
            <property name="icon">
             <iconset resource="main.qrc">
@@ -146,7 +150,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>物料查询</string>
+            <string>出库查询</string>
            </property>
            <property name="icon">
             <iconset resource="main.qrc">
@@ -348,7 +352,7 @@
      <widget class="QWidget" name="page1">
       <layout class="QGridLayout" name="gridLayout" rowstretch="1,14,1,1" rowminimumheight="0,0,0,0">
        <item row="0" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,1">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,0">
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
@@ -363,7 +367,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton">
+          <widget class="QPushButton" name="managerQuery_pushButton">
            <property name="text">
             <string>查询</string>
            </property>
@@ -378,7 +382,7 @@
         <widget class="QWidget" name="widget" native="true"/>
        </item>
        <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,6">
+        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,0,0,1,1,0,6">
          <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
@@ -393,16 +397,37 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="addMaterial_pushButton">
+           <property name="text">
+            <string>新增物料</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="alterMaterial_pushButton">
+           <property name="text">
+            <string>修改物料</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="inBound_pushButton">
            <property name="text">
             <string>入库</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="outBound_pushButton">
            <property name="text">
             <string>出库</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>返回总库</string>
            </property>
           </widget>
          </item>

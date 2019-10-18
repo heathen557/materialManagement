@@ -5,6 +5,8 @@
 #include "iconhelper.h"
 #include<QHBoxLayout>
 
+QSqlQuery sql_query;
+
 UIDemo01::UIDemo01(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::UIDemo01)
@@ -20,9 +22,15 @@ UIDemo01::UIDemo01(QWidget *parent) :
     hLayout->addWidget(pageWidget, 1);
 
     initSql();
+    initConnect();
 
 
+}
 
+
+void UIDemo01::initConnect()
+{
+    connect(&managmentQuery_dia,SIGNAL(selectResult_signal(QStringList)),this,SLOT(selectResult_slot(QStringList)));
 }
 
 //数据库初始化函数
@@ -51,66 +59,46 @@ void UIDemo01::initSql()
       {
           QMessageBox::information(NULL,QString::fromLocal8Bit("提示"),QString::fromLocal8Bit("数据库连接失败"));
       }
+      db.exec("SET NAMES 'UTF-8'"); ///设置utf-8编码
 
 
       //创建数据表
-      QSqlQuery sql_query(db);
+      QSqlQuery sqlQuery(db);
+      sql_query = sqlQuery;   //赋值给全局变量
       QString sqlStr;
       bool buscess;
       // 1 创建用户表
-      sqlStr = "create table USER_TABLE(ID int primary key, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION int)";
-      buscess = sql_query.exec(sqlStr);
+      sqlStr = "create table USER_TABLE(ID int primary key AUTO_INCREMENT, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION int)  ";
+      buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
           qDebug("create USER_TABLE  error");
       }
 
       //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
-      sqlStr = "create table INVENTORY_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300))";
-      buscess = sql_query.exec(sqlStr);
+      sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
+      buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
-          qDebug("create USER_TABLE  error");
+          qDebug("create INVENTORY_TABLE error");
       }
 
       //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
-      sqlStr = "create table INBOUND_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
-      buscess = sql_query.exec(sqlStr);
+      sqlStr = "create table INBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
+      buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
-          qDebug("create USER_TABLE  error");
+          qDebug("create INBOUND_TABLE  error");
       }
 
       //3 存储物料的入库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
-      sqlStr = "create table OUTBOUND_TABLE(ID int primary key, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
-      buscess = sql_query.exec(sqlStr);
+      sqlStr = "create table OUTBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300))";
+      buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
-          qDebug("create USER_TABLE  error");
+          qDebug("create OUTBOUND_TABLE  error");
       }
 
-
-
-
-
-
-
-
-
-
-      sql_query.exec("insert into person values(1, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
-      sql_query.exec("insert into person values(2, 'A3333', 'pixng','R-400',3,'sdf',4.63)");
-      sql_query.exec("insert into person values(3, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
-      sql_query.exec("insert into person values(4, 'A3333', 'pixng','R-400',3,'sdf',4.63)");
-      sql_query.exec("insert into person values(5, 'Danny', 'Young','Danny', 5,'Danny', 3.142)");
-      sql_query.exec("insert into person values(6, 'A3333', 'pixng','R-400',3,'sdf',4.63)");
-
-      QSqlQuery query;
-      query.exec("select * from person");
-      while (query.next())
-      {
-          qDebug() << query.value(0).toInt() << query.value(1).toString() << query.value(2).toString();
-      }
 }
 
 
@@ -133,6 +121,7 @@ bool UIDemo01::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
+//界面的初始化
 void UIDemo01::initForm()
 {
     this->setProperty("form", true);
@@ -194,6 +183,7 @@ void UIDemo01::initForm()
     ui->btnMain->click();
 }
 
+//选中上方的控件
 void UIDemo01::buttonClick()
 {
     QToolButton *b = (QToolButton *)sender();
@@ -221,11 +211,14 @@ void UIDemo01::buttonClick()
     }
 }
 
+//最小化操作
 void UIDemo01::on_btnMenu_Min_clicked()
 {
     showMinimized();
 }
 
+
+//最大化操作
 void UIDemo01::on_btnMenu_Max_clicked()
 {
     static bool max = false;
@@ -242,7 +235,31 @@ void UIDemo01::on_btnMenu_Max_clicked()
     max = !max;
 }
 
+
+//用户退出槽函数
 void UIDemo01::on_btnMenu_Close_clicked()
 {
     close();
+}
+
+
+//新增物料的按钮
+void UIDemo01::on_addMaterial_pushButton_clicked()
+{
+    addMaterial_dia.show();
+}
+
+//物料管理的查询按钮
+void UIDemo01::on_managerQuery_pushButton_clicked()
+{
+    //先初始化 查询相关的控件上的数据
+    managmentQuery_dia.initSelect();
+
+    managmentQuery_dia.show();
+}
+
+//物料查询结果接收的槽函数
+void UIDemo01::selectResult_slot(QStringList sqlList)
+{
+    qDebug()<<" the sql = "<<sqlList<<endl;
 }

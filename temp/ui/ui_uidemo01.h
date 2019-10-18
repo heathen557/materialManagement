@@ -55,13 +55,16 @@ public:
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
-    QToolButton *toolButton;
+    QPushButton *managerQuery_pushButton;
     QTableWidget *tableWidget;
     QWidget *widget;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *addMaterial_pushButton;
+    QPushButton *alterMaterial_pushButton;
+    QPushButton *inBound_pushButton;
+    QPushButton *outBound_pushButton;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QSpacerItem *horizontalSpacer_4;
     QWidget *page2;
     QVBoxLayout *verticalLayout_3;
@@ -78,6 +81,9 @@ public:
         if (UIDemo01->objectName().isEmpty())
             UIDemo01->setObjectName(QStringLiteral("UIDemo01"));
         UIDemo01->resize(1152, 700);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icon_1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        UIDemo01->setWindowIcon(icon);
         UIDemo01->setSizeGripEnabled(true);
         verticalLayout = new QVBoxLayout(UIDemo01);
         verticalLayout->setSpacing(0);
@@ -120,9 +126,9 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(btnMain->sizePolicy().hasHeightForWidth());
         btnMain->setSizePolicy(sizePolicy1);
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/image/main_main.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnMain->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/image/main_main.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnMain->setIcon(icon1);
         btnMain->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         horizontalLayout_3->addWidget(btnMain);
@@ -131,9 +137,9 @@ public:
         btnConfig->setObjectName(QStringLiteral("btnConfig"));
         sizePolicy1.setHeightForWidth(btnConfig->sizePolicy().hasHeightForWidth());
         btnConfig->setSizePolicy(sizePolicy1);
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/image/main_config.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnConfig->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/image/main_config.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnConfig->setIcon(icon2);
         btnConfig->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         horizontalLayout_3->addWidget(btnConfig);
@@ -142,9 +148,9 @@ public:
         btnData->setObjectName(QStringLiteral("btnData"));
         sizePolicy1.setHeightForWidth(btnData->sizePolicy().hasHeightForWidth());
         btnData->setSizePolicy(sizePolicy1);
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/image/main_data.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnData->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/image/main_data.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnData->setIcon(icon3);
         btnData->setChecked(false);
         btnData->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -155,9 +161,9 @@ public:
         sizePolicy1.setHeightForWidth(btnHelp->sizePolicy().hasHeightForWidth());
         btnHelp->setSizePolicy(sizePolicy1);
         btnHelp->setStyleSheet(QStringLiteral(""));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/image/main_person.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnHelp->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/image/main_person.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnHelp->setIcon(icon4);
         btnHelp->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         horizontalLayout_3->addWidget(btnHelp);
@@ -167,9 +173,9 @@ public:
         sizePolicy1.setHeightForWidth(btnExit->sizePolicy().hasHeightForWidth());
         btnExit->setSizePolicy(sizePolicy1);
         btnExit->setStyleSheet(QStringLiteral(""));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/image/main_exit.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnExit->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/image/main_exit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnExit->setIcon(icon5);
         btnExit->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         horizontalLayout_3->addWidget(btnExit);
@@ -242,13 +248,12 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        toolButton = new QToolButton(page1);
-        toolButton->setObjectName(QStringLiteral("toolButton"));
+        managerQuery_pushButton = new QPushButton(page1);
+        managerQuery_pushButton->setObjectName(QStringLiteral("managerQuery_pushButton"));
 
-        horizontalLayout->addWidget(toolButton);
+        horizontalLayout->addWidget(managerQuery_pushButton);
 
         horizontalLayout->setStretch(0, 5);
-        horizontalLayout->setStretch(1, 1);
 
         gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
 
@@ -268,24 +273,39 @@ public:
 
         horizontalLayout_4->addItem(horizontalSpacer_3);
 
+        addMaterial_pushButton = new QPushButton(page1);
+        addMaterial_pushButton->setObjectName(QStringLiteral("addMaterial_pushButton"));
+
+        horizontalLayout_4->addWidget(addMaterial_pushButton);
+
+        alterMaterial_pushButton = new QPushButton(page1);
+        alterMaterial_pushButton->setObjectName(QStringLiteral("alterMaterial_pushButton"));
+
+        horizontalLayout_4->addWidget(alterMaterial_pushButton);
+
+        inBound_pushButton = new QPushButton(page1);
+        inBound_pushButton->setObjectName(QStringLiteral("inBound_pushButton"));
+
+        horizontalLayout_4->addWidget(inBound_pushButton);
+
+        outBound_pushButton = new QPushButton(page1);
+        outBound_pushButton->setObjectName(QStringLiteral("outBound_pushButton"));
+
+        horizontalLayout_4->addWidget(outBound_pushButton);
+
         pushButton = new QPushButton(page1);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout_4->addWidget(pushButton);
-
-        pushButton_2 = new QPushButton(page1);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        horizontalLayout_4->addWidget(pushButton_2);
 
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_4);
 
         horizontalLayout_4->setStretch(0, 6);
-        horizontalLayout_4->setStretch(1, 1);
-        horizontalLayout_4->setStretch(2, 1);
-        horizontalLayout_4->setStretch(3, 6);
+        horizontalLayout_4->setStretch(3, 1);
+        horizontalLayout_4->setStretch(4, 1);
+        horizontalLayout_4->setStretch(6, 6);
 
         gridLayout->addLayout(horizontalLayout_4, 3, 0, 1, 1);
 
@@ -344,9 +364,9 @@ public:
         UIDemo01->setWindowTitle(QApplication::translate("UIDemo01", "Form", Q_NULLPTR));
         labIco->setText(QString());
         labTitle->setText(QString());
-        btnMain->setText(QApplication::translate("UIDemo01", "\344\270\273\347\225\214\351\235\242", Q_NULLPTR));
-        btnConfig->setText(QApplication::translate("UIDemo01", "\347\263\273\347\273\237\350\256\276\347\275\256", Q_NULLPTR));
-        btnData->setText(QApplication::translate("UIDemo01", "\347\211\251\346\226\231\346\237\245\350\257\242", Q_NULLPTR));
+        btnMain->setText(QApplication::translate("UIDemo01", "\347\211\251\346\226\231\347\256\241\347\220\206", Q_NULLPTR));
+        btnConfig->setText(QApplication::translate("UIDemo01", "\345\205\245\345\272\223\346\237\245\350\257\242", Q_NULLPTR));
+        btnData->setText(QApplication::translate("UIDemo01", "\345\207\272\345\272\223\346\237\245\350\257\242", Q_NULLPTR));
         btnHelp->setText(QApplication::translate("UIDemo01", "\347\224\250\346\210\267\347\256\241\347\220\206", Q_NULLPTR));
         btnExit->setText(QApplication::translate("UIDemo01", "\347\224\250\346\210\267\351\200\200\345\207\272", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
@@ -358,9 +378,12 @@ public:
 #endif // QT_NO_TOOLTIP
         btnMenu_Close->setText(QString());
         btnMenu_Max->setText(QString());
-        toolButton->setText(QApplication::translate("UIDemo01", "\346\237\245\350\257\242", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("UIDemo01", "\345\205\245\345\272\223", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("UIDemo01", "\345\207\272\345\272\223", Q_NULLPTR));
+        managerQuery_pushButton->setText(QApplication::translate("UIDemo01", "\346\237\245\350\257\242", Q_NULLPTR));
+        addMaterial_pushButton->setText(QApplication::translate("UIDemo01", "\346\226\260\345\242\236\347\211\251\346\226\231", Q_NULLPTR));
+        alterMaterial_pushButton->setText(QApplication::translate("UIDemo01", "\344\277\256\346\224\271\347\211\251\346\226\231", Q_NULLPTR));
+        inBound_pushButton->setText(QApplication::translate("UIDemo01", "\345\205\245\345\272\223", Q_NULLPTR));
+        outBound_pushButton->setText(QApplication::translate("UIDemo01", "\345\207\272\345\272\223", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("UIDemo01", "\350\277\224\345\233\236\346\200\273\345\272\223", Q_NULLPTR));
         lab2->setText(QApplication::translate("UIDemo01", "\347\263\273\347\273\237\350\256\276\347\275\256", Q_NULLPTR));
         lab3->setText(QApplication::translate("UIDemo01", "\350\255\246\346\203\205\346\237\245\350\257\242", Q_NULLPTR));
         lab4->setText(QApplication::translate("UIDemo01", "\350\260\203\350\257\225\345\270\256\345\212\251", Q_NULLPTR));

@@ -10,6 +10,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include<QMessageBox>
+#include<querysetdialog.h>
+#include<addmaterial_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -25,7 +27,13 @@ public:
 
     void initSql();
 
+    void initConnect();
+
     PageWidget *pageWidget;
+
+    querySetDialog managmentQuery_dia;
+
+    addMaterial_Dialog addMaterial_dia;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
@@ -41,6 +49,10 @@ private slots:
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();
     void on_btnMenu_Close_clicked();
+    void on_addMaterial_pushButton_clicked();
+    void on_managerQuery_pushButton_clicked();
+
+    void selectResult_slot(QStringList);
 };
 
 #endif // UIDEMO01_H
