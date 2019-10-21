@@ -98,6 +98,8 @@ private slots:
 
     void on_outBound_pushButton_clicked();
 
+    void alterMaterial_slot(QString,QString,QString,QString,QString,float,float);
+
 signals:
     void setMaxPage_signal(int);
 };

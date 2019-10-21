@@ -99,6 +99,8 @@ void UIDemo01::initConnect()
     connect(pageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(showSpecifiedPage(int)));     //插件页数变换的时候，发出信号，然后更新
 
     connect(this,SIGNAL(setMaxPage_signal(int)),pageWidget,SLOT(setMaxPage(int)));
+
+    connect(&alterMaterial_dia,SIGNAL(alterMaterial_signal(QString,QString,QString,QString,QString,float,float)),this,SLOT(alterMaterial_slot(QString,QString,QString,QString,QString,float,float)));  //修改物料信息后 同步到主界面的显示界面
 }
 
 //数据库初始化函数
@@ -441,6 +443,7 @@ void UIDemo01::on_alterMaterial_pushButton_clicked()
     QString materialModel = materialModelItem[currentClickIndex].text();
     QString factoryStr = factoryItem[currentClickIndex].text();
     QString singlePrice = singlePriceItem[currentClickIndex].text();
+    int materialNumber = numberItem[currentClickIndex].text().toInt();
 
     if(materialName.isEmpty())
     {
@@ -448,9 +451,28 @@ void UIDemo01::on_alterMaterial_pushButton_clicked()
         return;
     }
 
-
+    alterMaterial_dia.initMaterialInfo(materialName,userType,materialModel,factoryStr,singlePrice,materialNumber);
     alterMaterial_dia.show();
 }
+
+
+//接收修改界面后的信息的槽函数
+ //emit alterMaterial_signal(userType,materialName,materialModel,factoryName,noteStr,singlePrice,allPrice);
+void UIDemo01::alterMaterial_slot(QString userType,QString materialName,QString materialModel,QString factoryName,QString noteStr,float singlePrice,float allPrice)
+{
+    userTypeItem[currentClickIndex].setText(userType);
+    materialNameItem[currentClickIndex].setText(materialName);
+    materialModelItem[currentClickIndex].setText(materialModel);
+    factoryItem[currentClickIndex].setText(factoryName);
+    singlePriceItem[currentClickIndex].setText(QString::number(singlePrice));
+    allPriceItem[currentClickIndex].setText(QString::number(allPrice));
+    noteItem[currentClickIndex].setText(noteStr);
+
+}
+
+
+
+
 
 //入库 按钮
 void UIDemo01::on_inBound_pushButton_clicked()

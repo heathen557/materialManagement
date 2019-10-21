@@ -1379,6 +1379,31 @@ release\moc_altermaterial_dialog.cpp: ..\..\programInstall\QT580\5.8\msvc2015_64
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QTableWidgetItem \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtableview.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qicon.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qsqlquery.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\QDebug \
 		altermaterial_dialog.h \
 		release\moc_predefs.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\bin\moc.exe
@@ -2895,11 +2920,35 @@ release\altermaterial_dialog.obj: altermaterial_dialog.cpp altermaterial_dialog.
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qfiledevice.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qvector2d.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QTableWidgetItem \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtableview.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qicon.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qsqlquery.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\QDebug \
 		ui_altermaterial_dialog.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\QVariant \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QAction \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qaction.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qicon.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qactiongroup.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qapplication.h \
@@ -2918,22 +2967,6 @@ release\altermaterial_dialog.obj: altermaterial_dialog.cpp altermaterial_dialog.
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qheaderview.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemview.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qframe.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qabstractitemmodel.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qitemselectionmodel.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyleoption.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qvalidator.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\qregularexpression.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qslider.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qabstractslider.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qstyle.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabbar.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QLineEdit \
