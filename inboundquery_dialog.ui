@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>进出库查询条件设置</string>
+   <string>入库查询条件设置</string>
   </property>
   <property name="windowIcon">
    <iconset>

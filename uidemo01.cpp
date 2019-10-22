@@ -46,6 +46,14 @@ UIDemo01::UIDemo01(QWidget *parent) :
     inBoundLayout->addWidget(tempLabel,8);
     inBoundLayout->addWidget(inBound_PageWidget,8);
 
+    //出库查询页
+    outBound_PageWidget = new PageWidget();
+    outBound_label = new QLabel();
+    outBound_label->setText("总记录数：0");
+    QHBoxLayout *outBoundLayout = new QHBoxLayout(ui->outBound_pagewidget);
+    outBoundLayout->addWidget(outBound_label,2);
+    outBoundLayout->addWidget(tempLabel,8);
+    outBoundLayout->addWidget(outBound_PageWidget,8);
 
 
     initSql();
@@ -131,6 +139,43 @@ void UIDemo01::initTableWidget()
     }
 
 
+    //出库查询界面相关
+    ui->outBound_tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->outBound_tableWidget->setRowCount(onePageNotesNum);
+    ui->outBound_tableWidget->setColumnCount(11);
+    ui->outBound_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
+    ui->outBound_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
+    ui->outBound_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
+    ui->outBound_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+
+
+    for(int i=0;i<onePageNotesNum;i++)
+    {
+        ui->outBound_tableWidget->setItem(i,0,&outBound_userTypeItem[i]);
+        ui->outBound_tableWidget->setItem(i,1,&outBound_materialNameItem[i]);
+        ui->outBound_tableWidget->setItem(i,2,&outBound_materialModelItem[i]);
+        ui->outBound_tableWidget->setItem(i,3,&outBound_factoryItem[i]);
+        ui->outBound_tableWidget->setItem(i,4,&outBound_numberItem[i]);
+        ui->outBound_tableWidget->setItem(i,5,&outBound_singlePriceItem[i]);
+        ui->outBound_tableWidget->setItem(i,6,&outBound_allPriceItem[i]);
+        ui->outBound_tableWidget->setItem(i,7,&outBound_operatiorItem[i]);
+        ui->outBound_tableWidget->setItem(i,8,&outBound_RecipientItem[i]);
+        ui->outBound_tableWidget->setItem(i,9,&outBound_operaTimeItem[i]);
+        ui->outBound_tableWidget->setItem(i,10,&outBound_noteItem[i]);
+
+        outBound_userTypeItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_materialNameItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_materialModelItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_factoryItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_numberItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_allPriceItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_operatiorItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_RecipientItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_operaTimeItem[i].setTextAlignment(Qt::AlignCenter);
+        outBound_noteItem[i].setTextAlignment(Qt::AlignCenter);
+    }
+
 
 
 
@@ -158,6 +203,11 @@ void UIDemo01::initConnect()
     connect(inBound_PageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(showinBound_SpecifiedPage(int)));
 
     connect(this,SIGNAL(setInBoundPage_signal(int)),inBound_PageWidget,SLOT(setMaxPage(int)));
+
+
+    connect(&outBoundQuery_dia,SIGNAL(outBoundSQLResult_signal(QStringList)),this,SLOT(outBoundSQLResult_slot(QStringList)));
+
+    connect(this,SIGNAL(setOutBoundPage_signal(int)),outBound_PageWidget,SLOT(setMaxPage(int)));
 }
 
 //数据库初始化函数
@@ -218,8 +268,8 @@ void UIDemo01::initSql()
           qDebug("create INBOUND_TABLE  error");
       }
 
-      //3 存储物料的入库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
-      sqlStr = "create table OUTBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
+      //3 存储物料的出库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，领用人、操作日期、备注
+      sqlStr = "create table OUTBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),RECIPIENT varchar(20), OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
       buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
@@ -689,3 +739,111 @@ void UIDemo01::showinBound_SpecifiedPage(int pageNum)
     }
 }
 
+
+
+/**************************出库查询相关的槽函数**********************************************************/
+
+//弹出出库查询函数的窗口
+void UIDemo01::on_outBoundQuery_pushButton_clicked()
+{
+    outBoundQuery_dia.initSelect();
+    outBoundQuery_dia.show();
+}
+
+//接收入库查询后的 SQL 语句
+void UIDemo01::outBoundSQLResult_slot(QStringList sqlList)
+{
+    qDebug()<<" sql = "<<sqlList<<endl;
+
+    outBound_DataList.clear();  //每次查询都清空已有的数据
+    QString sqlStr;
+
+    for(int i=0; i<sqlList.length(); i++)
+    {
+        sqlStr = sqlList[i];
+        bool buscess =  sql_query.exec(sqlStr);
+        if(!buscess)
+        {
+            qDebug()<<" select UIDemo01::outBoundSQLResult_slot(QStringList sqlList) error !!"<<endl;
+            return;
+        }
+        while(sql_query.next())
+        {
+            for(int k=1 ;k<12; k++)
+            {
+                outBound_DataList.append(sql_query.value(k).toString());
+            }
+
+        }
+    }
+
+    qDebug()<<" allDataList=" <<outBound_DataList.length()/11<<endl;    //总的记录数为=length/8;
+    int allNotes = outBound_DataList.length()/11;
+
+    QString str = "总记录数：" + QString::number(allNotes);    //显示记录数
+    outBound_label->setText(str);
+
+
+    int maxPage ;
+    maxPage = allNotes/onePageNotesNum ;
+    if(0 != allNotes%onePageNotesNum )
+    {
+        maxPage = maxPage + 1;
+    }
+
+//    emit setMaxPage_signal(maxPage);
+    emit setOutBoundPage_signal(maxPage);
+    showoutBound_SpecifiedPage(1);
+
+}
+
+
+void UIDemo01::showoutBound_SpecifiedPage(int pageNum)
+{
+    //先清空tableWidget上的显示
+    for(int i=0; i<onePageNotesNum; i++)
+    {
+        outBound_userTypeItem[i].setText("");
+        outBound_materialNameItem[i].setText("");
+        outBound_materialModelItem[i].setText("");
+        outBound_factoryItem[i].setText("");
+        outBound_numberItem[i].setText("");
+        outBound_singlePriceItem[i].setText("");
+        outBound_allPriceItem[i].setText("");
+        outBound_operatiorItem[i].setText("");
+        outBound_RecipientItem[i].setText("");
+        outBound_operaTimeItem[i].setText("");
+        outBound_noteItem[i].setText("");
+    }
+
+    //第一条的记录序号为  (page-1)*onePageNotesNum;
+    //最后一条的记录序号为 page*onePageNotesNum - 1;  要对比和总条数的大小，选最小的那个
+    int beginNum = (pageNum-1) * onePageNotesNum;
+
+    int last =  pageNum*onePageNotesNum -1;
+    int allNoteNum = outBound_DataList.length()/11;
+    int lastNum = last<allNoteNum ? last+1:allNoteNum;   //选取最小的
+
+    qDebug()<<"here beginNum="<<beginNum<<"  lastNum="<<lastNum<<endl;
+
+    int index = 0;
+    for(int i=beginNum; i<lastNum; i++)     //i为记录的序号
+    {
+        qDebug()<<"i = "<<i<<endl;
+
+        outBound_userTypeItem[index].setText(outBound_DataList[i*11+0]);
+        outBound_materialNameItem[index].setText(outBound_DataList[i*11+1]);
+        outBound_materialModelItem[index].setText(outBound_DataList[i*11+2]);
+        outBound_factoryItem[index].setText(outBound_DataList[i*11+3]);
+        outBound_numberItem[index].setText(outBound_DataList[i*11+4]);
+        outBound_singlePriceItem[index].setText(outBound_DataList[i*11+5]);
+        outBound_allPriceItem[index].setText(outBound_DataList[i*11+6]);
+        outBound_operatiorItem[index].setText(outBound_DataList[i*11+7]);
+        outBound_RecipientItem[index].setText(outBound_DataList[i*11+8]);
+        QString strTime = outBound_DataList[i*11+9];
+        strTime.replace("T"," ");
+        outBound_operaTimeItem[index].setText(strTime);
+        outBound_noteItem[index].setText(outBound_DataList[i*11+10]);
+        index++;
+    }
+}

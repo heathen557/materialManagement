@@ -36,6 +36,7 @@ void outBound_Dialog::on_ok_pushButton_2_clicked()
     int outNum = ui->outBoundNum_lineEdit->text().toInt();
     QString operationName = ui->operator_lineEdit_2->text();
     QString addNoteName = ui->note_lineEdit_2->text();
+    QString recipientName = ui->Recipient_lineEdit->text();
 
     if(ExistingNum < outNum)
     {
@@ -66,7 +67,7 @@ void outBound_Dialog::on_ok_pushButton_2_clicked()
 
     //入库表信息的导入
     float outBoundPrice = singlePrice * outNum;    //出库的总价值
-    sql_query.prepare("INSERT INTO OUTBOUND_TABLE(USE_TYPE,MATERIAL_NAME,MATERIAL_MODEL,MANUFACTOR,NUMBER,SINGLE_PRICE,ALL_PRICE,OPERATION_USER,OPERATION_TIME,NOTE) VALUES(:USE_TYPE,:MATERIAL_NAME,:MATERIAL_MODEL,:MANUFACTOR,:NUMBER,:SINGLE_PRICE,:ALL_PRICE,:OPERATION_USER,:OPERATION_TIME,:NOTE)");
+    sql_query.prepare("INSERT INTO OUTBOUND_TABLE(USE_TYPE,MATERIAL_NAME,MATERIAL_MODEL,MANUFACTOR,NUMBER,SINGLE_PRICE,ALL_PRICE,OPERATION_USER, RECIPIENT,OPERATION_TIME,NOTE) VALUES(:USE_TYPE,:MATERIAL_NAME,:MATERIAL_MODEL,:MANUFACTOR,:NUMBER,:SINGLE_PRICE,:ALL_PRICE,:OPERATION_USER,:RECIPIENT,:OPERATION_TIME,:NOTE)");
     sql_query.bindValue(":USE_TYPE",userType);
     sql_query.bindValue(":MATERIAL_NAME",materialName);
     sql_query.bindValue(":MATERIAL_MODEL",materialModel);
@@ -75,6 +76,7 @@ void outBound_Dialog::on_ok_pushButton_2_clicked()
     sql_query.bindValue(":SINGLE_PRICE",singlePrice);
     sql_query.bindValue(":ALL_PRICE",outBoundPrice);
     sql_query.bindValue(":OPERATION_USER",operationName);
+    sql_query.bindValue(":RECIPIENT",recipientName);
     sql_query.bindValue(":OPERATION_TIME",current_time);
     sql_query.bindValue(":NOTE",addNoteName);
     buscess = sql_query.exec();
@@ -93,6 +95,7 @@ void outBound_Dialog::on_ok_pushButton_2_clicked()
 
     ui->material_label_2->clear();
     ui->outBoundNum_lineEdit->clear();
+    ui->Recipient_lineEdit->clear();
     ui->operator_lineEdit_2->clear();
     ui->note_lineEdit_2->clear();
 }
@@ -103,6 +106,7 @@ void outBound_Dialog::on_cancel_pushButton_2_clicked()
 
     ui->material_label_2->clear();
     ui->outBoundNum_lineEdit->clear();
+    ui->Recipient_lineEdit->clear();
     ui->operator_lineEdit_2->clear();
     ui->note_lineEdit_2->clear();
 }

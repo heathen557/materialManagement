@@ -359,7 +359,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page1">
       <layout class="QGridLayout" name="gridLayout" rowstretch="1,14,1,1" rowminimumheight="0,0,0,0">
@@ -622,14 +622,103 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page3">
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <item>
-        <widget class="QLabel" name="lab3">
-         <property name="text">
-          <string>警情查询</string>
+      <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,14,1">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,0">
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>918</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="outBoundQuery_pushButton">
+           <property name="text">
+            <string>查询</string>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTableWidget" name="outBound_tableWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <column>
+          <property name="text">
+           <string>用途</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>名称</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>型号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>厂家</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>数量</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>单价(元)</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>总价</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>操作人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>领用人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>操作时间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>备注</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QWidget" name="outBound_pagewidget" native="true">
+         <property name="styleSheet">
+          <string notr="true">font: 10pt &quot;黑体&quot;;</string>
          </property>
         </widget>
        </item>

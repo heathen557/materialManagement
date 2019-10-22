@@ -17,6 +17,7 @@
 #include<outbound_dialog.h>
 #include<altermaterial_dialog.h>
 #include<inboundquery_dialog.h>
+#include<outboundquery_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -86,6 +87,25 @@ public:
    QStringList inBound_DataList;
 
 
+   //出库查询界面相关
+   QTableWidgetItem  outBound_userTypeItem[50];
+   QTableWidgetItem  outBound_materialNameItem[50];
+   QTableWidgetItem  outBound_materialModelItem[50];
+   QTableWidgetItem  outBound_factoryItem[50];
+   QTableWidgetItem  outBound_numberItem[50];
+   QTableWidgetItem  outBound_singlePriceItem[50];
+   QTableWidgetItem  outBound_allPriceItem[50];
+   QTableWidgetItem  outBound_operatiorItem[50];
+   QTableWidgetItem  outBound_RecipientItem[50];
+   QTableWidgetItem  outBound_operaTimeItem[50];
+   QTableWidgetItem  outBound_noteItem[50];
+
+   outboundquery_Dialog outBoundQuery_dia;
+   PageWidget *outBound_PageWidget;
+   QLabel *outBound_label;
+   QStringList outBound_DataList;
+
+
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
@@ -122,7 +142,7 @@ private slots:
 
 
     /**********入库相关槽函数*****************/
-    void inBoundNum_Slot(int ,float);
+    void inBoundNum_Slot(int ,float);        //此槽函数 出库入库共用
 
     void on_inBoundQuery_pushButton_clicked();
 
@@ -131,11 +151,19 @@ private slots:
     void showinBound_SpecifiedPage(int pageNum);
 
 
+    /**********出库相关槽函数*****************/
+    void on_outBoundQuery_pushButton_clicked();
+
+    void outBoundSQLResult_slot(QStringList);
+
+    void showoutBound_SpecifiedPage(int pageNum);
 
 signals:
     void setMaxPage_signal(int);
 
     void setInBoundPage_signal(int);
+
+    void setOutBoundPage_signal(int);
 };
 
 #endif // UIDEMO01_H

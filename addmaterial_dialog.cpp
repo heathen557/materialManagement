@@ -115,6 +115,7 @@ void addMaterial_Dialog::on_pushButton_2_clicked()
 
     }
 
+    this->hide();
 
     for(int i=0; i<currentItemIndex; i++)
     {
@@ -128,6 +129,8 @@ void addMaterial_Dialog::on_pushButton_2_clicked()
 
 
     currentItemIndex = 0;
+
+
 
 
 }

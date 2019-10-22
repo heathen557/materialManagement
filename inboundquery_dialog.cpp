@@ -46,6 +46,8 @@ void inBoundQuery_Dialog::initTableWidget()
         materialModelItem[i].setTextAlignment(Qt::AlignCenter);
         factoryItem[i].setTextAlignment(Qt::AlignCenter);
         numItem[i].setTextAlignment(Qt::AlignCenter);
+        operationItem[i].setTextAlignment(Qt::AlignCenter);
+        operationTime[i].setTextAlignment(Qt::AlignCenter);
         noteItem[i].setTextAlignment(Qt::AlignCenter);
     }
 }
