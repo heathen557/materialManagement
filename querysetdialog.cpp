@@ -215,13 +215,6 @@ void querySetDialog::on_select_pushButton_clicked()
     }
     currentItemIndex = 0;
 
-
-
-
-
-
-
-
 }
 
 

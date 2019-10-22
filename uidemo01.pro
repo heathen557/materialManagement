@@ -22,7 +22,8 @@ SOURCES     += main.cpp \
     addmaterial_dialog.cpp \
     inbound_dialog.cpp \
     outbound_dialog.cpp \
-    altermaterial_dialog.cpp
+    altermaterial_dialog.cpp \
+    inboundquery_dialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
@@ -33,7 +34,8 @@ HEADERS     += iconhelper.h \
     addmaterial_dialog.h \
     inbound_dialog.h \
     outbound_dialog.h \
-    altermaterial_dialog.h
+    altermaterial_dialog.h \
+    inboundquery_dialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
@@ -43,7 +45,8 @@ FORMS       += uidemo01.ui \
     addmaterial_dialog.ui \
     inbound_dialog.ui \
     outbound_dialog.ui \
-    altermaterial_dialog.ui
+    altermaterial_dialog.ui \
+    inboundquery_dialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

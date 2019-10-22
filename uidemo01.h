@@ -16,6 +16,7 @@
 #include<inbound_dialog.h>
 #include<outbound_dialog.h>
 #include<altermaterial_dialog.h>
+#include<inboundquery_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -67,6 +68,25 @@ public:
 
    int currentClickIndex;   //当前选中的TableWidget的行号：
 
+   //入库查询界面
+   QTableWidgetItem  inBound_userTypeItem[50];
+   QTableWidgetItem  inBound_materialNameItem[50];
+   QTableWidgetItem  inBound_materialModelItem[50];
+   QTableWidgetItem  inBound_factoryItem[50];
+   QTableWidgetItem  inBound_numberItem[50];
+   QTableWidgetItem  inBound_singlePriceItem[50];
+   QTableWidgetItem  inBound_allPriceItem[50];
+   QTableWidgetItem  inBound_operatiorItem[50];
+   QTableWidgetItem  inBound_operaTimeItem[50];
+   QTableWidgetItem  inBound_noteItem[50];
+
+   inBoundQuery_Dialog inBoundQuery_dia;
+   PageWidget *inBound_PageWidget;
+   QLabel *inBound_label;
+   QStringList inBound_DataList;
+
+
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
 
@@ -84,9 +104,9 @@ private slots:
     void on_addMaterial_pushButton_clicked();
     void on_managerQuery_pushButton_clicked();
 
-    void selectResult_slot(QStringList);    //接收查询条件界面的查询信息的槽函数
+    void selectResult_slot(QStringList);    //物资管理 接收查询条件界面的查询信息的槽函数
 
-    void showSpecifiedPage(int pageNum);   //显示指定页数的槽函数
+    void showSpecifiedPage(int pageNum);   //物资管理 显示指定页数的槽函数
 
     void on_returnALL_pushButton_clicked();
 
@@ -100,8 +120,22 @@ private slots:
 
     void alterMaterial_slot(QString,QString,QString,QString,QString,float,float);
 
+
+    /**********入库相关槽函数*****************/
+    void inBoundNum_Slot(int ,float);
+
+    void on_inBoundQuery_pushButton_clicked();
+
+    void inBoundSQLResult_slot(QStringList);   //接收入库查询 查询SQL 语句的槽函数
+
+    void showinBound_SpecifiedPage(int pageNum);
+
+
+
 signals:
     void setMaxPage_signal(int);
+
+    void setInBoundPage_signal(int);
 };
 
 #endif // UIDEMO01_H
