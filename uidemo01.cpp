@@ -5,7 +5,7 @@
 #include "iconhelper.h"
 #include<QHBoxLayout>
 
-QSqlQuery sql_query;
+extern QSqlQuery sql_query;
 
 UIDemo01::UIDemo01(QWidget *parent) :
     QDialog(parent),
@@ -17,6 +17,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
     onePageNotesNum = 50;
 
     currentClickIndex = 0;
+    currentUserClickIndex = 0;
 
     //界面上添加分页控件
     pageWidget = new PageWidget();
@@ -29,6 +30,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
     QLabel *lable2 = new QLabel();
     QLabel *currentPageLabel = new QLabel();
     QLabel *tempLabel = new QLabel();
+    QLabel *tempLabel_1 = new QLabel();
     QHBoxLayout *hLayout = new QHBoxLayout(ui->widget);
     hLayout->addWidget(lable1,2);
     hLayout->addWidget(allLabel,1);
@@ -52,16 +54,17 @@ UIDemo01::UIDemo01(QWidget *parent) :
     outBound_label->setText("总记录数：0");
     QHBoxLayout *outBoundLayout = new QHBoxLayout(ui->outBound_pagewidget);
     outBoundLayout->addWidget(outBound_label,2);
-    outBoundLayout->addWidget(tempLabel,8);
+    outBoundLayout->addWidget(tempLabel_1,8);
     outBoundLayout->addWidget(outBound_PageWidget,8);
 
 
-    initSql();
+//    initSql();
     initConnect();
     initTableWidget();
 
     emit setMaxPage_signal(1);
     emit setInBoundPage_signal(1);
+    emit setOutBoundPage_signal(1);
 
 
 
@@ -91,6 +94,7 @@ void UIDemo01::initTableWidget()
         ui->tableWidget->setItem(i,6,&allPriceItem[i]);
         ui->tableWidget->setItem(i,7,&noteItem[i]);
 
+
         userTypeItem[i].setTextAlignment(Qt::AlignCenter);
         materialNameItem[i].setTextAlignment(Qt::AlignCenter);
         materialModelItem[i].setTextAlignment(Qt::AlignCenter);
@@ -104,6 +108,7 @@ void UIDemo01::initTableWidget()
 
 
     //入库查询界面相关
+
     ui->inBound_tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->inBound_tableWidget->setRowCount(onePageNotesNum);
     ui->inBound_tableWidget->setColumnCount(10);
@@ -111,6 +116,7 @@ void UIDemo01::initTableWidget()
     ui->inBound_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
     ui->inBound_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
     ui->inBound_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+    ui->inBound_tableWidget->setColumnWidth(8,130);
 
 
     for(int i=0;i<onePageNotesNum;i++)
@@ -147,6 +153,7 @@ void UIDemo01::initTableWidget()
     ui->outBound_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
     ui->outBound_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
     ui->outBound_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+    ui->outBound_tableWidget->setColumnWidth(9,130);
 
 
     for(int i=0;i<onePageNotesNum;i++)
@@ -177,9 +184,77 @@ void UIDemo01::initTableWidget()
     }
 
 
+    //用户管理界面相关
+    ui->user_tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->user_tableWidget->setRowCount(onePageNotesNum);
+    ui->user_tableWidget->setColumnCount(4);
+    ui->user_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
+    ui->user_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
+    ui->user_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
+    ui->user_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+    ui->user_tableWidget->setColumnWidth(3,180);
 
 
 
+    for(int i=0;i<onePageNotesNum;i++)
+    {
+        ui->user_tableWidget->setItem(i,0,&userNameItem[i]);
+        ui->user_tableWidget->setCellWidget(i,1,&userPassWord_lineEdit[i]);
+        ui->user_tableWidget->setItem(i,2,&authorityItem[i]);
+        ui->user_tableWidget->setItem(i,3,&userNoteItem[i]);
+
+//        lineText[i].setText(QString::number(i));
+        userPassWord_lineEdit[i].setEchoMode(QLineEdit::Password);   //不显示密码
+        userPassWord_lineEdit[i].setReadOnly(true);
+        userPassWord_lineEdit[i].setAlignment(Qt::AlignCenter);
+        userNameItem[i].setTextAlignment(Qt::AlignCenter);
+        authorityItem[i].setTextAlignment(Qt::AlignCenter);
+        userNoteItem[i].setTextAlignment(Qt::AlignCenter);
+    }
+
+}
+
+void UIDemo01::clearTableWidgetItem()
+{
+    currentClickIndex = 0;
+    for(int i = 0 ; i<50; i++)
+    {
+        userTypeItem[i].setText("");
+        materialNameItem[i].setText("");
+        materialModelItem[i].setText("");
+        factoryItem[i].setText("");
+        numberItem[i].setText("");
+        singlePriceItem[i].setText("");
+        allPriceItem[i].setText("");
+        noteItem[i].setText("");
+
+        inBound_userTypeItem[i].setText("");
+        inBound_materialNameItem[i].setText("");
+        inBound_materialModelItem[i].setText("");
+        inBound_factoryItem[i].setText("");
+        inBound_numberItem[i].setText("");
+        inBound_singlePriceItem[i].setText("");
+        inBound_allPriceItem[i].setText("");
+        inBound_operatiorItem[i].setText("");
+        inBound_operaTimeItem[i].setText("");
+        inBound_noteItem[i].setText("");
+
+        outBound_userTypeItem[i].setText("");
+        outBound_materialNameItem[i].setText("");
+        outBound_materialModelItem[i].setText("");
+        outBound_factoryItem[i].setText("");
+        outBound_numberItem[i].setText("");
+        outBound_singlePriceItem[i].setText("");
+        outBound_allPriceItem[i].setText("");
+        outBound_operatiorItem[i].setText("");
+        outBound_RecipientItem[i].setText("");
+        outBound_operaTimeItem[i].setText("");
+        outBound_noteItem[i].setText("");
+
+        userNameItem[i].setText("");
+        authorityItem[i].setText("");
+        userNoteItem[i].setText("");
+    }
 }
 
 
@@ -208,6 +283,12 @@ void UIDemo01::initConnect()
     connect(&outBoundQuery_dia,SIGNAL(outBoundSQLResult_signal(QStringList)),this,SLOT(outBoundSQLResult_slot(QStringList)));
 
     connect(this,SIGNAL(setOutBoundPage_signal(int)),outBound_PageWidget,SLOT(setMaxPage(int)));
+
+    //用户管理
+    connect(&addUserDia,SIGNAL(addUserOneNoteSignal(QString,QString,QString,QString)),this,SLOT(addUserOneNoteSlot(QString,QString,QString,QString)));
+
+    connect(&alterUserDia,SIGNAL(alterUserOneNoteSignal(QString,QString,QString,QString)),this,SLOT(alterUserOneNoteSlot(QString,QString,QString,QString)));
+
 }
 
 //数据库初始化函数
@@ -245,7 +326,7 @@ void UIDemo01::initSql()
       QString sqlStr;
       bool buscess;
       // 1 创建用户表
-      sqlStr = "create table USER_TABLE(ID int primary key AUTO_INCREMENT, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION int) charset=utf8;";
+      sqlStr = "create table USER_TABLE(ID int primary key AUTO_INCREMENT, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION varchar(20),NOTE varchar(300)) charset=utf8;";
       buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
@@ -377,12 +458,17 @@ void UIDemo01::buttonClick()
 
     if (name == "物料管理") {
         ui->stackedWidget->setCurrentIndex(0);
+        clearTableWidgetItem();
     } else if (name == "入库查询") {
         ui->stackedWidget->setCurrentIndex(1);
+        clearTableWidgetItem();
     } else if (name == "出库查询") {
         ui->stackedWidget->setCurrentIndex(2);
+        clearTableWidgetItem();
     } else if (name == "用户管理") {
         ui->stackedWidget->setCurrentIndex(3);
+        clearTableWidgetItem();
+        initUserTableWidget();
     } else if (name == "用户退出") {
         exit(0);
     }
@@ -846,4 +932,90 @@ void UIDemo01::showoutBound_SpecifiedPage(int pageNum)
         outBound_noteItem[index].setText(outBound_DataList[i*11+10]);
         index++;
     }
+}
+
+
+
+/****************用户管理相关的槽函数******************************************/
+void UIDemo01::initUserTableWidget()
+{
+    QString sqlStr ="SELECT * FROM USER_TABLE ;";
+    bool buscess =  sql_query.exec(sqlStr);
+    currentIndex = 0;
+    while(sql_query.next())
+    {
+        userNameItem[currentIndex].setText(sql_query.value(1).toString());
+        userPassWord_lineEdit[currentIndex].setText(sql_query.value(2).toString());
+        authorityItem[currentIndex].setText(sql_query.value(3).toString());
+        userNoteItem[currentIndex].setText(sql_query.value(4).toString());
+        currentIndex++;
+    }
+}
+
+//新增用户 弹出界面
+void UIDemo01::on_addUser_pushButton_clicked()
+{
+    addUserDia.show();
+}
+
+
+//修改用户 弹出界面
+void UIDemo01::on_alterUser_pushButton_clicked()
+{
+    //首先获取选中的控件上的内容
+    QString userName  = userNameItem[currentUserClickIndex].text();
+    QString userPassWd = userPassWord_lineEdit[currentUserClickIndex].text();
+    QString authorityStr = authorityItem[currentUserClickIndex].text();
+    QString noteStr = userNoteItem[currentUserClickIndex].text();
+
+    alterUserDia.initUserInfo(userName,userPassWd,authorityStr,noteStr);
+    alterUserDia.show();
+
+}
+
+//删除用户
+void UIDemo01::on_delUser_pushButton_clicked()
+{
+    QString userName = userNameItem[currentUserClickIndex].text();
+    sql_query.prepare("DELETE FROM USER_TABLE WHERE USER_NAME=:USER_NAME;");
+    sql_query.bindValue(":USER_NAME",userName);
+    bool buscess = sql_query.exec();
+    if(!buscess)
+    {
+        qDebug()<<QStringLiteral("删除用户失败");
+        QMessageBox::information(NULL,QStringLiteral("告警"),QStringLiteral("删除用户失败"));
+        return;
+    }
+
+    userNameItem[currentUserClickIndex].setText("-");
+    userPassWord_lineEdit[currentUserClickIndex].setText("");
+    authorityItem[currentUserClickIndex].setText("-");
+    userNoteItem[currentUserClickIndex].setText("-");
+
+}
+
+
+//在TableWidget 上添加一行数据
+void UIDemo01::addUserOneNoteSlot(QString userName,QString passWord,QString authority,QString note)
+{
+    userNameItem[currentIndex].setText(userName);
+    userPassWord_lineEdit[currentIndex].setText(passWord);
+    authorityItem[currentIndex].setText(authority);
+    userNoteItem[currentIndex].setText(note);
+    currentIndex++;
+}
+
+//选中某一行
+void UIDemo01::on_user_tableWidget_clicked(const QModelIndex &index)
+{
+    currentUserClickIndex = index.row();
+}
+
+//修改后某一行 同步到主界面
+void UIDemo01::alterUserOneNoteSlot(QString userName,QString userPassWd,QString authorityStr,QString noteStr)
+{
+    userNameItem[currentUserClickIndex].setText(userName);
+    userPassWord_lineEdit[currentUserClickIndex].setText(userPassWd);
+    authorityItem[currentUserClickIndex].setText(authorityStr);
+    userNoteItem[currentUserClickIndex].setText(noteStr);
 }

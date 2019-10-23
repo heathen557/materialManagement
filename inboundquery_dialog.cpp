@@ -28,6 +28,7 @@ void inBoundQuery_Dialog::initTableWidget()
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
     ui->tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
     ui->tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+    ui->tableWidget->setColumnWidth(6,150);
 
 
     for(int i=0;i<50;i++)

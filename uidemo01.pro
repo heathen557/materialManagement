@@ -24,7 +24,10 @@ SOURCES     += main.cpp \
     outbound_dialog.cpp \
     altermaterial_dialog.cpp \
     inboundquery_dialog.cpp \
-    outboundquery_dialog.cpp
+    outboundquery_dialog.cpp \
+    adduser_dialog.cpp \
+    alteruser_dialog.cpp \
+    frmlogin.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
@@ -37,7 +40,10 @@ HEADERS     += iconhelper.h \
     outbound_dialog.h \
     altermaterial_dialog.h \
     inboundquery_dialog.h \
-    outboundquery_dialog.h
+    outboundquery_dialog.h \
+    adduser_dialog.h \
+    alteruser_dialog.h \
+    frmlogin.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
@@ -49,7 +55,10 @@ FORMS       += uidemo01.ui \
     outbound_dialog.ui \
     altermaterial_dialog.ui \
     inboundquery_dialog.ui \
-    outboundquery_dialog.ui
+    outboundquery_dialog.ui \
+    adduser_dialog.ui \
+    alteruser_dialog.ui \
+    frmlogin.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

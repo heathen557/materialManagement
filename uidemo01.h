@@ -4,6 +4,7 @@
 #include <QDialog>
 #include<pagewidget.h>
 #include<QWidget>
+#include<QLineEdit>
 
 #include <QtSql>
 #include <QSqlQueryModel>
@@ -18,6 +19,8 @@
 #include<altermaterial_dialog.h>
 #include<inboundquery_dialog.h>
 #include<outboundquery_dialog.h>
+#include<adduser_dialog.h>
+#include<alteruser_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -36,6 +39,8 @@ public:
     void initConnect();
 
     void initTableWidget();
+
+    void clearTableWidgetItem();
 
     PageWidget *pageWidget;
 
@@ -106,6 +111,20 @@ public:
    QStringList outBound_DataList;
 
 
+   //用户管理界面相关
+  QTableWidgetItem userNameItem[50];
+  QLineEdit userPassWord_lineEdit[50];
+  QTableWidgetItem authorityItem[50];
+  QTableWidgetItem userNoteItem[50];
+
+//  QLineEdit lineText[50];
+
+  addUser_Dialog addUserDia;
+  int currentIndex;
+  int currentUserClickIndex;
+  alteruser_Dialog alterUserDia;
+
+
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
@@ -157,6 +176,21 @@ private slots:
     void outBoundSQLResult_slot(QStringList);
 
     void showoutBound_SpecifiedPage(int pageNum);
+
+    void on_addUser_pushButton_clicked();
+
+    void on_alterUser_pushButton_clicked();
+
+    void on_delUser_pushButton_clicked();
+
+    /************用户管理相关的槽函数****************************/
+    void addUserOneNoteSlot(QString,QString,QString,QString); //接收添加后某一条的槽函数
+
+    void initUserTableWidget();
+
+    void on_user_tableWidget_clicked(const QModelIndex &index);
+
+    void alterUserOneNoteSlot(QString,QString,QString,QString);  //接收修改后某一条的槽函数
 
 signals:
     void setMaxPage_signal(int);
