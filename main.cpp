@@ -100,10 +100,7 @@ int main(int argc, char *argv[])
 //    }
 
 
-    initSQL();
 
-    frmLogin frmLogin11;
-    frmLogin11.show();
 
 
 
@@ -120,6 +117,16 @@ int main(int argc, char *argv[])
     }
     a.setFont(QFont("Microsoft Yahei", 9));
     AppInit::Instance()->start();
+
+
+
+
+    initSQL();
+
+    frmLogin frmLogin11;
+    frmLogin11.show();
+
+
     return a.exec();
 
 

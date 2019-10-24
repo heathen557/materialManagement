@@ -23,6 +23,8 @@ public:
     int getMaxPage() const;
     int getCurrentPage() const;
 
+    void setLineEdit(int);
+
 
 
 protected:

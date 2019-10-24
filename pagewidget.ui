@@ -51,7 +51,7 @@
       <string>上一页</string>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QLabel:hover{background:rgb(97, 97, 97);}</string>
      </property>
      <property name="text">
       <string>&lt;&lt;</string>
@@ -59,7 +59,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="leftPagesWidget" native="true"/>
+    <widget class="QWidget" name="leftPagesWidget" native="true">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="leftSeparateLabel">
@@ -67,7 +71,7 @@
       <string>下一页</string>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;黑体&quot;;</string>
+      <string notr="true">QLabel:hover{background:rgb(97, 97, 97);}</string>
      </property>
      <property name="text">
       <string>..</string>
@@ -75,25 +79,42 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="centerPagesWidget" native="true"/>
+    <widget class="QWidget" name="centerPagesWidget" native="true">
+     <property name="styleSheet">
+      <string notr="true">QWidget:hover{background:rgb(97, 97, 97);}</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="rightSeparateLabel">
      <property name="toolTip">
       <string>下一页</string>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel:hover{background:rgb(97, 97, 97);}</string>
+     </property>
      <property name="text">
       <string>..</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="rightPagesWidget" native="true"/>
+    <widget class="QWidget" name="rightPagesWidget" native="true">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="nextPageLabel">
      <property name="toolTip">
       <string>下一页</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel:hover{background:rgb(97, 97, 97);}</string>
      </property>
      <property name="text">
       <string>&gt;&gt;</string>
@@ -120,6 +141,9 @@
        <width>50</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(90, 120, 120);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

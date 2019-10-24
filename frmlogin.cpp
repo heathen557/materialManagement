@@ -8,6 +8,7 @@ frmLogin::frmLogin(QWidget *parent) :
 {
     ui->setupUi(this);
     initForm();
+    w = new UIDemo01;
 }
 
 
@@ -133,7 +134,7 @@ void frmLogin::on_btnLogin_clicked() //用户按下登录按钮
 
     int index=ui->txtUserName->currentIndex();
     if (UserPwd.toUpper()== TempUserPwd[index].toUpper()){
-        w = new UIDemo01;
+
         w->show();
 
         accept();

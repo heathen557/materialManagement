@@ -15,7 +15,28 @@ PageWidget::PageWidget(int blockSize, QWidget *parent) : QWidget(parent),
 
     maxPage = 0;
     setMaxPage(10);
+
+
+//    .QLabel[page=\"true\"] { padding: 1px; }
+
+//    QLabel[currentPage=\"true\"] { color: rgb(190, 0, 0);}
+
+//    QLabel[page=\"true\"]:hover { color: white; border-radius: 4px; background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(53, 121, 238, 255), stop:1 rgba(0, 202, 237, 255));}
+
+
+//    ui->pageLineEdit->setStyleSheet("QLineEdit{background:rgb(90, 120, 120)}");
+
+
+
 }
+
+
+void PageWidget::setLineEdit(int numPage)
+{
+    ui->pageLineEdit->setText(QString::number(numPage));
+}
+
+
 
 PageWidget::~PageWidget() {
     delete ui;
@@ -121,11 +142,11 @@ void PageWidget::initialize() {
     QHBoxLayout *centerLayout = new QHBoxLayout();
     QHBoxLayout *rightLayout = new QHBoxLayout();
     leftLayout->setContentsMargins(0, 0, 0, 0);
-    leftLayout->setSpacing(0);
+    leftLayout->setSpacing(3);
     centerLayout->setContentsMargins(0, 0, 0, 0);
-    centerLayout->setSpacing(0);
+    centerLayout->setSpacing(3);
     rightLayout->setContentsMargins(0, 0, 0, 0);
-    rightLayout->setSpacing(0);
+    rightLayout->setSpacing(3);
 
     for (int i = 0; i < blockSize * 3; ++i) {
         QLabel *label = new QLabel(QString::number(i + 1));
@@ -133,6 +154,8 @@ void PageWidget::initialize() {
         label->installEventFilter(this);
 
         pageLabels->append(label);
+
+        label->setStyleSheet("QLabel:hover{background:rgb(97, 97, 97);}");
 
         if (i < blockSize) {
             leftLayout->addWidget(label);

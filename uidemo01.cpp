@@ -570,6 +570,8 @@ void UIDemo01::selectResult_slot(QStringList sqlList)
 //一页显示的条目数量  初始化为50
 void UIDemo01::showSpecifiedPage(int pageNum)
 {
+    pageWidget->setLineEdit(pageNum);
+
     //先清空tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
@@ -781,6 +783,7 @@ void UIDemo01::inBoundSQLResult_slot(QStringList sqlList)
 //一页显示的条目数量  初始化为50
 void UIDemo01::showinBound_SpecifiedPage(int pageNum)
 {
+    inBound_PageWidget->setLineEdit(pageNum);
     //先清空tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
@@ -886,6 +889,7 @@ void UIDemo01::outBoundSQLResult_slot(QStringList sqlList)
 
 void UIDemo01::showoutBound_SpecifiedPage(int pageNum)
 {
+    outBound_PageWidget->setLineEdit(pageNum);
     //先清空tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
