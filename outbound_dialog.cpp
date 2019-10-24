@@ -16,9 +16,10 @@ outBound_Dialog::~outBound_Dialog()
 }
 
 
-void outBound_Dialog::initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum)
+void outBound_Dialog::initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum,QString userName)
 {
     ui->material_label_2->setText(material_Name);
+    ui->operator_lineEdit_2->setText(userName);
 
     singlePrice = Price;
     ExistingNum = currentNum;

@@ -45,12 +45,20 @@
       <property name="text">
        <string>确定</string>
       </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>image/update.png</normaloff>image/update.png</iconset>
+      </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="cancel_pushButton_2">
       <property name="text">
        <string>取消</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
       </property>
      </widget>
     </item>
@@ -69,7 +77,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>60</x>

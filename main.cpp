@@ -28,7 +28,8 @@ void initSQL()
 
       if (!db.open())
       {
-          QMessageBox::information(NULL,QString::fromLocal8Bit("提示"),QString::fromLocal8Bit("数据库连接失败"));
+          QMessageBox::information(NULL,"warn","can't link MySQSL dataBase");
+          return;
       }
       db.exec("SET NAMES 'UTF-8'"); ///设置utf-8编码
 

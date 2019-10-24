@@ -9,6 +9,8 @@ frmLogin::frmLogin(QWidget *parent) :
     ui->setupUi(this);
     initForm();
     w = new UIDemo01;
+
+    connect(this,SIGNAL(loginUserName_signal(QString,QString)),w,SLOT(loginUserName_slot(QString,QString)));
 }
 
 
@@ -136,6 +138,9 @@ void frmLogin::on_btnLogin_clicked() //用户按下登录按钮
     if (UserPwd.toUpper()== TempUserPwd[index].toUpper()){
 
         w->show();
+
+        QString authority = TempUserType[index];
+        emit loginUserName_signal(ui->txtUserName->currentText(),authority);
 
         accept();
 //

@@ -466,6 +466,13 @@ void UIDemo01::buttonClick()
         ui->stackedWidget->setCurrentIndex(2);
         clearTableWidgetItem();
     } else if (name == "用户管理") {
+        if(UserAuthority != "管理员")
+        {
+            QMessageBox::information(NULL,"提示","您没有权限");
+            return;
+        }
+
+
         ui->stackedWidget->setCurrentIndex(3);
         clearTableWidgetItem();
         initUserTableWidget();
@@ -686,7 +693,7 @@ void UIDemo01::on_inBound_pushButton_clicked()
     }
 
     //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
-    inBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber);
+    inBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
     inBound_dia.show();
 }
 
@@ -716,7 +723,7 @@ void UIDemo01::on_outBound_pushButton_clicked()
     }
 
     //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
-    outBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber);
+    outBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
 
     outBound_dia.show();
 }
@@ -1022,4 +1029,15 @@ void UIDemo01::alterUserOneNoteSlot(QString userName,QString userPassWd,QString 
     userPassWord_lineEdit[currentUserClickIndex].setText(userPassWd);
     authorityItem[currentUserClickIndex].setText(authorityStr);
     userNoteItem[currentUserClickIndex].setText(noteStr);
+}
+
+
+
+void UIDemo01::loginUserName_slot(QString userName,QString authority)
+{
+    QString strName= "当前用户：" + userName;
+    this->UserName = userName;
+    UserAuthority = authority;
+    qDebug()<<strName<<"  权限："<<UserAuthority<<endl;
+    ui->loginUser_label->setText(strName);
 }

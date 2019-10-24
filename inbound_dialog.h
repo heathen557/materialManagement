@@ -20,7 +20,7 @@ public:
     explicit inBound_Dialog(QWidget *parent = 0);
     ~inBound_Dialog();
 
-    void initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
+    void initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum,QString UserName);
 
 private slots:
     void on_ok_pushButton_clicked();

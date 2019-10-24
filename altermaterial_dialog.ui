@@ -17,7 +17,7 @@
    <iconset>
     <normaloff>icon_1.png</normaloff>icon_1.png</iconset>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -69,7 +69,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -97,12 +97,20 @@
       <property name="text">
        <string>确认修改</string>
       </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>image/update.png</normaloff>image/update.png</iconset>
+      </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="delete_pushButton">
       <property name="text">
        <string>删除</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
       </property>
      </widget>
     </item>
@@ -121,7 +129,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>11</x>

@@ -10,9 +10,10 @@ inBound_Dialog::inBound_Dialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void inBound_Dialog::initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum)
+void inBound_Dialog::initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum,QString UserName)
 {
     ui->material_label->setText(material_Name);
+    ui->operator_lineEdit->setText(UserName);
 
     singlePrice = Price;
     ExistingNum = currentNum;

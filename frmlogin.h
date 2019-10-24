@@ -32,6 +32,9 @@ private:
     QStringList TempUserType;   //类型链表
 
     void initForm();
+
+signals:
+    void loginUserName_signal(QString,QString);
 };
 
 #endif // FRMLOGIN_H

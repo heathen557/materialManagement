@@ -126,6 +126,9 @@ public:
 
 
 
+  QString UserName;  //当前登录的用户名
+  QString UserAuthority; //用户的权限
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
 
@@ -191,6 +194,10 @@ private slots:
     void on_user_tableWidget_clicked(const QModelIndex &index);
 
     void alterUserOneNoteSlot(QString,QString,QString,QString);  //接收修改后某一条的槽函数
+
+
+
+    void loginUserName_slot(QString,QString);
 
 signals:
     void setMaxPage_signal(int);

@@ -119,8 +119,8 @@
             <string>物料管理</string>
            </property>
            <property name="icon">
-            <iconset resource="main.qrc">
-             <normaloff>:/image/main_main.png</normaloff>:/image/main_main.png</iconset>
+            <iconset>
+             <normaloff>image/main_help.png</normaloff>image/main_help.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -140,7 +140,7 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>image/main_help.png</normaloff>image/main_help.png</iconset>
+             <normaloff>image/next.png</normaloff>image/next.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -159,8 +159,8 @@
             <string>出库查询</string>
            </property>
            <property name="icon">
-            <iconset resource="main.qrc">
-             <normaloff>:/image/main_data.png</normaloff>:/image/main_data.png</iconset>
+            <iconset>
+             <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
            </property>
            <property name="checked">
             <bool>false</bool>
@@ -185,8 +185,8 @@
             <string>用户管理</string>
            </property>
            <property name="icon">
-            <iconset resource="main.qrc">
-             <normaloff>:/image/main_person.png</normaloff>:/image/main_person.png</iconset>
+            <iconset>
+             <normaloff>image/login.png</normaloff>image/login.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -208,8 +208,8 @@
             <string>用户退出</string>
            </property>
            <property name="icon">
-            <iconset resource="main.qrc">
-             <normaloff>:/image/main_exit.png</normaloff>:/image/main_exit.png</iconset>
+            <iconset>
+             <normaloff>image/close.png</normaloff>image/close.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -250,47 +250,6 @@
          <property name="spacing">
           <number>0</number>
          </property>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="btnMenu_Min">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>最小化</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" colspan="3">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>93</width>
-             <height>37</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item row="0" column="2">
           <widget class="QPushButton" name="btnMenu_Max">
            <property name="sizePolicy">
@@ -341,8 +300,52 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="btnMenu_Min">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="toolTip">
+            <string>最小化</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="3">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>93</width>
+             <height>34</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="loginUser_label">
+           <property name="styleSheet">
+            <string notr="true">font: 9pt &quot;黑体&quot;;</string>
+           </property>
            <property name="text">
             <string>当前用户：阿斯如</string>
            </property>
@@ -389,6 +392,10 @@
           <widget class="QPushButton" name="managerQuery_pushButton">
            <property name="text">
             <string>查询</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/select.png</normaloff>image/select.png</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -468,6 +475,10 @@
            <property name="text">
             <string>新增</string>
            </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/add.png</normaloff>image/add.png</iconset>
+           </property>
            <property name="autoDefault">
             <bool>false</bool>
            </property>
@@ -477,6 +488,10 @@
           <widget class="QPushButton" name="alterMaterial_pushButton">
            <property name="text">
             <string>修改</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -488,6 +503,10 @@
            <property name="text">
             <string>入库</string>
            </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/next.png</normaloff>image/next.png</iconset>
+           </property>
            <property name="autoDefault">
             <bool>false</bool>
            </property>
@@ -498,6 +517,10 @@
            <property name="text">
             <string>出库</string>
            </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
+           </property>
            <property name="autoDefault">
             <bool>false</bool>
            </property>
@@ -507,6 +530,10 @@
           <widget class="QPushButton" name="returnALL_pushButton">
            <property name="text">
             <string>返回总库</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/first.png</normaloff>image/first.png</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -551,6 +578,10 @@
           <widget class="QPushButton" name="inBoundQuery_pushButton">
            <property name="text">
             <string>查询</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/select.png</normaloff>image/select.png</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -650,6 +681,10 @@
            <property name="text">
             <string>查询</string>
            </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/select.png</normaloff>image/select.png</iconset>
+           </property>
            <property name="autoDefault">
             <bool>false</bool>
            </property>
@@ -733,6 +768,69 @@
      </widget>
      <widget class="QWidget" name="page4">
       <layout class="QGridLayout" name="gridLayout_8">
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <spacer name="horizontalSpacer_12">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addUser_pushButton">
+           <property name="text">
+            <string>新增</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/add.png</normaloff>image/add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="alterUser_pushButton">
+           <property name="text">
+            <string>修改</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="delUser_pushButton">
+           <property name="text">
+            <string>删除</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_13">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
        <item row="0" column="0">
         <widget class="QTableWidget" name="user_tableWidget">
          <column>
@@ -757,65 +855,12 @@
          </column>
         </widget>
        </item>
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_11">
-         <item>
-          <spacer name="horizontalSpacer_12">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addUser_pushButton">
-           <property name="text">
-            <string>新增</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="alterUser_pushButton">
-           <property name="text">
-            <string>修改</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="delUser_pushButton">
-           <property name="text">
-            <string>删除</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_13">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
       </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="main.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

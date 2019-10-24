@@ -113,6 +113,10 @@
           <property name="text">
            <string>确定</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>image/update.png</normaloff>image/update.png</iconset>
+          </property>
          </widget>
         </item>
        </layout>
@@ -173,6 +177,10 @@
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
         <string>添加</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>image/move.png</normaloff>image/move.png</iconset>
        </property>
       </widget>
      </item>
