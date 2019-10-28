@@ -1041,3 +1041,24 @@ void UIDemo01::loginUserName_slot(QString userName,QString authority)
     qDebug()<<strName<<"  权限："<<UserAuthority<<endl;
     ui->loginUser_label->setText(strName);
 }
+
+
+
+//物资管理界面的文件导出
+void UIDemo01::on_managerOutExcel_pushBotton_clicked()
+{
+
+}
+
+
+//入库记录导出
+void UIDemo01::on_inBoundOutExecel_pushButton_clicked()
+{
+
+}
+
+//出库记录导出
+void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
+{
+
+}

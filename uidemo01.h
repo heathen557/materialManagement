@@ -21,6 +21,7 @@
 #include<outboundquery_dialog.h>
 #include<adduser_dialog.h>
 #include<alteruser_dialog.h>
+#include<QAxObject>
 
 namespace Ui {
 class UIDemo01;
@@ -198,6 +199,12 @@ private slots:
 
 
     void loginUserName_slot(QString,QString);
+
+    void on_managerOutExcel_pushBotton_clicked();
+
+    void on_inBoundOutExecel_pushButton_clicked();
+
+    void on_outBoundOutExcel_pushButton_clicked();
 
 signals:
     void setMaxPage_signal(int);

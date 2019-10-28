@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1250</width>
-    <height>689</height>
+    <width>1237</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,23 +26,8 @@
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <property name="leftMargin">
-    <number>1</number>
-   </property>
-   <property name="topMargin">
-    <number>1</number>
-   </property>
-   <property name="rightMargin">
-    <number>1</number>
-   </property>
-   <property name="bottomMargin">
-    <number>1</number>
-   </property>
-   <item>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
     <widget class="QWidget" name="widgetTitle" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -357,7 +342,7 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="1" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -369,10 +354,10 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page1">
-      <layout class="QGridLayout" name="gridLayout" rowstretch="1,14,1,1" rowminimumheight="0,0,0,0">
+      <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,0">
          <item>
@@ -456,7 +441,7 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,1,1,6">
+        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,1,1,0,6">
          <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
@@ -541,6 +526,17 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="managerOutExcel_pushBotton">
+           <property name="text">
+            <string>导出</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_4">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -558,7 +554,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page2">
-      <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,14,1">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="5,0">
          <item>
@@ -657,10 +653,51 @@
          </property>
         </widget>
        </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="inBoundOutExecel_pushButton">
+           <property name="text">
+            <string>导出</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page3">
-      <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,14,1">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,0">
          <item>
@@ -763,6 +800,47 @@
           <string notr="true">font: 10pt &quot;黑体&quot;;</string>
          </property>
         </widget>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="outBoundOutExcel_pushButton">
+           <property name="text">
+            <string>导出</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

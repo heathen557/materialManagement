@@ -234,6 +234,7 @@ Makefile: uidemo01.pro ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\win32-
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\moc.prf \
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\opengl.prf \
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\uic.prf \
+		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\dumpcpp.prf \
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\rtti.prf \
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\precompile_header.prf \
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\qmake_use.prf \
@@ -245,6 +246,8 @@ Makefile: uidemo01.pro ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\win32-
 		..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\lex.prf \
 		uidemo01.pro \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\qtmain.prl \
+		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5AxContainer.prl \
+		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5AxBase.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Widgets.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Gui.prl \
 		..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Sql.prl \
@@ -411,6 +414,7 @@ Makefile: uidemo01.pro ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\win32-
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\moc.prf:
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\opengl.prf:
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\uic.prf:
+..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\dumpcpp.prf:
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\win32\rtti.prf:
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\precompile_header.prf:
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\qmake_use.prf:
@@ -422,6 +426,8 @@ Makefile: uidemo01.pro ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\win32-
 ..\..\programInstall\QT580\5.8\msvc2015_64\mkspecs\features\lex.prf:
 uidemo01.pro:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\qtmain.prl:
+..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5AxContainer.prl:
+..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5AxBase.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Widgets.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Gui.prl:
 ..\..\programInstall\QT580\5.8\msvc2015_64\lib\Qt5Sql.prl:
