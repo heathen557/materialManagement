@@ -22,6 +22,8 @@
 #include<adduser_dialog.h>
 #include<alteruser_dialog.h>
 #include<QAxObject>
+#include<QDesktopServices>
+#include<QFileDialog>
 
 namespace Ui {
 class UIDemo01;

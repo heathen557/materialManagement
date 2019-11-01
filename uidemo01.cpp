@@ -58,7 +58,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
     outBoundLayout->addWidget(outBound_PageWidget,8);
 
 
-//    initSql();
+    //    initSql();
     initConnect();
     initTableWidget();
 
@@ -203,7 +203,7 @@ void UIDemo01::initTableWidget()
         ui->user_tableWidget->setItem(i,2,&authorityItem[i]);
         ui->user_tableWidget->setItem(i,3,&userNoteItem[i]);
 
-//        lineText[i].setText(QString::number(i));
+        //        lineText[i].setText(QString::number(i));
         userPassWord_lineEdit[i].setEchoMode(QLineEdit::Password);   //不显示密码
         userPassWord_lineEdit[i].setReadOnly(true);
         userPassWord_lineEdit[i].setAlignment(Qt::AlignCenter);
@@ -297,65 +297,65 @@ void UIDemo01::initSql()
     //数据库连接部分
     QSqlDatabase db;
     QStringList drivers = QSqlDatabase::drivers();
-//    foreach(QString driver, drivers)
-//        qDebug() << "\t " << driver;
-//    qDebug() << "End";
+    //    foreach(QString driver, drivers)
+    //        qDebug() << "\t " << driver;
+    //    qDebug() << "End";
 
     if (!QSqlDatabase::contains("test"))
-      {
-          db = QSqlDatabase::addDatabase("QMYSQL");   //, "localhost@3306"
-          db.setHostName("localhost");    //数据库主机名
-          db.setDatabaseName("test");    //数据库名
-          db.setUserName("root");        //数据库用户名
-          db.setPassword("");        //数据库密码
-      }
+    {
+        db = QSqlDatabase::addDatabase("QMYSQL");   //, "localhost@3306"
+        db.setHostName("localhost");    //数据库主机名
+        db.setDatabaseName("test");    //数据库名
+        db.setUserName("root");        //数据库用户名
+        db.setPassword("");        //数据库密码
+    }
 
-      bool bisOpenn = db.open();          //打开数据库连接
-      qDebug()<<"bisOpenn="<<bisOpenn;
+    bool bisOpenn = db.open();          //打开数据库连接
+    qDebug()<<"bisOpenn="<<bisOpenn;
 
-      if (!db.open())
-      {
-          QMessageBox::information(NULL,QString::fromLocal8Bit("提示"),QString::fromLocal8Bit("数据库连接失败"));
-      }
-      db.exec("SET NAMES 'UTF-8'"); ///设置utf-8编码
+    if (!db.open())
+    {
+        QMessageBox::information(NULL,QString::fromLocal8Bit("提示"),QString::fromLocal8Bit("数据库连接失败"));
+    }
+    db.exec("SET NAMES 'UTF-8'"); ///设置utf-8编码
 
 
-      //创建数据表
-      QSqlQuery sqlQuery(db);
-      sql_query = sqlQuery;   //赋值给全局变量
-      QString sqlStr;
-      bool buscess;
-      // 1 创建用户表
-      sqlStr = "create table USER_TABLE(ID int primary key AUTO_INCREMENT, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION varchar(20),NOTE varchar(300)) charset=utf8;";
-      buscess = sqlQuery.exec(sqlStr);
-      if (!buscess)
-      {
-          qDebug("create USER_TABLE  error");
-      }
+    //创建数据表
+    QSqlQuery sqlQuery(db);
+    sql_query = sqlQuery;   //赋值给全局变量
+    QString sqlStr;
+    bool buscess;
+    // 1 创建用户表
+    sqlStr = "create table USER_TABLE(ID int primary key AUTO_INCREMENT, USER_NAME varchar(20), PASSWORD varchar(20), PERMISSION varchar(20),NOTE varchar(300)) charset=utf8;";
+    buscess = sqlQuery.exec(sqlStr);
+    if (!buscess)
+    {
+        qDebug("create USER_TABLE  error");
+    }
 
-      //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
-      sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
-      buscess = sqlQuery.exec(sqlStr);
-      if (!buscess)
-      {
-          qDebug("create INVENTORY_TABLE error");
-      }
+    //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
+    sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
+    buscess = sqlQuery.exec(sqlStr);
+    if (!buscess)
+    {
+        qDebug("create INVENTORY_TABLE error");
+    }
 
-      //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
-      sqlStr = "create table INBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
-      buscess = sqlQuery.exec(sqlStr);
-      if (!buscess)
-      {
-          qDebug("create INBOUND_TABLE  error");
-      }
+    //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
+    sqlStr = "create table INBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
+    buscess = sqlQuery.exec(sqlStr);
+    if (!buscess)
+    {
+        qDebug("create INBOUND_TABLE  error");
+    }
 
-      //3 存储物料的出库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，领用人、操作日期、备注
-      sqlStr = "create table OUTBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),RECIPIENT varchar(20), OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
-      buscess = sqlQuery.exec(sqlStr);
-      if (!buscess)
-      {
-          qDebug("create OUTBOUND_TABLE  error");
-      }
+    //3 存储物料的出库记录  OUTBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，领用人、操作日期、备注
+    sqlStr = "create table OUTBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),RECIPIENT varchar(20), OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";
+    buscess = sqlQuery.exec(sqlStr);
+    if (!buscess)
+    {
+        qDebug("create OUTBOUND_TABLE  error");
+    }
 
 }
 
@@ -659,7 +659,7 @@ void UIDemo01::on_alterMaterial_pushButton_clicked()
 
 
 //接收修改界面后的信息的槽函数
- //emit alterMaterial_signal(userType,materialName,materialModel,factoryName,noteStr,singlePrice,allPrice);
+//emit alterMaterial_signal(userType,materialName,materialModel,factoryName,noteStr,singlePrice,allPrice);
 void UIDemo01::alterMaterial_slot(QString userType,QString materialName,QString materialModel,QString factoryName,QString noteStr,float singlePrice,float allPrice)
 {
     userTypeItem[currentClickIndex].setText(userType);
@@ -741,7 +741,7 @@ void UIDemo01::on_inBoundQuery_pushButton_clicked()
 //接收入库查询后的 SQL 语句
 void UIDemo01::inBoundSQLResult_slot(QStringList sqlList)
 {
-//    qDebug()<<" sqlList = "<<sqlList<<endl;
+    //    qDebug()<<" sqlList = "<<sqlList<<endl;
 
     inBound_DataList.clear();  //每次查询都清空已有的数据
     QString sqlStr;
@@ -779,7 +779,7 @@ void UIDemo01::inBoundSQLResult_slot(QStringList sqlList)
         maxPage = maxPage + 1;
     }
 
-//    emit setMaxPage_signal(maxPage);
+    //    emit setMaxPage_signal(maxPage);
     emit setInBoundPage_signal(maxPage);
     showinBound_SpecifiedPage(1);
 
@@ -887,7 +887,7 @@ void UIDemo01::outBoundSQLResult_slot(QStringList sqlList)
         maxPage = maxPage + 1;
     }
 
-//    emit setMaxPage_signal(maxPage);
+    //    emit setMaxPage_signal(maxPage);
     emit setOutBoundPage_signal(maxPage);
     showoutBound_SpecifiedPage(1);
 
@@ -1048,17 +1048,317 @@ void UIDemo01::loginUserName_slot(QString userName,QString authority)
 void UIDemo01::on_managerOutExcel_pushBotton_clicked()
 {
 
+    QString fileName = QFileDialog::getSaveFileName(ui->tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
+
+    qDebug()<<" fileName = "<<fileName<<endl;
+
+    if(fileName != "")
+    {
+        qDebug()<<"  excel has coming"<<endl;
+        QAxObject *excel = new QAxObject;
+        if(excel->setControl("Excel.Application") )
+        {
+            excel->dynamicCall("SetVisible (bool Visible)","false");//不显示窗体
+            excel->setProperty("DisplayAlerts", false);//不显示任何警告信息。如果为true那么在关闭是会出现类似“文件已修改，是否保存”的提示
+            QAxObject *workbooks = excel->querySubObject("WorkBooks");//获取工作簿集合
+            workbooks->dynamicCall("Add");//新建一个工作簿
+            QAxObject *workbook = excel->querySubObject("ActiveWorkBook");//获取当前工作簿
+            QAxObject *worksheet = workbook->querySubObject("Worksheets(int)", 1);
+
+            int i,j;
+            int colcount = ui->tableWidget->columnCount();
+            int rowcount = ui->tableWidget->rowCount();
+
+            QAxObject *cell,*col;
+            //标题行
+            cell=worksheet->querySubObject("Cells(int,int)", 1, 1);
+            cell->dynamicCall("SetValue(const QString&)", "芯视界物资库存表");
+            cell->querySubObject("Font")->setProperty("Size", 18);
+            //调整行高
+            worksheet->querySubObject("Range(const QString&)", "1:1")->setProperty("RowHeight", 30);
+            //合并标题行
+            QString cellTitle;
+            cellTitle.append("A1:");
+            cellTitle.append(QChar(colcount - 1 + 'A'));
+            cellTitle.append(QString::number(1));
+            QAxObject *range = worksheet->querySubObject("Range(const QString&)", cellTitle);
+            range->setProperty("WrapText", true);
+            range->setProperty("MergeCells", true);
+            range->setProperty("HorizontalAlignment", -4108);//xlCenter
+            range->setProperty("VerticalAlignment", -4108);//xlCenter
+
+            //列标题
+            for(i=0;i<colcount;i++)
+            {
+                QString columnName;
+                columnName.append(QChar(i  + 'A'));
+                columnName.append(":");
+                columnName.append(QChar(i + 'A'));
+                col = worksheet->querySubObject("Columns(const QString&)", columnName);
+                col->setProperty("ColumnWidth", ui->tableWidget->columnWidth(i)/6);
+                cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
+                //QTableWidget 获取表格头部文字信息
+                columnName=ui->tableWidget->horizontalHeaderItem(i)->text();
+                //QTableView 获取表格头部文字信息
+                // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
+                cell->dynamicCall("SetValue(const QString&)", columnName);
+                cell->querySubObject("Font")->setProperty("Bold", true);
+                cell->querySubObject("Interior")->setProperty("Color",QColor(191, 191, 191));
+                cell->setProperty("HorizontalAlignment", -4108);//xlCenter
+                cell->setProperty("VerticalAlignment", -4108);//xlCenter
+            }
+
+
+            //QTableWidget 获取表格数据部分
+            for(i=0;i<rowcount;i++){
+                for (j=0;j<colcount;j++)
+                {
+                    worksheet->querySubObject("Cells(int,int)", i+3, j+1)->dynamicCall("SetValue(const QString&)", ui->tableWidget->item(i,j)?ui->tableWidget->item(i,j)->text():"");
+                }
+            }
+
+            //画框线
+            QString lrange;
+            lrange.append("A2:");
+            lrange.append(colcount - 1 + 'A');
+            lrange.append(QString::number(ui->tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", lrange);
+            range->querySubObject("Borders")->setProperty("LineStyle", QString::number(1));
+            range->querySubObject("Borders")->setProperty("Color", QColor(0, 0, 0));
+            //调整数据区行高
+            QString rowsName;
+            rowsName.append("2:");
+            rowsName.append(QString::number(ui->tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", rowsName);
+            range->setProperty("RowHeight", 20);
+            workbook->dynamicCall("SaveAs(const QString&)",QDir::toNativeSeparators(fileName));//保存至fileName
+            workbook->dynamicCall("Close()");//关闭工作簿
+            excel->dynamicCall("Quit()");//关闭excel
+            delete excel;
+            excel=NULL;
+            if (QMessageBox::question(NULL,"完成","文件已经导出，是否现在打开？",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("file:///" + QDir::toNativeSeparators(fileName)));
+            }
+
+        }
+
+
+    }else
+    {
+        QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
+    }
+
 }
 
 
 //入库记录导出
 void UIDemo01::on_inBoundOutExecel_pushButton_clicked()
 {
+    QString fileName = QFileDialog::getSaveFileName(ui->inBound_tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
 
+    qDebug()<<" fileName = "<<fileName<<endl;
+
+
+    if(fileName != "")
+    {
+        qDebug()<<"  excel has coming"<<endl;
+        QAxObject *excel = new QAxObject;
+        if(excel->setControl("Excel.Application") )
+        {
+            excel->dynamicCall("SetVisible (bool Visible)","false");//不显示窗体
+            excel->setProperty("DisplayAlerts", false);//不显示任何警告信息。如果为true那么在关闭是会出现类似“文件已修改，是否保存”的提示
+            QAxObject *workbooks = excel->querySubObject("WorkBooks");//获取工作簿集合
+            workbooks->dynamicCall("Add");//新建一个工作簿
+            QAxObject *workbook = excel->querySubObject("ActiveWorkBook");//获取当前工作簿
+            QAxObject *worksheet = workbook->querySubObject("Worksheets(int)", 1);
+
+            int i,j;
+            int colcount = ui->inBound_tableWidget->columnCount();
+            int rowcount = ui->inBound_tableWidget->rowCount();
+
+            QAxObject *cell,*col;
+            //标题行
+            cell=worksheet->querySubObject("Cells(int,int)", 1, 1);
+            cell->dynamicCall("SetValue(const QString&)", "芯视界物资入库记录表");
+            cell->querySubObject("Font")->setProperty("Size", 18);
+            //调整行高
+            worksheet->querySubObject("Range(const QString&)", "1:1")->setProperty("RowHeight", 30);
+            //合并标题行
+            QString cellTitle;
+            cellTitle.append("A1:");
+            cellTitle.append(QChar(colcount - 1 + 'A'));
+            cellTitle.append(QString::number(1));
+            QAxObject *range = worksheet->querySubObject("Range(const QString&)", cellTitle);
+            range->setProperty("WrapText", true);
+            range->setProperty("MergeCells", true);
+            range->setProperty("HorizontalAlignment", -4108);//xlCenter
+            range->setProperty("VerticalAlignment", -4108);//xlCenter
+
+            //列标题
+            for(i=0;i<colcount;i++)
+            {
+                QString columnName;
+                columnName.append(QChar(i  + 'A'));
+                columnName.append(":");
+                columnName.append(QChar(i + 'A'));
+                col = worksheet->querySubObject("Columns(const QString&)", columnName);
+                col->setProperty("ColumnWidth", ui->inBound_tableWidget->columnWidth(i)/6);
+                cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
+                //QTableWidget 获取表格头部文字信息
+                columnName = ui->inBound_tableWidget->horizontalHeaderItem(i)->text();
+                //QTableView 获取表格头部文字信息
+                // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
+                cell->dynamicCall("SetValue(const QString&)", columnName);
+                cell->querySubObject("Font")->setProperty("Bold", true);
+                cell->querySubObject("Interior")->setProperty("Color",QColor(191, 191, 191));
+                cell->setProperty("HorizontalAlignment", -4108);//xlCenter
+                cell->setProperty("VerticalAlignment", -4108);//xlCenter
+            }
+
+
+            //QTableWidget 获取表格数据部分
+            for(i=0;i<rowcount;i++){
+                for (j=0;j<colcount;j++)
+                {
+                    worksheet->querySubObject("Cells(int,int)", i+3, j+1)->dynamicCall("SetValue(const QString&)", ui->inBound_tableWidget->item(i,j)?ui->inBound_tableWidget->item(i,j)->text():"");
+                }
+            }
+
+            //画框线
+            QString lrange;
+            lrange.append("A2:");
+            lrange.append(colcount - 1 + 'A');
+            lrange.append(QString::number(ui->inBound_tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", lrange);
+            range->querySubObject("Borders")->setProperty("LineStyle", QString::number(1));
+            range->querySubObject("Borders")->setProperty("Color", QColor(0, 0, 0));
+            //调整数据区行高
+            QString rowsName;
+            rowsName.append("2:");
+            rowsName.append(QString::number(ui->inBound_tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", rowsName);
+            range->setProperty("RowHeight", 20);
+            workbook->dynamicCall("SaveAs(const QString&)",QDir::toNativeSeparators(fileName));//保存至fileName
+            workbook->dynamicCall("Close()");//关闭工作簿
+            excel->dynamicCall("Quit()");//关闭excel
+            delete excel;
+            excel=NULL;
+            if (QMessageBox::question(NULL,"完成","文件已经导出，是否现在打开？",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("file:///" + QDir::toNativeSeparators(fileName)));
+            }
+
+        }
+
+
+    }else
+    {
+        QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
+    }
 }
 
 //出库记录导出
 void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
 {
+    QString fileName = QFileDialog::getSaveFileName(ui->outBound_tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
 
+    qDebug()<<" fileName = "<<fileName<<endl;
+
+    if(fileName != "")
+    {
+        qDebug()<<"  excel has coming"<<endl;
+        QAxObject *excel = new QAxObject;
+        if(excel->setControl("Excel.Application") )
+        {
+            excel->dynamicCall("SetVisible (bool Visible)","false");//不显示窗体
+            excel->setProperty("DisplayAlerts", false);//不显示任何警告信息。如果为true那么在关闭是会出现类似“文件已修改，是否保存”的提示
+            QAxObject *workbooks = excel->querySubObject("WorkBooks");//获取工作簿集合
+            workbooks->dynamicCall("Add");//新建一个工作簿
+            QAxObject *workbook = excel->querySubObject("ActiveWorkBook");//获取当前工作簿
+            QAxObject *worksheet = workbook->querySubObject("Worksheets(int)", 1);
+
+            int i,j;
+            int colcount = ui->outBound_tableWidget->columnCount();
+            int rowcount = ui->outBound_tableWidget->rowCount();
+
+            QAxObject *cell,*col;
+            //标题行
+            cell=worksheet->querySubObject("Cells(int,int)", 1, 1);
+            cell->dynamicCall("SetValue(const QString&)", "芯视界物资出库记录表");
+            cell->querySubObject("Font")->setProperty("Size", 18);
+            //调整行高
+            worksheet->querySubObject("Range(const QString&)", "1:1")->setProperty("RowHeight", 30);
+            //合并标题行
+            QString cellTitle;
+            cellTitle.append("A1:");
+            cellTitle.append(QChar(colcount - 1 + 'A'));
+            cellTitle.append(QString::number(1));
+            QAxObject *range = worksheet->querySubObject("Range(const QString&)", cellTitle);
+            range->setProperty("WrapText", true);
+            range->setProperty("MergeCells", true);
+            range->setProperty("HorizontalAlignment", -4108);//xlCenter
+            range->setProperty("VerticalAlignment", -4108);//xlCenter
+
+            //列标题
+            for(i=0;i<colcount;i++)
+            {
+                QString columnName;
+                columnName.append(QChar(i  + 'A'));
+                columnName.append(":");
+                columnName.append(QChar(i + 'A'));
+                col = worksheet->querySubObject("Columns(const QString&)", columnName);
+                col->setProperty("ColumnWidth", ui->outBound_tableWidget->columnWidth(i)/6);
+                cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
+                //QTableWidget 获取表格头部文字信息
+                columnName = ui->outBound_tableWidget->horizontalHeaderItem(i)->text();
+                //QTableView 获取表格头部文字信息
+                // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
+                cell->dynamicCall("SetValue(const QString&)", columnName);
+                cell->querySubObject("Font")->setProperty("Bold", true);
+                cell->querySubObject("Interior")->setProperty("Color",QColor(191, 191, 191));
+                cell->setProperty("HorizontalAlignment", -4108);//xlCenter
+                cell->setProperty("VerticalAlignment", -4108);//xlCenter
+            }
+
+
+            //QTableWidget 获取表格数据部分
+            for(i=0;i<rowcount;i++){
+                for (j=0;j<colcount;j++)
+                {
+                    worksheet->querySubObject("Cells(int,int)", i+3, j+1)->dynamicCall("SetValue(const QString&)", ui->outBound_tableWidget->item(i,j)?ui->outBound_tableWidget->item(i,j)->text():"");
+                }
+            }
+
+            //画框线
+            QString lrange;
+            lrange.append("A2:");
+            lrange.append(colcount - 1 + 'A');
+            lrange.append(QString::number(ui->outBound_tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", lrange);
+            range->querySubObject("Borders")->setProperty("LineStyle", QString::number(1));
+            range->querySubObject("Borders")->setProperty("Color", QColor(0, 0, 0));
+            //调整数据区行高
+            QString rowsName;
+            rowsName.append("2:");
+            rowsName.append(QString::number(ui->outBound_tableWidget->rowCount() + 2));
+            range = worksheet->querySubObject("Range(const QString&)", rowsName);
+            range->setProperty("RowHeight", 20);
+            workbook->dynamicCall("SaveAs(const QString&)",QDir::toNativeSeparators(fileName));//保存至fileName
+            workbook->dynamicCall("Close()");//关闭工作簿
+            excel->dynamicCall("Quit()");//关闭excel
+            delete excel;
+            excel=NULL;
+            if (QMessageBox::question(NULL,"完成","文件已经导出，是否现在打开？",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("file:///" + QDir::toNativeSeparators(fileName)));
+            }
+
+        }
+
+
+    }else
+    {
+        QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
+    }
 }

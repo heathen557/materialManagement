@@ -2279,6 +2279,10 @@ debug\moc_frmlogin.cpp: ..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWid
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\QAxObject \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxobject.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxbase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		frmlogin.h \
 		debug\moc_predefs.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\bin\moc.exe
@@ -2616,6 +2620,10 @@ debug\moc_uidemo01.cpp: ..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWid
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\QAxObject \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxobject.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxbase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		uidemo01.h \
 		debug\moc_predefs.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\bin\moc.exe
@@ -2970,6 +2978,10 @@ debug\main.obj: main.cpp uidemo01.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\QAxObject \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxobject.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxbase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		appinit.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qapplication.h \
@@ -4936,6 +4948,10 @@ debug\frmlogin.obj: frmlogin.cpp frmlogin.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\QAxObject \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxobject.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxbase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		ui_frmlogin.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\QVariant \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QAction \
@@ -5802,6 +5818,10 @@ debug\uidemo01.obj: uidemo01.cpp uidemo01.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\QAxObject \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxobject.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\ActiveQt\qaxbase.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\QDesktopServices \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QFileDialog \
+		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		ui_uidemo01.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtCore\QVariant \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\QAction \
@@ -5855,7 +5875,6 @@ debug\uidemo01.obj: uidemo01.cpp uidemo01.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qsurfaceformat.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qbitmap.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qclipboard.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdesktopservices.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qdrag.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qgenericmatrix.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtGui\qgenericplugin.h \
@@ -5951,7 +5970,6 @@ debug\uidemo01.obj: uidemo01.cpp uidemo01.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qdockwidget.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qdrawutil.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qerrormessage.h \
-		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfilesystemmodel.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfocusframe.h \
 		..\..\programInstall\QT580\5.8\msvc2015_64\include\QtWidgets\qfontcombobox.h \
