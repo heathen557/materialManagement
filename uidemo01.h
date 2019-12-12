@@ -41,9 +41,9 @@ public:
 
     void initConnect();
 
-    void initTableWidget();
+    void init_tableWidget();
 
-    void clearTableWidgetItem();
+    void clear_tableWidgetItem();
 
     PageWidget *pageWidget;
 
@@ -155,7 +155,7 @@ private slots:
 
     void on_returnALL_pushButton_clicked();
 
-    void on_tableWidget_clicked(const QModelIndex &index);
+    void on_CP_tableWidget_clicked(const QModelIndex &index);
 
     void on_alterMaterial_pushButton_clicked();
 

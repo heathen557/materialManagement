@@ -24,20 +24,30 @@ UIDemo01::UIDemo01(QWidget *parent) :
     lable1 = new QLabel();
     lable1->setText("总记录数：0");
 
-
-    //物资管理页
+    //CP物资管理页
     QLabel *allLabel = new QLabel();
     QLabel *lable2 = new QLabel();
     QLabel *currentPageLabel = new QLabel();
     QLabel *tempLabel = new QLabel();
     QLabel *tempLabel_1 = new QLabel();
-    QHBoxLayout *hLayout = new QHBoxLayout(ui->widget);
+    QHBoxLayout *hLayout = new QHBoxLayout(ui->CP_widget);
     hLayout->addWidget(lable1,2);
     hLayout->addWidget(allLabel,1);
     hLayout->addWidget(lable2,2);
     hLayout->addWidget(tempLabel,1);
     hLayout->addWidget(currentPageLabel,10);
     hLayout->addWidget(pageWidget,8);
+
+    //PK封装查询页
+//    inBound_PageWidget = new PageWidget();
+//    inBound_label = new QLabel();
+//    inBound_label->setText("总记录数：0");
+//    QHBoxLayout *inBoundLayout = new QHBoxLayout(ui->inBound_pagewidget);
+//    inBoundLayout->addWidget(inBound_label,2);
+//    inBoundLayout->addWidget(tempLabel,8);
+//    inBoundLayout->addWidget(inBound_PageWidget,8);
+
+
 
     //入库查询页
     inBound_PageWidget = new PageWidget();
@@ -60,7 +70,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
 
     //    initSql();
     initConnect();
-    initTableWidget();
+    init_tableWidget();
 
     emit setMaxPage_signal(1);
     emit setInBoundPage_signal(1);
@@ -70,29 +80,91 @@ UIDemo01::UIDemo01(QWidget *parent) :
 
 }
 
-//初始化TableWidget界面
-void UIDemo01::initTableWidget()
+//初始化CP_tableWidget界面
+void UIDemo01::init_tableWidget()
 {
-    //物资管理界面
-    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget->setRowCount(onePageNotesNum);
-    ui->tableWidget->setColumnCount(8);
-    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
-    ui->tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
-    ui->tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
-
+    //物资管理界面  CP订单管理界面
+    ui->CP_tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->CP_tableWidget->setRowCount(onePageNotesNum);
+    ui->CP_tableWidget->setColumnCount(12);
+    ui->CP_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
+    ui->CP_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
+    ui->CP_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
+    ui->CP_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
 
     for(int i=0;i<onePageNotesNum;i++)
     {
-        ui->tableWidget->setItem(i,0,&userTypeItem[i]);
-        ui->tableWidget->setItem(i,1,&materialNameItem[i]);
-        ui->tableWidget->setItem(i,2,&materialModelItem[i]);
-        ui->tableWidget->setItem(i,3,&factoryItem[i]);
-        ui->tableWidget->setItem(i,4,&numberItem[i]);
-        ui->tableWidget->setItem(i,5,&singlePriceItem[i]);
-        ui->tableWidget->setItem(i,6,&allPriceItem[i]);
-        ui->tableWidget->setItem(i,7,&noteItem[i]);
+        ui->CP_tableWidget->setItem(i,0,&userTypeItem[i]);
+        ui->CP_tableWidget->setItem(i,1,&materialNameItem[i]);
+        ui->CP_tableWidget->setItem(i,2,&materialModelItem[i]);
+        ui->CP_tableWidget->setItem(i,3,&factoryItem[i]);
+        ui->CP_tableWidget->setItem(i,4,&numberItem[i]);
+        ui->CP_tableWidget->setItem(i,5,&singlePriceItem[i]);
+        ui->CP_tableWidget->setItem(i,6,&allPriceItem[i]);
+        ui->CP_tableWidget->setItem(i,7,&noteItem[i]);
+
+
+        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
+        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
+        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
+        factoryItem[i].setTextAlignment(Qt::AlignCenter);
+        numberItem[i].setTextAlignment(Qt::AlignCenter);
+        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
+        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
+        noteItem[i].setTextAlignment(Qt::AlignCenter);
+    }
+
+    //PK 封装订单界面
+    ui->PK_tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->PK_tableWidget->setRowCount(onePageNotesNum);
+    ui->PK_tableWidget->setColumnCount(12);
+    ui->PK_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
+    ui->PK_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
+    ui->PK_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
+    ui->PK_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+
+    for(int i=0;i<onePageNotesNum;i++)
+    {
+        ui->PK_tableWidget->setItem(i,0,&userTypeItem[i]);
+        ui->PK_tableWidget->setItem(i,1,&materialNameItem[i]);
+        ui->PK_tableWidget->setItem(i,2,&materialModelItem[i]);
+        ui->PK_tableWidget->setItem(i,3,&factoryItem[i]);
+        ui->PK_tableWidget->setItem(i,4,&numberItem[i]);
+        ui->PK_tableWidget->setItem(i,5,&singlePriceItem[i]);
+        ui->PK_tableWidget->setItem(i,6,&allPriceItem[i]);
+        ui->PK_tableWidget->setItem(i,7,&noteItem[i]);
+
+
+        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
+        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
+        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
+        factoryItem[i].setTextAlignment(Qt::AlignCenter);
+        numberItem[i].setTextAlignment(Qt::AlignCenter);
+        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
+        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
+        noteItem[i].setTextAlignment(Qt::AlignCenter);
+    }
+
+
+    //FT 封装订单界面
+    ui->FT_tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->FT_tableWidget->setRowCount(onePageNotesNum);
+    ui->FT_tableWidget->setColumnCount(14);
+    ui->FT_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
+    ui->FT_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
+    ui->FT_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
+    ui->FT_tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
+
+    for(int i=0;i<onePageNotesNum;i++)
+    {
+        ui->FT_tableWidget->setItem(i,0,&userTypeItem[i]);
+        ui->FT_tableWidget->setItem(i,1,&materialNameItem[i]);
+        ui->FT_tableWidget->setItem(i,2,&materialModelItem[i]);
+        ui->FT_tableWidget->setItem(i,3,&factoryItem[i]);
+        ui->FT_tableWidget->setItem(i,4,&numberItem[i]);
+        ui->FT_tableWidget->setItem(i,5,&singlePriceItem[i]);
+        ui->FT_tableWidget->setItem(i,6,&allPriceItem[i]);
+        ui->FT_tableWidget->setItem(i,7,&noteItem[i]);
 
 
         userTypeItem[i].setTextAlignment(Qt::AlignCenter);
@@ -214,7 +286,7 @@ void UIDemo01::initTableWidget()
 
 }
 
-void UIDemo01::clearTableWidgetItem()
+void UIDemo01::clear_tableWidgetItem()
 {
     currentClickIndex = 0;
     for(int i = 0 ; i<50; i++)
@@ -456,15 +528,15 @@ void UIDemo01::buttonClick()
         }
     }
 
-    if (name == "物料管理") {
+    if (name == "订单信息") {
         ui->stackedWidget->setCurrentIndex(0);
-        clearTableWidgetItem();
+        clear_tableWidgetItem();
     } else if (name == "入库查询") {
         ui->stackedWidget->setCurrentIndex(1);
-        clearTableWidgetItem();
+        clear_tableWidgetItem();
     } else if (name == "出库查询") {
         ui->stackedWidget->setCurrentIndex(2);
-        clearTableWidgetItem();
+        clear_tableWidgetItem();
     } else if (name == "用户管理") {
         if(UserAuthority != "管理员")
         {
@@ -474,7 +546,7 @@ void UIDemo01::buttonClick()
 
 
         ui->stackedWidget->setCurrentIndex(3);
-        clearTableWidgetItem();
+        clear_tableWidgetItem();
         initUserTableWidget();
     } else if (name == "用户退出") {
         exit(0);
@@ -579,7 +651,7 @@ void UIDemo01::showSpecifiedPage(int pageNum)
 {
     pageWidget->setLineEdit(pageNum);
 
-    //先清空tableWidget上的显示
+    //先清空CP_tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
         userTypeItem[i].setText("");
@@ -630,7 +702,7 @@ void UIDemo01::on_returnALL_pushButton_clicked()
 
 
 //单击QModelIndex的槽响应函数
-void UIDemo01::on_tableWidget_clicked(const QModelIndex &index)
+void UIDemo01::on_CP_tableWidget_clicked(const QModelIndex &index)
 {
     qDebug()<<" clicked ="<< index.row()<<endl;
     currentClickIndex = index.row();
@@ -791,7 +863,7 @@ void UIDemo01::inBoundSQLResult_slot(QStringList sqlList)
 void UIDemo01::showinBound_SpecifiedPage(int pageNum)
 {
     inBound_PageWidget->setLineEdit(pageNum);
-    //先清空tableWidget上的显示
+    //先清空CP_tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
         inBound_userTypeItem[i].setText("");
@@ -897,7 +969,7 @@ void UIDemo01::outBoundSQLResult_slot(QStringList sqlList)
 void UIDemo01::showoutBound_SpecifiedPage(int pageNum)
 {
     outBound_PageWidget->setLineEdit(pageNum);
-    //先清空tableWidget上的显示
+    //先清空CP_tableWidget上的显示
     for(int i=0; i<onePageNotesNum; i++)
     {
         outBound_userTypeItem[i].setText("");
@@ -1006,7 +1078,7 @@ void UIDemo01::on_delUser_pushButton_clicked()
 }
 
 
-//在TableWidget 上添加一行数据
+//在CP_tableWidget 上添加一行数据
 void UIDemo01::addUserOneNoteSlot(QString userName,QString passWord,QString authority,QString note)
 {
     userNameItem[currentIndex].setText(userName);
@@ -1048,7 +1120,7 @@ void UIDemo01::loginUserName_slot(QString userName,QString authority)
 void UIDemo01::on_managerOutExcel_pushBotton_clicked()
 {
 
-    QString fileName = QFileDialog::getSaveFileName(ui->tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
+    QString fileName = QFileDialog::getSaveFileName(ui->CP_tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
 
     qDebug()<<" fileName = "<<fileName<<endl;
 
@@ -1066,8 +1138,8 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
             QAxObject *worksheet = workbook->querySubObject("Worksheets(int)", 1);
 
             int i,j;
-            int colcount = ui->tableWidget->columnCount();
-            int rowcount = ui->tableWidget->rowCount();
+            int colcount = ui->CP_tableWidget->columnCount();
+            int rowcount = ui->CP_tableWidget->rowCount();
 
             QAxObject *cell,*col;
             //标题行
@@ -1095,10 +1167,10 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
                 columnName.append(":");
                 columnName.append(QChar(i + 'A'));
                 col = worksheet->querySubObject("Columns(const QString&)", columnName);
-                col->setProperty("ColumnWidth", ui->tableWidget->columnWidth(i)/6);
+                col->setProperty("ColumnWidth", ui->CP_tableWidget->columnWidth(i)/6);
                 cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
-                //QTableWidget 获取表格头部文字信息
-                columnName=ui->tableWidget->horizontalHeaderItem(i)->text();
+                //QCP_tableWidget 获取表格头部文字信息
+                columnName=ui->CP_tableWidget->horizontalHeaderItem(i)->text();
                 //QTableView 获取表格头部文字信息
                 // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
                 cell->dynamicCall("SetValue(const QString&)", columnName);
@@ -1109,11 +1181,11 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
             }
 
 
-            //QTableWidget 获取表格数据部分
+            //QCP_tableWidget 获取表格数据部分
             for(i=0;i<rowcount;i++){
                 for (j=0;j<colcount;j++)
                 {
-                    worksheet->querySubObject("Cells(int,int)", i+3, j+1)->dynamicCall("SetValue(const QString&)", ui->tableWidget->item(i,j)?ui->tableWidget->item(i,j)->text():"");
+                    worksheet->querySubObject("Cells(int,int)", i+3, j+1)->dynamicCall("SetValue(const QString&)", ui->CP_tableWidget->item(i,j)?ui->CP_tableWidget->item(i,j)->text():"");
                 }
             }
 
@@ -1121,14 +1193,14 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
             QString lrange;
             lrange.append("A2:");
             lrange.append(colcount - 1 + 'A');
-            lrange.append(QString::number(ui->tableWidget->rowCount() + 2));
+            lrange.append(QString::number(ui->CP_tableWidget->rowCount() + 2));
             range = worksheet->querySubObject("Range(const QString&)", lrange);
             range->querySubObject("Borders")->setProperty("LineStyle", QString::number(1));
             range->querySubObject("Borders")->setProperty("Color", QColor(0, 0, 0));
             //调整数据区行高
             QString rowsName;
             rowsName.append("2:");
-            rowsName.append(QString::number(ui->tableWidget->rowCount() + 2));
+            rowsName.append(QString::number(ui->CP_tableWidget->rowCount() + 2));
             range = worksheet->querySubObject("Range(const QString&)", rowsName);
             range->setProperty("RowHeight", 20);
             workbook->dynamicCall("SaveAs(const QString&)",QDir::toNativeSeparators(fileName));//保存至fileName
@@ -1205,7 +1277,7 @@ void UIDemo01::on_inBoundOutExecel_pushButton_clicked()
                 col = worksheet->querySubObject("Columns(const QString&)", columnName);
                 col->setProperty("ColumnWidth", ui->inBound_tableWidget->columnWidth(i)/6);
                 cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
-                //QTableWidget 获取表格头部文字信息
+                //QCP_tableWidget 获取表格头部文字信息
                 columnName = ui->inBound_tableWidget->horizontalHeaderItem(i)->text();
                 //QTableView 获取表格头部文字信息
                 // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
@@ -1217,7 +1289,7 @@ void UIDemo01::on_inBoundOutExecel_pushButton_clicked()
             }
 
 
-            //QTableWidget 获取表格数据部分
+            //QCP_tableWidget 获取表格数据部分
             for(i=0;i<rowcount;i++){
                 for (j=0;j<colcount;j++)
                 {
@@ -1310,7 +1382,7 @@ void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
                 col = worksheet->querySubObject("Columns(const QString&)", columnName);
                 col->setProperty("ColumnWidth", ui->outBound_tableWidget->columnWidth(i)/6);
                 cell=worksheet->querySubObject("Cells(int,int)", 2, i+1);
-                //QTableWidget 获取表格头部文字信息
+                //QCP_tableWidget 获取表格头部文字信息
                 columnName = ui->outBound_tableWidget->horizontalHeaderItem(i)->text();
                 //QTableView 获取表格头部文字信息
                 // columnName=ui->tableView_right->model()->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
@@ -1322,7 +1394,7 @@ void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
             }
 
 
-            //QTableWidget 获取表格数据部分
+            //QCP_tableWidget 获取表格数据部分
             for(i=0;i<rowcount;i++){
                 for (j=0;j<colcount;j++)
                 {
@@ -1355,7 +1427,6 @@ void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
             }
 
         }
-
 
     }else
     {

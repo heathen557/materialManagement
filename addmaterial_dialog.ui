@@ -29,7 +29,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>用途：</string>
+           <string>订单号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -42,7 +42,7 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>名称：</string>
+           <string>产品型号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -55,7 +55,7 @@
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>型号：</string>
+           <string>晶圆型号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -68,7 +68,7 @@
         <item>
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>厂家：</string>
+           <string>芯片片号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -81,7 +81,7 @@
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>单价：</string>
+           <string>封装形式：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -98,7 +98,7 @@
         <item>
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>备注：</string>
+           <string>CP测试单号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>

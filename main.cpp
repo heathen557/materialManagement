@@ -18,7 +18,7 @@ void initSQL()
       {
           db = QSqlDatabase::addDatabase("QMYSQL");   //, "localhost@3306"
           db.setHostName("localhost");    //数据库主机名
-          db.setDatabaseName("test");    //数据库名
+          db.setDatabaseName("batchproduct_database");    //数据库名
           db.setUserName("root");        //数据库用户名
           db.setPassword("");        //数据库密码
       }
@@ -48,11 +48,19 @@ void initSQL()
       }
 
       //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
-      sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
+//      sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
+
+      sqlStr = "create table ORDER_TABLE(ID int primary key AUTO_INCREMENT, orderNum varchar(50), productModel varchar(50),waferNum varchar(50),chipNum varchar(50),packageType varchar(50),\
+      CP_num varchar(50),PK_num varchar(50),FT_num varchar(50),CP_test_specification varchar(50),package_specification varchar(50),\
+      FT_test_specification varchar(50), process_demand varchar(200),CP_investment varchar(50), CP_output varchar(50),CP_yield varchar(50),\
+      package_investment varchar(50),package_output varchar(50),package_yield varchar(50),FT_investment varchar(50),FT_output varchar(50),\
+      FT_yield varchar(50),  inStorageNum varchar(50),waitForStorageNum varchar(50), wasteproductsNum varchar(50), end_yield varchar(50),\
+      inventoryBalance varchar(50), updateTime datetime) charset=utf8;";
+
       buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
-          qDebug("create INVENTORY_TABLE error");
+          qDebug("create ORDER_TABLE error");
       }
 
       //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
@@ -109,7 +117,8 @@ int main(int argc, char *argv[])
     //加载样式表
     QFile file(":/qss/psblack.css");
     if (file.open(QFile::ReadOnly)) {
-        QString qss = QLatin1String(file.readAll());
+//        QString qss = QLatin1String(file.readAll());
+        QString qss = file.readAll();
         QString paletteColor = qss.mid(20, 7);
         qDebug()<<paletteColor<<endl;
         qApp->setPalette(QPalette(QColor(paletteColor)));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1237</width>
-    <height>680</height>
+    <width>1277</width>
+    <height>726</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,7 +26,7 @@
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_5">
+  <layout class="QGridLayout" name="gridLayout_8">
    <item row="0" column="0">
     <widget class="QWidget" name="widgetTitle" native="true">
      <property name="sizePolicy">
@@ -53,6 +53,12 @@
       </property>
       <item>
        <widget class="QLabel" name="labIco">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -101,11 +107,34 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>物料管理</string>
+            <string>订单信息</string>
            </property>
            <property name="icon">
             <iconset>
              <normaloff>image/main_help.png</normaloff>image/main_help.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btnExit_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>库存查询</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>image/select.png</normaloff>image/select.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -354,202 +383,686 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page1">
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_11">
        <item row="0" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,0">
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>918</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="managerQuery_pushButton">
-           <property name="text">
-            <string>查询</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/select.png</normaloff>image/select.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <widget class="QTableWidget" name="tableWidget">
-         <column>
-          <property name="text">
-           <string>用途</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>名称</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>型号</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>厂家</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>数量</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>单价(元)</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>总价</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>备注</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QWidget" name="widget" native="true">
-         <property name="styleSheet">
-          <string notr="true">font: 10pt &quot;黑体&quot;;</string>
+        <widget class="QTabWidget" name="tabWidget_2">
+         <property name="currentIndex">
+          <number>2</number>
          </property>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>CP中测订单</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,0">
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>918</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_managerQuery_pushButton">
+               <property name="text">
+                <string>查询</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/select.png</normaloff>image/select.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTableWidget" name="CP_tableWidget">
+             <column>
+              <property name="text">
+               <string>晶圆批号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>产品型号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP测试单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>芯片片号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP测试规范</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP投入</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>特殊加工需求</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP产出</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP良率</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作人员</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作时间</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="CP_widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;黑体&quot;;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,1,1,0,6">
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_addMaterial_pushButton">
+               <property name="text">
+                <string>新增</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/add.png</normaloff>image/add.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_alterMaterial_pushButton">
+               <property name="text">
+                <string>修改</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_inBound_pushButton">
+               <property name="text">
+                <string>入库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/next.png</normaloff>image/next.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_outBound_pushButton">
+               <property name="text">
+                <string>出库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_returnALL_pushButton">
+               <property name="text">
+                <string>返回总库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/first.png</normaloff>image/first.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="CP_managerOutExcel_pushBotton">
+               <property name="text">
+                <string>导出</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_4">
+          <attribute name="title">
+           <string>PK封装订单</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="5,0">
+             <item>
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>918</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_managerQuery_pushButton_2">
+               <property name="text">
+                <string>查询</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/select.png</normaloff>image/select.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTableWidget" name="PK_tableWidget">
+             <column>
+              <property name="text">
+               <string>晶圆批号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP测试单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>PK封装单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>封装形式</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>封装规范</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>封装投入</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>特殊加工需求</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>封装产出</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>封装良率</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作人员</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作时间 </string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="PK_widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;黑体&quot;;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="6,1,1,1,1,1,0,6">
+             <item>
+              <spacer name="horizontalSpacer_16">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_addMaterial_pushButton">
+               <property name="text">
+                <string>新增</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/add.png</normaloff>image/add.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_alterMaterial_pushButton">
+               <property name="text">
+                <string>修改</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_inBound_pushButton">
+               <property name="text">
+                <string>入库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/next.png</normaloff>image/next.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_outBound_pushButton">
+               <property name="text">
+                <string>出库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_returnALL_pushButton">
+               <property name="text">
+                <string>返回总库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/first.png</normaloff>image/first.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PK_managerOutExcel_pushBotton">
+               <property name="text">
+                <string>导出</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_17">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>FT测试订单</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="5,0">
+             <item>
+              <spacer name="horizontalSpacer_18">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>918</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_managerQuery_pushButton">
+               <property name="text">
+                <string>查询</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/select.png</normaloff>image/select.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTableWidget" name="FT_tableWidget">
+             <column>
+              <property name="text">
+               <string>晶圆批号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CP测试单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>PK封装单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT测试单号</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT_投入</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT测试规范</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT_产出</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT_次品数</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>入库数量</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>待入库数量</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>FT_良率</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作人员</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>操作时间</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="FT_widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;黑体&quot;;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="6,1,1,1,1,1,0,6">
+             <item>
+              <spacer name="horizontalSpacer_19">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_addMaterial_pushButton">
+               <property name="text">
+                <string>新增</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/add.png</normaloff>image/add.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_alterMaterial_pushButton">
+               <property name="text">
+                <string>修改</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_inBound_pushButton">
+               <property name="text">
+                <string>入库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/next.png</normaloff>image/next.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_outBound_pushButton">
+               <property name="text">
+                <string>出库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_returnALL_pushButton">
+               <property name="text">
+                <string>返回总库</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/first.png</normaloff>image/first.png</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FT_managerOutExcel_pushBotton">
+               <property name="text">
+                <string>导出</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_20">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </item>
-       <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,1,1,0,6">
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addMaterial_pushButton">
-           <property name="text">
-            <string>新增</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/add.png</normaloff>image/add.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="alterMaterial_pushButton">
-           <property name="text">
-            <string>修改</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="inBound_pushButton">
-           <property name="text">
-            <string>入库</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/next.png</normaloff>image/next.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="outBound_pushButton">
-           <property name="text">
-            <string>出库</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="returnALL_pushButton">
-           <property name="text">
-            <string>返回总库</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/first.png</normaloff>image/first.png</iconset>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="managerOutExcel_pushBotton">
-           <property name="text">
-            <string>导出</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/excel.png</normaloff>image/excel.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -845,92 +1358,200 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page4">
-      <layout class="QGridLayout" name="gridLayout_8">
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_11">
-         <item>
-          <spacer name="horizontalSpacer_12">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addUser_pushButton">
-           <property name="text">
-            <string>新增</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/add.png</normaloff>image/add.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="alterUser_pushButton">
-           <property name="text">
-            <string>修改</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="delUser_pushButton">
-           <property name="text">
-            <string>删除</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_13">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
-        <widget class="QTableWidget" name="user_tableWidget">
-         <column>
-          <property name="text">
-           <string>用户名</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>密码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>权限</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>备注</string>
-          </property>
-         </column>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>服务器端用户</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="user_tableWidget">
+             <column>
+              <property name="text">
+               <string>用户名</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>密码</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>权限</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addUser_pushButton">
+               <property name="text">
+                <string>新增</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/add.png</normaloff>image/add.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="alterUser_pushButton">
+               <property name="text">
+                <string>修改</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="delUser_pushButton">
+               <property name="text">
+                <string>删除</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>客户端用户</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="client_user_tableWidget">
+             <column>
+              <property name="text">
+               <string>用户名</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>密码</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>权限</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <spacer name="horizontalSpacer_14">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="client_addUser_pushButton">
+               <property name="text">
+                <string>新增</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/add.png</normaloff>image/add.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="client_alterUser_pushButton">
+               <property name="text">
+                <string>修改</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="client_delUser_pushButton">
+               <property name="text">
+                <string>删除</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>image/delete.png</normaloff>image/delete.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_15">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>

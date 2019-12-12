@@ -1,4 +1,4 @@
-QPalette{background:#444444;}*{outline:0px;color:#DCDCDC;}
+﻿QPalette{background:#444444;}*{outline:0px;color:#DCDCDC;}
 
 
 QMessageBox{
@@ -73,12 +73,21 @@ border:1px solid #00BB9E;
 background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252);
 }
 
-QLineEdit,QTextEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox,QComboBox,QDateEdit,QTimeEdit,QDateTimeEdit{
+/*QLineEdit,QTextEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox,QComboBox,QDateEdit,QTimeEdit,QDateTimeEdit{
 border:1px solid #242424;
 border-radius:3px;
 padding:2px;
 background:none;
 selection-background-color:#484848;
+selection-color:#DCDCDC;
+}*/
+
+QLineEdit,QTextEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox,QComboBox,QDateEdit,QTimeEdit,QDateTimeEdit{
+border:1px solid #242424;
+border-radius:3px;
+padding:2px;
+background:none;
+selection-background-color:#787878;
 selection-color:#DCDCDC;
 }
 
