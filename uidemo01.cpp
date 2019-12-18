@@ -17,6 +17,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
     onePageNotesNum = 10;
 
     currentClickIndex = 0;
+    pk_currentClickedIndex = 0;
     currentUserClickIndex = 0;
 
     //界面上添加分页控件
@@ -447,6 +448,7 @@ void UIDemo01::initConnect()
     connect(this,SIGNAL(PK_setMaxPage_signal(int)),PK_pageWidget,SLOT(setMaxPage(int)));
     connect(PK_pageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(PK_showSpecifiedPage(int)));     //插件页数变换的时候，发出信号，然后更新
     connect(&pK_query_dia,SIGNAL(PK_selectResult_signal(QStringList)),this,SLOT(PK_selectResult_slot(QStringList)));
+    connect(&PK_alter_dia,SIGNAL(PK_alterSignal(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)),this,SLOT(PK_alterSlot(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)));
 }
 
 //数据库初始化函数
@@ -1383,12 +1385,54 @@ void UIDemo01::on_PK_addMaterial_pushButton_clicked()
     addPk_dia.show();
 }
 
+
+//!
+//! \brief UIDemo01::on_PK_tableWidget_clicked
+//! \param index
+//!
+void UIDemo01::on_PK_tableWidget_clicked(const QModelIndex &index)
+{
+    pk_currentClickedIndex = index.row();
+}
+
+
 //!
 //! \brief UIDemo01::on_PK_alterMaterial_pushButton_clicked
 //!pK 修改
 void UIDemo01::on_PK_alterMaterial_pushButton_clicked()
 {
+    PK_alter_dia.setModal(true);
+    PK_alter_dia.setUserName(UserName);
 
+    QString pk_num = PK_numItem[pk_currentClickedIndex].text();
+    QString packageType = PK_packageTypeItem[pk_currentClickedIndex].text();
+    QString package_specificationItem = PK_package_specificationItem[pk_currentClickedIndex].text();
+    QString packageInvestion = PK_investmentItem[pk_currentClickedIndex].text();
+    QString processDemand = PK_process_demandItem[pk_currentClickedIndex].text();
+    QString packageOutput = PK_outputItem[pk_currentClickedIndex].text();
+    QString note = PK_noteItem[pk_currentClickedIndex].text();
+
+    PK_alter_dia.initPK_info(pk_num,packageType,package_specificationItem,packageInvestion,processDemand,packageOutput,note);
+
+    PK_alter_dia.show();
+}
+
+//!
+//! \brief UIDemo01::PK_alterSlot
+//!修改过后，在主界面上做同步刷新        pkNum,   pkType,       pkSpec,            pkInvestion,          processDemand,        pkOutput,        package_yield,         userName,        current_time,      note
+void UIDemo01::PK_alterSlot(QString pkNum,QString pkType,QString pkSpec,QString pkInvestion,QString processDemand,QString pkOutput,QString package_yield,QString userName,QString current_time,QString note)
+{
+
+    PK_numItem[pk_currentClickedIndex].setText(pkNum);
+    PK_packageTypeItem[pk_currentClickedIndex].setText(pkType);
+    PK_package_specificationItem[pk_currentClickedIndex].setText(pkSpec);
+    PK_investmentItem[pk_currentClickedIndex].setText(pkInvestion);
+    PK_process_demandItem[pk_currentClickedIndex].setText(processDemand);
+    PK_outputItem[pk_currentClickedIndex].setText(pkOutput);
+    PK_yieldItem[pk_currentClickedIndex].setText(package_yield);
+    PK_operatorItem[pk_currentClickedIndex].setText(userName);
+    PK_updateTimeItem[pk_currentClickedIndex].setText(current_time);
+    PK_noteItem[pk_currentClickedIndex].setText(note);
 }
 
 //!
@@ -1714,6 +1758,8 @@ void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
         QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
     }
 }
+
+
 
 
 

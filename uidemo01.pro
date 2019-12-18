@@ -37,7 +37,8 @@ SOURCES     += main.cpp \
     alteruser_dialog.cpp \
     frmlogin.cpp \
     add_pk_dialog.cpp \
-    query_pk_dialog.cpp
+    query_pk_dialog.cpp \
+    pk_alterdialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
@@ -55,7 +56,8 @@ HEADERS     += iconhelper.h \
     alteruser_dialog.h \
     frmlogin.h \
     add_pk_dialog.h \
-    query_pk_dialog.h
+    query_pk_dialog.h \
+    pk_alterdialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
@@ -72,7 +74,8 @@ FORMS       += uidemo01.ui \
     alteruser_dialog.ui \
     frmlogin.ui \
     add_pk_dialog.ui \
-    query_pk_dialog.ui
+    query_pk_dialog.ui \
+    pk_alterdialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

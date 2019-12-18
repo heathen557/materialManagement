@@ -26,6 +26,7 @@
 #include<QFileDialog>
 #include<add_pk_dialog.h>
 #include<query_pk_dialog.h>
+#include<pk_alterdialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -85,7 +86,9 @@ public:
    QLabel *PK_label;
    add_PK_Dialog addPk_dia;
    query_pk_Dialog pK_query_dia;
+   PK_alterDialog PK_alter_dia;
    QStringList PK_allDataList;
+   int pk_currentClickedIndex;
 
    QTableWidgetItem  PK_waferNumItem[50];
    QTableWidgetItem  PK_cpTestItem[50];
@@ -214,6 +217,10 @@ private slots:
 
     void PK_showSpecifiedPage(int pageNum);
 
+    void on_PK_tableWidget_clicked(const QModelIndex &index);
+
+    void PK_alterSlot(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString);
+
 
 
 
@@ -254,6 +261,8 @@ private slots:
     void on_inBoundOutExecel_pushButton_clicked();
 
     void on_outBoundOutExcel_pushButton_clicked();
+
+
 
 
 signals:
