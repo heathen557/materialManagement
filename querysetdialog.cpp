@@ -11,7 +11,11 @@ querySetDialog::querySetDialog(QWidget *parent) :
     currentItemIndex = 0;
 }
 
-
+//!
+//! \brief querySetDialog::initSelect
+//!查询方式：所有单元都有缺省项，
+//! 注意：当选择晶圆批号后，自动更新测试单号的内容，并将测试单号 封装单号置为默认
+//!      当选择测试单号后，自动更新封装单号的内容，并将封装单号置为默认
 void querySetDialog::initSelect()
 {
     //查询所有的晶圆批号
@@ -196,7 +200,7 @@ void querySetDialog::on_select_pushButton_clicked()
         CPTestNum = CP_testNumItem[i].text();
         operatorName = operatorItem[i].text();
         beginTime = operationTimeItem[i].text().left(10) + " 00:00:00";
-        endTime = operationTimeItem[i].text().left(10) + " 23:59:59";
+        endTime = operationTimeItem[i].text().right(10) + " 23:59:59";
         note = noteItem[i].text();
 
         sqlStr = "SELECT * FROM CP_TABLE WHERE updateTime>= '" +beginTime + "' and updateTime<='"+endTime+"' ";

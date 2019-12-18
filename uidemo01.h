@@ -25,6 +25,7 @@
 #include<QDesktopServices>
 #include<QFileDialog>
 #include<add_pk_dialog.h>
+#include<query_pk_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -71,8 +72,6 @@ public:
    QTableWidgetItem  CP_operatorItem[50];
    QTableWidgetItem  CP_updateTimeItem[50];
    QTableWidgetItem  CP_noteItem[50];
-
-
    QStringList allDataList;
    int onePageNotesNum;     //一页显示的条目数量  初始化为50
    QLabel *lable1 ;
@@ -85,6 +84,21 @@ public:
    PageWidget *PK_pageWidget;
    QLabel *PK_label;
    add_PK_Dialog addPk_dia;
+   query_pk_Dialog pK_query_dia;
+   QStringList PK_allDataList;
+
+   QTableWidgetItem  PK_waferNumItem[50];
+   QTableWidgetItem  PK_cpTestItem[50];
+   QTableWidgetItem  PK_numItem[50];
+   QTableWidgetItem  PK_packageTypeItem[50];
+   QTableWidgetItem  PK_package_specificationItem[50];
+   QTableWidgetItem  PK_investmentItem[50];
+   QTableWidgetItem  PK_process_demandItem[50];
+   QTableWidgetItem  PK_outputItem[50];
+   QTableWidgetItem  PK_yieldItem[50];
+   QTableWidgetItem  PK_operatorItem[50];
+   QTableWidgetItem  PK_updateTimeItem[50];
+   QTableWidgetItem  PK_noteItem[50];
 
 
 
@@ -185,6 +199,24 @@ private slots:
     void on_CP_managerOutExcel_pushBotton_clicked();   //文件导出
 
 
+    /*********PK************************/
+    void on_PK_addMaterial_pushButton_clicked();
+
+    void on_PK_managerQuery_pushButton_2_clicked();
+
+    void on_PK_alterMaterial_pushButton_clicked();
+
+    void on_PK_returnALL_pushButton_clicked();
+
+    void on_PK_managerOutExcel_pushBotton_clicked();
+
+    void PK_selectResult_slot(QStringList);
+
+    void PK_showSpecifiedPage(int pageNum);
+
+
+
+
     /**********入库相关槽函数*****************/
     void inBoundNum_Slot(int ,float);        //此槽函数 出库入库共用
 
@@ -217,22 +249,17 @@ private slots:
 
     void alterUserOneNoteSlot(QString,QString,QString,QString);  //接收修改后某一条的槽函数
 
-
-
     void loginUserName_slot(QString,QString);
-
-
 
     void on_inBoundOutExecel_pushButton_clicked();
 
     void on_outBoundOutExcel_pushButton_clicked();
 
-    void on_PK_addMaterial_pushButton_clicked();
-
-
 
 signals:
     void setMaxPage_signal(int);
+
+    void PK_setMaxPage_signal(int);
 
     void setInBoundPage_signal(int);
 

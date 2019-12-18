@@ -59,8 +59,24 @@ void initSQL()
       buscess = sqlQuery.exec(sqlStr);
       if (!buscess)
       {
-          qDebug("create ORDER_TABLE error");
+          qDebug("create CP_TABLE error");
       }
+
+
+      //3 创建PK_table
+      sqlStr = "create table PK_TABLE(ID int primary key AUTO_INCREMENT, \
+      waferNum varchar(50),CPtest_num varchar(50),PK_num varchar(50),packageType varchar(50), \
+      package_specification varchar(50), package_investment varchar(50),process_demand varchar(200), package_output varchar(50),package_yield varchar(50),operator varchar(50),\
+      updateTime varchar(50),note varchar(200)) charset=utf8;";
+      buscess = sqlQuery.exec(sqlStr);
+      if (!buscess)
+      {
+          qDebug("create PK_TABLE error");
+      }
+
+
+
+
 
       //3 存储物料的入库记录  INBOUND_TABLE；  字段：ID、用途、名称、型号、厂家、数量、单价、总价、操作人，操作日期、备注
       sqlStr = "create table INBOUND_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,OPERATION_USER varchar(20),OPERATION_TIME datetime ,NOTE varchar(300)) charset=utf8;";

@@ -99,6 +99,7 @@ UIDemo01::UIDemo01(QWidget *parent) :
     init_tableWidget();
 
     emit setMaxPage_signal(1);
+    emit PK_setMaxPage_signal(1);
     emit setInBoundPage_signal(1);
     emit setOutBoundPage_signal(1);
 
@@ -170,24 +171,33 @@ void UIDemo01::init_tableWidget()
 
     for(int i=0;i<onePageNotesNum;i++)
     {
-//        ui->PK_tableWidget->setItem(i,0,&userTypeItem[i]);
-//        ui->PK_tableWidget->setItem(i,1,&materialNameItem[i]);
-//        ui->PK_tableWidget->setItem(i,2,&materialModelItem[i]);
-//        ui->PK_tableWidget->setItem(i,3,&factoryItem[i]);
-//        ui->PK_tableWidget->setItem(i,4,&numberItem[i]);
-//        ui->PK_tableWidget->setItem(i,5,&singlePriceItem[i]);
-//        ui->PK_tableWidget->setItem(i,6,&allPriceItem[i]);
-//        ui->PK_tableWidget->setItem(i,7,&noteItem[i]);
 
+        ui->PK_tableWidget->setItem(i,0,&PK_waferNumItem[i]);
+        ui->PK_tableWidget->setItem(i,1,&PK_cpTestItem[i]);
+        ui->PK_tableWidget->setItem(i,2,&PK_numItem[i]);
+        ui->PK_tableWidget->setItem(i,3,&PK_packageTypeItem[i]);
+        ui->PK_tableWidget->setItem(i,4,&PK_package_specificationItem[i]);
+        ui->PK_tableWidget->setItem(i,5,&PK_investmentItem[i]);
+        ui->PK_tableWidget->setItem(i,6,&PK_process_demandItem[i]);
+        ui->PK_tableWidget->setItem(i,7,&PK_outputItem[i]);
+        ui->PK_tableWidget->setItem(i,8,&PK_yieldItem[i]);
+        ui->PK_tableWidget->setItem(i,9,&PK_operatorItem[i]);
+        ui->PK_tableWidget->setItem(i,10,&PK_updateTimeItem[i]);
+        ui->PK_tableWidget->setItem(i,11,&PK_noteItem[i]);
 
-//        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
-//        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
-//        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
-//        factoryItem[i].setTextAlignment(Qt::AlignCenter);
-//        numberItem[i].setTextAlignment(Qt::AlignCenter);
-//        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
-//        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
-//        noteItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_waferNumItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_cpTestItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_numItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_packageTypeItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_package_specificationItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_investmentItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_process_demandItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_outputItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_yieldItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_operatorItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_updateTimeItem[i].setTextAlignment(Qt::AlignCenter);
+        PK_noteItem[i].setTextAlignment(Qt::AlignCenter);
+
     }
 
 
@@ -353,6 +363,19 @@ void UIDemo01::clear_tableWidgetItem()
         CP_updateTimeItem[i].setText("");
         CP_noteItem[i].setText("");
 
+        PK_waferNumItem[i].setText("");
+        PK_cpTestItem[i].setText("");
+        PK_numItem[i].setText("");
+        PK_packageTypeItem[i].setText("");
+        PK_package_specificationItem[i].setText("");
+        PK_investmentItem[i].setText("");
+        PK_process_demandItem[i].setText("");
+        PK_outputItem[i].setText("");
+        PK_yieldItem[i].setText("");
+        PK_operatorItem[i].setText("");
+        PK_updateTimeItem[i].setText("");
+        PK_noteItem[i].setText("");
+
 
         inBound_userTypeItem[i].setText("");
         inBound_materialNameItem[i].setText("");
@@ -393,6 +416,8 @@ void UIDemo01::initConnect()
 
     connect(this,SIGNAL(setMaxPage_signal(int)),PC_pageWidget,SLOT(setMaxPage(int)));
 
+
+
     connect(&alterMaterial_dia,SIGNAL(alterMaterial_signal(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)),this,SLOT(alterMaterial_slot(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)));  //修改物料信息后 同步到主界面的显示界面
 
     connect(&alterMaterial_dia,SIGNAL(delMaterial_signal()),this,SLOT(delMaterial_slot()));  //修改物料信息后 同步到主界面的显示界面
@@ -417,6 +442,11 @@ void UIDemo01::initConnect()
 
     connect(&alterUserDia,SIGNAL(alterUserOneNoteSignal(QString,QString,QString,QString)),this,SLOT(alterUserOneNoteSlot(QString,QString,QString,QString)));
 
+
+    //PK
+    connect(this,SIGNAL(PK_setMaxPage_signal(int)),PK_pageWidget,SLOT(setMaxPage(int)));
+    connect(PK_pageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(PK_showSpecifiedPage(int)));     //插件页数变换的时候，发出信号，然后更新
+    connect(&pK_query_dia,SIGNAL(PK_selectResult_signal(QStringList)),this,SLOT(PK_selectResult_slot(QStringList)));
 }
 
 //数据库初始化函数
@@ -1329,14 +1359,149 @@ void UIDemo01::on_CP_managerOutExcel_pushBotton_clicked()
 
 }
 
-//添加PK的订单
+
+
+//!
+//! \brief UIDemo01::on_PK_managerQuery_pushButton_2_clicked
+//!PK 查询检索
+void UIDemo01::on_PK_managerQuery_pushButton_2_clicked()
+{
+    pK_query_dia.setModal(true);
+    pK_query_dia.isSelectFinished = false;
+    pK_query_dia.initSelect();
+    pK_query_dia.show();
+}
+
+//!
+//! \brief UIDemo01::on_PK_addMaterial_pushButton_clicked
+//! 添加PK的订单
 void UIDemo01::on_PK_addMaterial_pushButton_clicked()
 {
+    addPk_dia.initSelect();
     addPk_dia.setModal(true);
+    addPk_dia.setUserName(UserName);
     addPk_dia.show();
 }
 
+//!
+//! \brief UIDemo01::on_PK_alterMaterial_pushButton_clicked
+//!pK 修改
+void UIDemo01::on_PK_alterMaterial_pushButton_clicked()
+{
 
+}
+
+//!
+//! \brief UIDemo01::on_PK_returnALL_pushButton_clicked
+//! 返回总库
+void UIDemo01::on_PK_returnALL_pushButton_clicked()
+{
+
+}
+
+//!
+//! \brief UIDemo01::on_PK_managerOutExcel_pushBotton_clicked
+//!导出报表
+void UIDemo01::on_PK_managerOutExcel_pushBotton_clicked()
+{
+
+}
+
+//!
+//! \brief UIDemo01::PK_selectResult_slot
+//!查询 PK订单信息的槽函数
+//! //!
+//! \brief UIDemo01::selectResult_slot
+//! \param sqlList
+//!   1、将语句进行查询，然后把所有数据存储在 allDataList当中  ，它的长度应该为是 12的倍数,去除主键ID
+//!   2、计算记录的条数
+//!   3、最大的页数
+//!   4、然后显示第一页
+void UIDemo01::PK_selectResult_slot(QStringList sqlList)
+{
+    PK_allDataList.clear();  //每次查询都清空已有的数据
+    qDebug()<<" the sql = "<<sqlList<<endl;
+    QString sqlStr;
+
+    for(int i=0; i<sqlList.length(); i++)
+    {
+        sqlStr = sqlList[i];
+        bool buscess =  sql_query.exec(sqlStr);
+        if(!buscess)
+        {
+            qDebug()<<" UIDemo01::PK_selectResult_slot(QStringList sqlList)  select error !!"<<endl;
+            return;
+        }
+        while(sql_query.next())
+        {
+            for(int k=1 ;k<13; k++)
+            {
+                PK_allDataList.append(sql_query.value(k).toString());
+            }
+        }
+    }
+
+
+    int allNotes = PK_allDataList.length()/12;
+    QString str = "总记录数：" + QString::number(allNotes);    //显示记录数
+    PK_label->setText(str);
+
+
+    int maxPage ;
+    maxPage = allNotes/onePageNotesNum ;
+    if(0 != allNotes%onePageNotesNum )
+    {
+        maxPage = maxPage + 1;
+    }
+
+
+    emit PK_setMaxPage_signal(maxPage);
+    PK_showSpecifiedPage(1);
+}
+
+
+//!
+//! \brief UIDemo01::PK_showSpecifiedPage
+//! \param pageNum
+//!分页相关，接收到控件传递来的指定页数，然后刷新显示
+void UIDemo01::PK_showSpecifiedPage(int pageNum)
+{
+    PK_pageWidget->setLineEdit(pageNum);
+
+    //先清空CP_tableWidget上的显示
+    clear_tableWidgetItem();
+
+    //第一条的记录序号为  (page-1)*onePageNotesNum;
+    //最后一条的记录序号为 page*onePageNotesNum - 1;  要对比和总条数的大小，选最小的那个
+    int beginNum = (pageNum-1) * onePageNotesNum;
+
+    int last =  pageNum*onePageNotesNum -1;
+    int allNoteNum = PK_allDataList.length()/12;
+    int lastNum = last<allNoteNum ? last+1:allNoteNum;   //选取最小的
+
+    qDebug()<<"beginNum="<<beginNum<<"  lastNum="<<lastNum<<endl;
+
+    int index = 0;
+    for(int i=beginNum; i<lastNum; i++)     //i为记录的序号
+    {
+
+        PK_waferNumItem[index].setText(PK_allDataList[i*12+0]);
+        PK_cpTestItem[index].setText(PK_allDataList[i*12+1]);
+        PK_numItem[index].setText(PK_allDataList[i*12+2]);
+        PK_packageTypeItem[index].setText(PK_allDataList[i*12+3]);
+        PK_package_specificationItem[index].setText(PK_allDataList[i*12+4]);
+        PK_investmentItem[index].setText(PK_allDataList[i*12+5]);
+        PK_process_demandItem[index].setText(PK_allDataList[i*12+6]);
+        PK_outputItem[index].setText(PK_allDataList[i*12+7]);
+        PK_yieldItem[index].setText(PK_allDataList[i*12+8]);
+        PK_operatorItem[index].setText(PK_allDataList[i*12+9]);
+        QString updateTimeStr = PK_allDataList[i*12+10];
+        updateTimeStr = updateTimeStr.replace("T"," ");
+        PK_updateTimeItem[index].setText(updateTimeStr);
+        PK_noteItem[index].setText(PK_allDataList[i*12+11]);
+        index++;
+    }
+}
 
 
 

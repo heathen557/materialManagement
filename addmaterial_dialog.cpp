@@ -29,9 +29,6 @@ void addMaterial_Dialog::initTableWidget()
     ui->tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
     ui->tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}");
 
-
-
-
     for(int i=0;i<50;i++)
     {
         ui->tableWidget->setItem(i,0,&waferNumItem[i]);
@@ -57,7 +54,6 @@ void addMaterial_Dialog::initTableWidget()
         isChipedItem[i].setTextAlignment(Qt::AlignCenter);
         isBatchedItem[i].setTextAlignment(Qt::AlignCenter);
         noteItem[i].setTextAlignment(Qt::AlignCenter);
-
     }
 }
 

@@ -20,6 +20,9 @@ public:
 
     void initSelect();
     void initTableWidget();
+
+    bool isSelectFinished;
+
 private slots:
     void on_pushButton_clicked();
 
