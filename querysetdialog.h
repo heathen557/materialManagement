@@ -33,11 +33,11 @@ private:
     int currentItemIndex;      //item的当前序号
 
      //用途、 物料名称 、 型号、厂家、单价
-    QTableWidgetItem  userTypeItem[50];
-    QTableWidgetItem  materialNameItem[50];
-    QTableWidgetItem  materialModelItem[50];
-    QTableWidgetItem  factoryItem[50];
-    QTableWidgetItem  numItem[50];
+    QTableWidgetItem  waferNumItem[50];
+    QTableWidgetItem  productNumItem[50];
+    QTableWidgetItem  CP_testNumItem[50];
+    QTableWidgetItem  operatorItem[50];
+    QTableWidgetItem  operationTimeItem[50];
     QTableWidgetItem  noteItem[50];
 
     QString sqlStr;

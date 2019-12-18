@@ -47,15 +47,14 @@ void initSQL()
           qDebug("create USER_TABLE  error");
       }
 
-      //2 创建当前的库存信息表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
+      //2 创建CP_TABLE表  ID 、用途、名称、型号、厂家、数量、单价、总价、备注
 //      sqlStr = "create table INVENTORY_TABLE(ID int primary key AUTO_INCREMENT, USE_TYPE varchar(20), MATERIAL_NAME varchar(20),MATERIAL_MODEL varchar(20),MANUFACTOR varchar(100),NUMBER int,SINGLE_PRICE float,ALL_PRICE float,NOTE varchar(300)) charset=utf8;";
 
-      sqlStr = "create table ORDER_TABLE(ID int primary key AUTO_INCREMENT, orderNum varchar(50), productModel varchar(50),waferNum varchar(50),chipNum varchar(50),packageType varchar(50),\
-      CP_num varchar(50),PK_num varchar(50),FT_num varchar(50),CP_test_specification varchar(50),package_specification varchar(50),\
-      FT_test_specification varchar(50), process_demand varchar(200),CP_investment varchar(50), CP_output varchar(50),CP_yield varchar(50),\
-      package_investment varchar(50),package_output varchar(50),package_yield varchar(50),FT_investment varchar(50),FT_output varchar(50),\
-      FT_yield varchar(50),  inStorageNum varchar(50),waitForStorageNum varchar(50), wasteproductsNum varchar(50), end_yield varchar(50),\
-      inventoryBalance varchar(50), updateTime datetime) charset=utf8;";
+      sqlStr = "create table CP_TABLE(ID int primary key AUTO_INCREMENT, \
+      waferNum varchar(50), productModel varchar(50),CPtest_num varchar(50),chipNum varchar(50),CP_test_specification varchar(50), \
+      CP_investment varchar(50),process_demand varchar(200), CP_output varchar(50),CP_yield varchar(50),isChiped varchar(50),\
+      chip_yield varchar(50),isBatched varchar(50),batch_yield varchar(50),operator varchar(50), updateTime datetime,\
+      note varchar(50)) charset=utf8;";
 
       buscess = sqlQuery.exec(sqlStr);
       if (!buscess)

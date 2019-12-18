@@ -107,7 +107,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>订单信息</string>
+            <string>订单管理</string>
            </property>
            <property name="icon">
             <iconset>
@@ -219,7 +219,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>用户退出</string>
+            <string>系统退出</string>
            </property>
            <property name="icon">
             <iconset>
@@ -390,7 +390,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="tabWidget_2">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_3">
           <attribute name="title">
@@ -477,12 +477,32 @@
              </column>
              <column>
               <property name="text">
+               <string>是否结片</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>结片良率</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>是否结批</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>结批良率</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>操作人员</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>操作时间</string>
+               <string>更新时间</string>
               </property>
              </column>
              <column>
@@ -500,7 +520,7 @@
             </widget>
            </item>
            <item row="3" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,1,1,0,6">
+            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="6,1,1,1,0,6">
              <item>
               <spacer name="horizontalSpacer_3">
                <property name="orientation">
@@ -536,34 +556,6 @@
                <property name="icon">
                 <iconset>
                  <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="CP_inBound_pushButton">
-               <property name="text">
-                <string>入库</string>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>image/next.png</normaloff>image/next.png</iconset>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="CP_outBound_pushButton">
-               <property name="text">
-                <string>出库</string>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
                </property>
                <property name="autoDefault">
                 <bool>false</bool>
@@ -720,7 +712,7 @@
             </widget>
            </item>
            <item row="3" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="6,1,1,1,1,1,0,6">
+            <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="6,1,1,1,0,6">
              <item>
               <spacer name="horizontalSpacer_16">
                <property name="orientation">
@@ -756,34 +748,6 @@
                <property name="icon">
                 <iconset>
                  <normaloff>image/main_exit.png</normaloff>image/main_exit.png</iconset>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="PK_inBound_pushButton">
-               <property name="text">
-                <string>入库</string>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>image/next.png</normaloff>image/next.png</iconset>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="PK_outBound_pushButton">
-               <property name="text">
-                <string>出库</string>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>image/pre.png</normaloff>image/pre.png</iconset>
                </property>
                <property name="autoDefault">
                 <bool>false</bool>
@@ -892,7 +856,7 @@
              </column>
              <column>
               <property name="text">
-               <string>FT_投入</string>
+               <string>FT投入</string>
               </property>
              </column>
              <column>
@@ -902,12 +866,12 @@
              </column>
              <column>
               <property name="text">
-               <string>FT_产出</string>
+               <string>FT产出</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>FT_次品数</string>
+               <string>FT次品数</string>
               </property>
              </column>
              <column>
@@ -922,7 +886,7 @@
              </column>
              <column>
               <property name="text">
-               <string>FT_良率</string>
+               <string>FT良率</string>
               </property>
              </column>
              <column>
@@ -1362,7 +1326,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab">
           <attribute name="title">

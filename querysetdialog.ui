@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>507</height>
+    <width>796</width>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,11 +25,11 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,2,1,2,1,2">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>用途：</string>
+           <string>晶圆批号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -37,12 +37,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="useType_comboBox"/>
+         <widget class="QComboBox" name="CP_waferNum_comboBox"/>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>名称：</string>
+           <string>产品型号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -50,12 +50,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="name_comboBox"/>
+         <widget class="QComboBox" name="productModel_comboBox"/>
         </item>
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>型号：</string>
+           <string>CP测试单号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -63,49 +63,46 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="model_comboBox"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>厂家：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="factory_comboBox"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>最少数量：</string>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="number_lineEdit">
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>16777215</height>
-           </size>
-          </property>
-         </widget>
+         <widget class="QComboBox" name="CP_testNum_comboBox"/>
         </item>
        </layout>
       </item>
       <item row="1" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>操作人员：   </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="operator_comboBox"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>   操作日期：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>--</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit_2"/>
+        </item>
+        <item>
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>备注：</string>
+           <string>  备注：</string>
           </property>
          </widget>
         </item>
@@ -132,27 +129,27 @@
     <widget class="QTableWidget" name="tableWidget">
      <column>
       <property name="text">
-       <string>用途</string>
+       <string>晶圆批号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>名称</string>
+       <string>产品型号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>型号</string>
+       <string>CP 测试单号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>厂家</string>
+       <string>操作人员</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>数量</string>
+       <string>操作日期</string>
       </property>
      </column>
      <column>

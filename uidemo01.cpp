@@ -14,42 +14,67 @@ UIDemo01::UIDemo01(QWidget *parent) :
     ui->setupUi(this);
     this->initForm();
 
-    onePageNotesNum = 50;
+    onePageNotesNum = 10;
 
     currentClickIndex = 0;
     currentUserClickIndex = 0;
 
     //界面上添加分页控件
-    pageWidget = new PageWidget();
+    PC_pageWidget = new PageWidget();
     lable1 = new QLabel();
     lable1->setText("总记录数：0");
 
     //CP物资管理页
-    QLabel *allLabel = new QLabel();
-    QLabel *lable2 = new QLabel();
-    QLabel *currentPageLabel = new QLabel();
-    QLabel *tempLabel = new QLabel();
-    QLabel *tempLabel_1 = new QLabel();
+    QLabel *PCTMP1 = new QLabel();
+    QLabel *PCTMP2 = new QLabel();
+    QLabel *PCTMP3 = new QLabel();
+    QLabel *PCTMP4 = new QLabel();
+
     QHBoxLayout *hLayout = new QHBoxLayout(ui->CP_widget);
     hLayout->addWidget(lable1,2);
-    hLayout->addWidget(allLabel,1);
-    hLayout->addWidget(lable2,2);
-    hLayout->addWidget(tempLabel,1);
-    hLayout->addWidget(currentPageLabel,10);
-    hLayout->addWidget(pageWidget,8);
+    hLayout->addWidget(PCTMP1,1);
+    hLayout->addWidget(PCTMP2,2);
+    hLayout->addWidget(PCTMP3,1);
+    hLayout->addWidget(PCTMP4,10);
+    hLayout->addWidget(PC_pageWidget,4);
 
     //PK封装查询页
-//    inBound_PageWidget = new PageWidget();
-//    inBound_label = new QLabel();
-//    inBound_label->setText("总记录数：0");
-//    QHBoxLayout *inBoundLayout = new QHBoxLayout(ui->inBound_pagewidget);
-//    inBoundLayout->addWidget(inBound_label,2);
-//    inBoundLayout->addWidget(tempLabel,8);
-//    inBoundLayout->addWidget(inBound_PageWidget,8);
+    QLabel *PKTMP1 = new QLabel();
+    QLabel *PKTMP2 = new QLabel();
+    QLabel *PKTMP3 = new QLabel();
+    QLabel *PKTMP4 = new QLabel();
+    PK_pageWidget = new PageWidget();
+    PK_label = new QLabel();
+    PK_label->setText("总记录数：0");
+    QHBoxLayout *PK_BoundLayout = new QHBoxLayout(ui->PK_widget);
+    PK_BoundLayout->addWidget(PK_label,2);
+    PK_BoundLayout->addWidget(PKTMP1,1);
+    PK_BoundLayout->addWidget(PKTMP2,2);
+    PK_BoundLayout->addWidget(PKTMP3,1);
+    PK_BoundLayout->addWidget(PKTMP4,10);
+    PK_BoundLayout->addWidget(PK_pageWidget,4);
+
+
+    //FT封装查询页
+    QLabel *FTTMP1 = new QLabel();
+    QLabel *FTTMP2 = new QLabel();
+    QLabel *FTTMP3 = new QLabel();
+    QLabel *FTTMP4 = new QLabel();
+    FT_pageWidget = new PageWidget();
+    FT_label = new QLabel();
+    FT_label->setText("总记录数：0");
+    QHBoxLayout *FT_BoundLayout = new QHBoxLayout(ui->FT_widget);
+    FT_BoundLayout->addWidget(FT_label,2);
+    FT_BoundLayout->addWidget(FTTMP1,1);
+    FT_BoundLayout->addWidget(FTTMP2,2);
+    FT_BoundLayout->addWidget(FTTMP3,1);
+    FT_BoundLayout->addWidget(FTTMP4,10);
+    FT_BoundLayout->addWidget(FT_pageWidget,4);
 
 
 
     //入库查询页
+    QLabel *tempLabel = new QLabel();
     inBound_PageWidget = new PageWidget();
     inBound_label = new QLabel();
     inBound_label->setText("总记录数：0");
@@ -59,12 +84,13 @@ UIDemo01::UIDemo01(QWidget *parent) :
     inBoundLayout->addWidget(inBound_PageWidget,8);
 
     //出库查询页
+    QLabel *tempLabel2 = new QLabel();
     outBound_PageWidget = new PageWidget();
     outBound_label = new QLabel();
     outBound_label->setText("总记录数：0");
     QHBoxLayout *outBoundLayout = new QHBoxLayout(ui->outBound_pagewidget);
     outBoundLayout->addWidget(outBound_label,2);
-    outBoundLayout->addWidget(tempLabel_1,8);
+    outBoundLayout->addWidget(tempLabel2,8);
     outBoundLayout->addWidget(outBound_PageWidget,8);
 
 
@@ -78,6 +104,9 @@ UIDemo01::UIDemo01(QWidget *parent) :
 
 
 
+//    ui->CP_addMaterial_pushButton->setEnabled(false);
+//    ui->CP_alterMaterial_pushButton->setEnabled(false);
+
 }
 
 //初始化CP_tableWidget界面
@@ -86,7 +115,7 @@ void UIDemo01::init_tableWidget()
     //物资管理界面  CP订单管理界面
     ui->CP_tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->CP_tableWidget->setRowCount(onePageNotesNum);
-    ui->CP_tableWidget->setColumnCount(12);
+    ui->CP_tableWidget->setColumnCount(16);
     ui->CP_tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows); //整行选中
     ui->CP_tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   //禁止编辑
     ui->CP_tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(50,50,50)}"); //设置表头背景色
@@ -94,24 +123,40 @@ void UIDemo01::init_tableWidget()
 
     for(int i=0;i<onePageNotesNum;i++)
     {
-        ui->CP_tableWidget->setItem(i,0,&userTypeItem[i]);
-        ui->CP_tableWidget->setItem(i,1,&materialNameItem[i]);
-        ui->CP_tableWidget->setItem(i,2,&materialModelItem[i]);
-        ui->CP_tableWidget->setItem(i,3,&factoryItem[i]);
-        ui->CP_tableWidget->setItem(i,4,&numberItem[i]);
-        ui->CP_tableWidget->setItem(i,5,&singlePriceItem[i]);
-        ui->CP_tableWidget->setItem(i,6,&allPriceItem[i]);
-        ui->CP_tableWidget->setItem(i,7,&noteItem[i]);
 
+        ui->CP_tableWidget->setItem(i,0,&CP_waferNumItem[i]);
+        ui->CP_tableWidget->setItem(i,1,&CP_productModelItem[i]);
+        ui->CP_tableWidget->setItem(i,2,&CP_test_numItem[i]);
+        ui->CP_tableWidget->setItem(i,3,&CP_chipNumItem[i]);
+        ui->CP_tableWidget->setItem(i,4,&CP_test_specificationItem[i]);
+        ui->CP_tableWidget->setItem(i,5,&CP_investmentItem[i]);
+        ui->CP_tableWidget->setItem(i,6,&CP_process_demandItem[i]);
+        ui->CP_tableWidget->setItem(i,7,&CP_outputItem[i]);
+        ui->CP_tableWidget->setItem(i,8,&CP_yieldItem[i]);
+        ui->CP_tableWidget->setItem(i,9,&CP_isChipedItem[i]);
+        ui->CP_tableWidget->setItem(i,10,&CP_chip_yieldItem[i]);
+        ui->CP_tableWidget->setItem(i,11,&CP_isBatchedItem[i]);
+        ui->CP_tableWidget->setItem(i,12,&CP_batch_yieldItem[i]);
+        ui->CP_tableWidget->setItem(i,13,&CP_operatorItem[i]);
+        ui->CP_tableWidget->setItem(i,14,&CP_updateTimeItem[i]);
+        ui->CP_tableWidget->setItem(i,15,&CP_noteItem[i]);
 
-        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
-        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
-        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
-        factoryItem[i].setTextAlignment(Qt::AlignCenter);
-        numberItem[i].setTextAlignment(Qt::AlignCenter);
-        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
-        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
-        noteItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_waferNumItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_productModelItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_test_numItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_chipNumItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_test_specificationItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_investmentItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_process_demandItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_outputItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_yieldItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_isChipedItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_chip_yieldItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_isBatchedItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_batch_yieldItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_operatorItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_updateTimeItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_noteItem[i].setTextAlignment(Qt::AlignCenter);
     }
 
     //PK 封装订单界面
@@ -125,24 +170,24 @@ void UIDemo01::init_tableWidget()
 
     for(int i=0;i<onePageNotesNum;i++)
     {
-        ui->PK_tableWidget->setItem(i,0,&userTypeItem[i]);
-        ui->PK_tableWidget->setItem(i,1,&materialNameItem[i]);
-        ui->PK_tableWidget->setItem(i,2,&materialModelItem[i]);
-        ui->PK_tableWidget->setItem(i,3,&factoryItem[i]);
-        ui->PK_tableWidget->setItem(i,4,&numberItem[i]);
-        ui->PK_tableWidget->setItem(i,5,&singlePriceItem[i]);
-        ui->PK_tableWidget->setItem(i,6,&allPriceItem[i]);
-        ui->PK_tableWidget->setItem(i,7,&noteItem[i]);
+//        ui->PK_tableWidget->setItem(i,0,&userTypeItem[i]);
+//        ui->PK_tableWidget->setItem(i,1,&materialNameItem[i]);
+//        ui->PK_tableWidget->setItem(i,2,&materialModelItem[i]);
+//        ui->PK_tableWidget->setItem(i,3,&factoryItem[i]);
+//        ui->PK_tableWidget->setItem(i,4,&numberItem[i]);
+//        ui->PK_tableWidget->setItem(i,5,&singlePriceItem[i]);
+//        ui->PK_tableWidget->setItem(i,6,&allPriceItem[i]);
+//        ui->PK_tableWidget->setItem(i,7,&noteItem[i]);
 
 
-        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
-        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
-        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
-        factoryItem[i].setTextAlignment(Qt::AlignCenter);
-        numberItem[i].setTextAlignment(Qt::AlignCenter);
-        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
-        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
-        noteItem[i].setTextAlignment(Qt::AlignCenter);
+//        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
+//        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
+//        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
+//        factoryItem[i].setTextAlignment(Qt::AlignCenter);
+//        numberItem[i].setTextAlignment(Qt::AlignCenter);
+//        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
+//        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
+//        noteItem[i].setTextAlignment(Qt::AlignCenter);
     }
 
 
@@ -157,24 +202,24 @@ void UIDemo01::init_tableWidget()
 
     for(int i=0;i<onePageNotesNum;i++)
     {
-        ui->FT_tableWidget->setItem(i,0,&userTypeItem[i]);
-        ui->FT_tableWidget->setItem(i,1,&materialNameItem[i]);
-        ui->FT_tableWidget->setItem(i,2,&materialModelItem[i]);
-        ui->FT_tableWidget->setItem(i,3,&factoryItem[i]);
-        ui->FT_tableWidget->setItem(i,4,&numberItem[i]);
-        ui->FT_tableWidget->setItem(i,5,&singlePriceItem[i]);
-        ui->FT_tableWidget->setItem(i,6,&allPriceItem[i]);
-        ui->FT_tableWidget->setItem(i,7,&noteItem[i]);
+//        ui->FT_tableWidget->setItem(i,0,&userTypeItem[i]);
+//        ui->FT_tableWidget->setItem(i,1,&materialNameItem[i]);
+//        ui->FT_tableWidget->setItem(i,2,&materialModelItem[i]);
+//        ui->FT_tableWidget->setItem(i,3,&factoryItem[i]);
+//        ui->FT_tableWidget->setItem(i,4,&numberItem[i]);
+//        ui->FT_tableWidget->setItem(i,5,&singlePriceItem[i]);
+//        ui->FT_tableWidget->setItem(i,6,&allPriceItem[i]);
+//        ui->FT_tableWidget->setItem(i,7,&noteItem[i]);
 
 
-        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
-        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
-        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
-        factoryItem[i].setTextAlignment(Qt::AlignCenter);
-        numberItem[i].setTextAlignment(Qt::AlignCenter);
-        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
-        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
-        noteItem[i].setTextAlignment(Qt::AlignCenter);
+//        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
+//        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
+//        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
+//        factoryItem[i].setTextAlignment(Qt::AlignCenter);
+//        numberItem[i].setTextAlignment(Qt::AlignCenter);
+//        singlePriceItem[i].setTextAlignment(Qt::AlignCenter);
+//        allPriceItem[i].setTextAlignment(Qt::AlignCenter);
+//        noteItem[i].setTextAlignment(Qt::AlignCenter);
     }
 
 
@@ -291,14 +336,23 @@ void UIDemo01::clear_tableWidgetItem()
     currentClickIndex = 0;
     for(int i = 0 ; i<50; i++)
     {
-        userTypeItem[i].setText("");
-        materialNameItem[i].setText("");
-        materialModelItem[i].setText("");
-        factoryItem[i].setText("");
-        numberItem[i].setText("");
-        singlePriceItem[i].setText("");
-        allPriceItem[i].setText("");
-        noteItem[i].setText("");
+        CP_waferNumItem[i].setText("");
+        CP_productModelItem[i].setText("");
+        CP_test_numItem[i].setText("");
+        CP_chipNumItem[i].setText("");
+        CP_test_specificationItem[i].setText("");
+        CP_investmentItem[i].setText("");
+        CP_process_demandItem[i].setText("");
+        CP_outputItem[i].setText("");
+        CP_yieldItem[i].setText("");
+        CP_isChipedItem[i].setText("");
+        CP_chip_yieldItem[i].setText("");
+        CP_isBatchedItem[i].setText("");
+        CP_batch_yieldItem[i].setText("");
+        CP_operatorItem[i].setText("");
+        CP_updateTimeItem[i].setText("");
+        CP_noteItem[i].setText("");
+
 
         inBound_userTypeItem[i].setText("");
         inBound_materialNameItem[i].setText("");
@@ -335,11 +389,13 @@ void UIDemo01::initConnect()
 {
     connect(&managmentQuery_dia,SIGNAL(selectResult_signal(QStringList)),this,SLOT(selectResult_slot(QStringList)));
 
-    connect(pageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(showSpecifiedPage(int)));     //插件页数变换的时候，发出信号，然后更新
+    connect(PC_pageWidget,SIGNAL(currentPageChanged(int)),this,SLOT(showSpecifiedPage(int)));     //插件页数变换的时候，发出信号，然后更新
 
-    connect(this,SIGNAL(setMaxPage_signal(int)),pageWidget,SLOT(setMaxPage(int)));
+    connect(this,SIGNAL(setMaxPage_signal(int)),PC_pageWidget,SLOT(setMaxPage(int)));
 
-    connect(&alterMaterial_dia,SIGNAL(alterMaterial_signal(QString,QString,QString,QString,QString,float,float)),this,SLOT(alterMaterial_slot(QString,QString,QString,QString,QString,float,float)));  //修改物料信息后 同步到主界面的显示界面
+    connect(&alterMaterial_dia,SIGNAL(alterMaterial_signal(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)),this,SLOT(alterMaterial_slot(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString)));  //修改物料信息后 同步到主界面的显示界面
+
+    connect(&alterMaterial_dia,SIGNAL(delMaterial_signal()),this,SLOT(delMaterial_slot()));  //修改物料信息后 同步到主界面的显示界面
 
     connect(&inBound_dia,SIGNAL(inBoundNum_Signal(int,float)),this,SLOT(inBoundNum_Slot(int,float)));
 
@@ -528,7 +584,7 @@ void UIDemo01::buttonClick()
         }
     }
 
-    if (name == "订单信息") {
+    if (name == "订单管理") {
         ui->stackedWidget->setCurrentIndex(0);
         clear_tableWidgetItem();
     } else if (name == "入库查询") {
@@ -548,7 +604,7 @@ void UIDemo01::buttonClick()
         ui->stackedWidget->setCurrentIndex(3);
         clear_tableWidgetItem();
         initUserTableWidget();
-    } else if (name == "用户退出") {
+    } else if (name == "系统退出") {
         exit(0);
     }
 }
@@ -586,21 +642,31 @@ void UIDemo01::on_btnMenu_Close_clicked()
 
 
 //新增物料的按钮
-void UIDemo01::on_addMaterial_pushButton_clicked()
+void UIDemo01::on_CP_addMaterial_pushButton_clicked()
 {
     addMaterial_dia.show();
 }
 
 //物料管理的查询按钮
-void UIDemo01::on_managerQuery_pushButton_clicked()
+void UIDemo01::on_CP_managerQuery_pushButton_clicked()
 {
     //先初始化 查询相关的控件上的数据
+    managmentQuery_dia.setModal(true);
+
     managmentQuery_dia.initSelect();
 
     managmentQuery_dia.show();
 }
 
+
 //物料查询结果接收的槽函数
+//!
+//! \brief UIDemo01::selectResult_slot
+//! \param sqlList
+//!   1、将语句进行查询，然后把所有数据存储在 allDataList当中  ，它的长度应该为是 16的倍数
+//!   2、计算记录的条数
+//!   3、最大的页数
+//!   4、然后显示第一页
 void UIDemo01::selectResult_slot(QStringList sqlList)
 {
     allDataList.clear();  //每次查询都清空已有的数据
@@ -618,7 +684,7 @@ void UIDemo01::selectResult_slot(QStringList sqlList)
         }
         while(sql_query.next())
         {
-            for(int k=1 ;k<9; k++)
+            for(int k=1 ;k<17; k++)
             {
                 allDataList.append(sql_query.value(k).toString());
             }
@@ -626,9 +692,7 @@ void UIDemo01::selectResult_slot(QStringList sqlList)
         }
     }
 
-    qDebug()<<" allDataList=" <<allDataList.length()/8<<endl;    //总的记录数为=length/8;
-    int allNotes = allDataList.length()/8;
-
+    int allNotes = allDataList.length()/16;
     QString str = "总记录数：" + QString::number(allNotes);    //显示记录数
     lable1->setText(str);
 
@@ -642,34 +706,23 @@ void UIDemo01::selectResult_slot(QStringList sqlList)
 
 
     emit setMaxPage_signal(maxPage);
-
     showSpecifiedPage(1);
 }
 
 //一页显示的条目数量  初始化为50
 void UIDemo01::showSpecifiedPage(int pageNum)
 {
-    pageWidget->setLineEdit(pageNum);
+    PC_pageWidget->setLineEdit(pageNum);
 
     //先清空CP_tableWidget上的显示
-    for(int i=0; i<onePageNotesNum; i++)
-    {
-        userTypeItem[i].setText("");
-        materialNameItem[i].setText("");
-        materialModelItem[i].setText("");
-        factoryItem[i].setText("");
-        numberItem[i].setText("");
-        singlePriceItem[i].setText("");
-        allPriceItem[i].setText("");
-        noteItem[i].setText("");
-    }
+    clear_tableWidgetItem();
 
     //第一条的记录序号为  (page-1)*onePageNotesNum;
     //最后一条的记录序号为 page*onePageNotesNum - 1;  要对比和总条数的大小，选最小的那个
     int beginNum = (pageNum-1) * onePageNotesNum;
 
     int last =  pageNum*onePageNotesNum -1;
-    int allNoteNum = allDataList.length()/8;
+    int allNoteNum = allDataList.length()/16;
     int lastNum = last<allNoteNum ? last+1:allNoteNum;   //选取最小的
 
     qDebug()<<"beginNum="<<beginNum<<"  lastNum="<<lastNum<<endl;
@@ -677,23 +730,34 @@ void UIDemo01::showSpecifiedPage(int pageNum)
     int index = 0;
     for(int i=beginNum; i<lastNum; i++)     //i为记录的序号
     {
-        userTypeItem[index].setText( allDataList[i*8+0]);
-        materialNameItem[index].setText( allDataList[i*8+1]);
-        materialModelItem[index].setText( allDataList[i*8+2]);
-        factoryItem[index].setText(allDataList[i*8+3]);
-        numberItem[index].setText(allDataList[i*8+4]);
-        singlePriceItem[index].setText(allDataList[i*8+5]);
-        allPriceItem[index].setText(allDataList[i*8+6]);
-        noteItem[index].setText(allDataList[i*8+7]);
+
+        CP_waferNumItem[index].setText( allDataList[i*16+0]);
+        CP_productModelItem[index].setText( allDataList[i*16+1]);
+        CP_test_numItem[index].setText( allDataList[i*16+2]);
+        CP_chipNumItem[index].setText( allDataList[i*16+3]);
+        CP_test_specificationItem[index].setText( allDataList[i*16+4]);
+        CP_investmentItem[index].setText( allDataList[i*16+5]);
+        CP_process_demandItem[index].setText( allDataList[i*16+6]);
+        CP_outputItem[index].setText( allDataList[i*16+7]);
+        CP_yieldItem[index].setText( allDataList[i*16+8]);
+        CP_isChipedItem[index].setText( allDataList[i*16+9]);
+        CP_chip_yieldItem[index].setText( allDataList[i*16+10]);
+        CP_isBatchedItem[index].setText( allDataList[i*16+11]);
+        CP_batch_yieldItem[index].setText( allDataList[i*16+12]);
+        CP_operatorItem[index].setText( allDataList[i*16+13]);
+        QString updateTimeStr = allDataList[i*16+14];
+        updateTimeStr = updateTimeStr.replace("T"," ");
+        CP_updateTimeItem[index].setText(updateTimeStr);
+        CP_noteItem[index].setText( allDataList[i*16+15]);
         index++;
     }
 }
 
 
 //返回总库
-void UIDemo01::on_returnALL_pushButton_clicked()
+void UIDemo01::on_CP_returnALL_pushButton_clicked()
 {
-    QString str = "SELECT * FROM inventory_table; ";
+    QString str = "SELECT * FROM CP_TABLE; ";
     QStringList strList ;
     strList.append(str);
     selectResult_slot(strList);
@@ -710,40 +774,77 @@ void UIDemo01::on_CP_tableWidget_clicked(const QModelIndex &index)
 
 
 //修改物料 按钮
-void UIDemo01::on_alterMaterial_pushButton_clicked()
+void UIDemo01::on_CP_alterMaterial_pushButton_clicked()
 {
-    QString userType = userTypeItem[currentClickIndex].text();
-    QString materialName = materialNameItem[currentClickIndex].text();
-    QString materialModel = materialModelItem[currentClickIndex].text();
-    QString factoryStr = factoryItem[currentClickIndex].text();
-    QString singlePrice = singlePriceItem[currentClickIndex].text();
-    int materialNumber = numberItem[currentClickIndex].text().toInt();
+   QString waferNum =  CP_waferNumItem[currentClickIndex].text();
+   QString productModel = CP_productModelItem[currentClickIndex].text();
+   QString CPtest_num =  CP_test_numItem[currentClickIndex].text();
+   QString chipNum = CP_chipNumItem[currentClickIndex].text();
+   QString CP_test_specification = CP_test_specificationItem[currentClickIndex].text();
+   QString CP_investment = CP_investmentItem[currentClickIndex].text();
+   QString process_demand =  CP_process_demandItem[currentClickIndex].text();
+   QString CP_output = CP_outputItem[currentClickIndex].text();
+   QString isChiped = CP_isChipedItem[currentClickIndex].text();
+   QString isBatched = CP_isBatchedItem[currentClickIndex].text();
+   QString note = CP_noteItem[currentClickIndex].text();
 
-    if(materialName.isEmpty())
+
+    if(waferNum.isEmpty())
     {
         QMessageBox::information(NULL,"提示","请先选中要操作的数据");
         return;
     }
-
-    alterMaterial_dia.initMaterialInfo(materialName,userType,materialModel,factoryStr,singlePrice,materialNumber);
+    alterMaterial_dia.setUserName(UserName);
+    alterMaterial_dia.initMaterialInfo(waferNum,productModel,CPtest_num,chipNum,CP_test_specification,CP_investment,process_demand,CP_output,isChiped,isBatched,note);
     alterMaterial_dia.show();
 }
 
 
 //接收修改界面后的信息的槽函数
 //emit alterMaterial_signal(userType,materialName,materialModel,factoryName,noteStr,singlePrice,allPrice);
-void UIDemo01::alterMaterial_slot(QString userType,QString materialName,QString materialModel,QString factoryName,QString noteStr,float singlePrice,float allPrice)
+//   cpTestNum,  cpTestSpecification,  cpInvestment,   processDemand,       cpOutput,      CP_yield,       cpIsChiped,     chip_yield,         cpIsBatched,      batch_yield,     userName,    current_time,  note
+void UIDemo01::alterMaterial_slot(QString cpTestNum,QString cpTestSpecification,QString cpInvestment,QString processDemand,QString cpOutput,QString CP_yield,QString cpIsChiped,QString chip_yield,QString cpIsBatched,QString batch_yield,QString userName,QString current_time,QString note)
 {
-    userTypeItem[currentClickIndex].setText(userType);
-    materialNameItem[currentClickIndex].setText(materialName);
-    materialModelItem[currentClickIndex].setText(materialModel);
-    factoryItem[currentClickIndex].setText(factoryName);
-    singlePriceItem[currentClickIndex].setText(QString::number(singlePrice));
-    allPriceItem[currentClickIndex].setText(QString::number(allPrice));
-    noteItem[currentClickIndex].setText(noteStr);
+
+    CP_test_numItem[currentClickIndex].setText(cpTestNum);
+    CP_test_specificationItem[currentClickIndex].setText(cpTestSpecification);
+    CP_investmentItem[currentClickIndex].setText(cpInvestment);
+    CP_process_demandItem[currentClickIndex].setText(processDemand);
+    CP_outputItem[currentClickIndex].setText(cpOutput);
+    CP_yieldItem[currentClickIndex].setText(CP_yield);
+    CP_isChipedItem[currentClickIndex].setText(cpIsChiped);
+    CP_chip_yieldItem[currentClickIndex].setText(chip_yield);
+    CP_isBatchedItem[currentClickIndex].setText(cpIsBatched);
+    CP_batch_yieldItem[currentClickIndex].setText(batch_yield);
+    CP_operatorItem[currentClickIndex].setText(userName);
+    CP_updateTimeItem[currentClickIndex].setText(current_time);
+    CP_noteItem[currentClickIndex].setText(note);
 
 }
 
+
+//!
+//! \brief UIDemo01::delMaterial_slot
+//!
+void UIDemo01::delMaterial_slot()
+{
+    CP_waferNumItem[currentClickIndex].setText("-");
+    CP_productModelItem[currentClickIndex].setText("-");
+    CP_test_numItem[currentClickIndex].setText("-");
+    CP_chipNumItem[currentClickIndex].setText("-");
+    CP_test_specificationItem[currentClickIndex].setText("-");
+    CP_investmentItem[currentClickIndex].setText("-");
+    CP_process_demandItem[currentClickIndex].setText("-");
+    CP_outputItem[currentClickIndex].setText("-");
+    CP_yieldItem[currentClickIndex].setText("-");
+    CP_isChipedItem[currentClickIndex].setText("-");
+    CP_chip_yieldItem[currentClickIndex].setText("-");
+    CP_isBatchedItem[currentClickIndex].setText("-");
+    CP_batch_yieldItem[currentClickIndex].setText("-");
+    CP_operatorItem[currentClickIndex].setText("-");
+    CP_updateTimeItem[currentClickIndex].setText("-");
+    CP_noteItem[currentClickIndex].setText("-");
+}
 
 
 
@@ -751,29 +852,29 @@ void UIDemo01::alterMaterial_slot(QString userType,QString materialName,QString 
 //入库 按钮
 void UIDemo01::on_inBound_pushButton_clicked()
 {
-    QString userType = userTypeItem[currentClickIndex].text();
-    QString materialName = materialNameItem[currentClickIndex].text();
-    QString materialModel = materialModelItem[currentClickIndex].text();
-    QString factoryStr = factoryItem[currentClickIndex].text();
-    float singlePrice = singlePriceItem[currentClickIndex].text().toFloat();
-    int materialNumber = numberItem[currentClickIndex].text().toInt();
+//    QString userType = userTypeItem[currentClickIndex].text();
+//    QString materialName = materialNameItem[currentClickIndex].text();
+//    QString materialModel = materialModelItem[currentClickIndex].text();
+//    QString factoryStr = factoryItem[currentClickIndex].text();
+//    float singlePrice = singlePriceItem[currentClickIndex].text().toFloat();
+//    int materialNumber = numberItem[currentClickIndex].text().toInt();
 
-    if(materialName.isEmpty())
-    {
-        QMessageBox::information(NULL,"提示","请先选中要入库的物资");
-        return;
-    }
+//    if(materialName.isEmpty())
+//    {
+//        QMessageBox::information(NULL,"提示","请先选中要入库的物资");
+//        return;
+//    }
 
-    //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
-    inBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
-    inBound_dia.show();
+//    //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
+//    inBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
+//    inBound_dia.show();
 }
 
 
 void UIDemo01::inBoundNum_Slot(int resNum,float all_price)
 {
-    numberItem[currentClickIndex].setText(QString::number(resNum));
-    allPriceItem[currentClickIndex].setText(QString::number(all_price));
+//    numberItem[currentClickIndex].setText(QString::number(resNum));
+//    allPriceItem[currentClickIndex].setText(QString::number(all_price));
 }
 
 
@@ -781,23 +882,23 @@ void UIDemo01::inBoundNum_Slot(int resNum,float all_price)
 //出库  按钮
 void UIDemo01::on_outBound_pushButton_clicked()
 {
-    QString userType = userTypeItem[currentClickIndex].text();
-    QString materialName = materialNameItem[currentClickIndex].text();
-    QString materialModel = materialModelItem[currentClickIndex].text();
-    QString factoryStr = factoryItem[currentClickIndex].text();
-    float singlePrice = singlePriceItem[currentClickIndex].text().toFloat();
-    int materialNumber = numberItem[currentClickIndex].text().toInt();
+//    QString userType = userTypeItem[currentClickIndex].text();
+//    QString materialName = materialNameItem[currentClickIndex].text();
+//    QString materialModel = materialModelItem[currentClickIndex].text();
+//    QString factoryStr = factoryItem[currentClickIndex].text();
+//    float singlePrice = singlePriceItem[currentClickIndex].text().toFloat();
+//    int materialNumber = numberItem[currentClickIndex].text().toInt();
 
-    if(materialName.isEmpty())
-    {
-        QMessageBox::information(NULL,"提示","请先选中要出库的物资");
-        return;
-    }
+//    if(materialName.isEmpty())
+//    {
+//        QMessageBox::information(NULL,"提示","请先选中要出库的物资");
+//        return;
+//    }
 
-    //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
-    outBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
+//    //initMaterialInfo(QString user_Type,QString material_Name,QString material_Model,QString manu_Factory, float Price,int currentNum);
+//    outBound_dia.initMaterialInfo( userType,materialName,materialModel,factoryStr,singlePrice,materialNumber,UserName);
 
-    outBound_dia.show();
+//    outBound_dia.show();
 }
 
 
@@ -1112,12 +1213,17 @@ void UIDemo01::loginUserName_slot(QString userName,QString authority)
     UserAuthority = authority;
     qDebug()<<strName<<"  权限："<<UserAuthority<<endl;
     ui->loginUser_label->setText(strName);
+
+
+//    把登录用户 用户名 传递给 其他窗口
+//      1、CP 添加窗口
+    addMaterial_dia.setUserName(userName);
 }
 
 
 
 //物资管理界面的文件导出
-void UIDemo01::on_managerOutExcel_pushBotton_clicked()
+void UIDemo01::on_CP_managerOutExcel_pushBotton_clicked()
 {
 
     QString fileName = QFileDialog::getSaveFileName(ui->CP_tableWidget, "保存",QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xlsx *.xls)");
@@ -1144,7 +1250,7 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
             QAxObject *cell,*col;
             //标题行
             cell=worksheet->querySubObject("Cells(int,int)", 1, 1);
-            cell->dynamicCall("SetValue(const QString&)", "芯视界物资库存表");
+            cell->dynamicCall("SetValue(const QString&)", "芯视界CP订单信息表");
             cell->querySubObject("Font")->setProperty("Size", 18);
             //调整行高
             worksheet->querySubObject("Range(const QString&)", "1:1")->setProperty("RowHeight", 30);
@@ -1218,10 +1324,20 @@ void UIDemo01::on_managerOutExcel_pushBotton_clicked()
 
     }else
     {
-        QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
+        QMessageBox::warning(NULL,"错误","未能创建 Excel 对象",QMessageBox::Apply);
     }
 
 }
+
+//添加PK的订单
+void UIDemo01::on_PK_addMaterial_pushButton_clicked()
+{
+    addPk_dia.setModal(true);
+    addPk_dia.show();
+}
+
+
+
 
 
 //入库记录导出
@@ -1433,3 +1549,7 @@ void UIDemo01::on_outBoundOutExcel_pushButton_clicked()
         QMessageBox::warning(NULL,"错误","未能创建 Excel 对象，请安装 Microsoft Excel。",QMessageBox::Apply);
     }
 }
+
+
+
+

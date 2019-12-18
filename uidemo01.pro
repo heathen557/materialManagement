@@ -8,13 +8,21 @@ QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets axcontainer
 
-TARGET      = materialManagement
+OTHER_FILES += myapp.rc
+RC_FILE += myapp.rc
+
+
+TARGET      = visionICs_BPM
 TEMPLATE    = app
 #MOC_DIR     = temp/moc
 #RCC_DIR     = temp/rcc
 #UI_DIR      = temp/ui
 #OBJECTS_DIR = temp/obj
 #DESTDIR     = $$PWD/../bin
+
+
+OTHER_FILES += myapp.rc
+RC_FILE += myapp.rc
 
 SOURCES     += main.cpp \
     pagewidget.cpp \
@@ -27,7 +35,9 @@ SOURCES     += main.cpp \
     outboundquery_dialog.cpp \
     adduser_dialog.cpp \
     alteruser_dialog.cpp \
-    frmlogin.cpp
+    frmlogin.cpp \
+    add_pk_dialog.cpp \
+    query_pk_dialog.cpp
 SOURCES     += iconhelper.cpp
 SOURCES     += appinit.cpp
 SOURCES     += uidemo01.cpp
@@ -43,7 +53,9 @@ HEADERS     += iconhelper.h \
     outboundquery_dialog.h \
     adduser_dialog.h \
     alteruser_dialog.h \
-    frmlogin.h
+    frmlogin.h \
+    add_pk_dialog.h \
+    query_pk_dialog.h
 HEADERS     += appinit.h
 HEADERS     += uidemo01.h
 
@@ -58,7 +70,9 @@ FORMS       += uidemo01.ui \
     outboundquery_dialog.ui \
     adduser_dialog.ui \
     alteruser_dialog.ui \
-    frmlogin.ui
+    frmlogin.ui \
+    add_pk_dialog.ui \
+    query_pk_dialog.ui
 
 RESOURCES   += main.qrc
 RESOURCES   += qss.qrc

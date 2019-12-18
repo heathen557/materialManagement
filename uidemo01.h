@@ -24,6 +24,7 @@
 #include<QAxObject>
 #include<QDesktopServices>
 #include<QFileDialog>
+#include<add_pk_dialog.h>
 
 namespace Ui {
 class UIDemo01;
@@ -45,37 +46,51 @@ public:
 
     void clear_tableWidgetItem();
 
-    PageWidget *pageWidget;
-
+    PageWidget *PC_pageWidget;
     querySetDialog managmentQuery_dia;    //查询界面
-
     addMaterial_Dialog addMaterial_dia;   //增加物料界面
-
     inBound_Dialog  inBound_dia;        //入库
-
     outBound_Dialog outBound_dia;       //出库
-
     alterMaterial_Dialog alterMaterial_dia;   //修改物料
-
-
-
-
     //用途、 物料名称 、 型号、厂家、单价
-   QTableWidgetItem  userTypeItem[50];
-   QTableWidgetItem  materialNameItem[50];
-   QTableWidgetItem  materialModelItem[50];
-   QTableWidgetItem  factoryItem[50];
-   QTableWidgetItem  numberItem[50];
-   QTableWidgetItem  singlePriceItem[50];
-   QTableWidgetItem  allPriceItem[50];
-   QTableWidgetItem  noteItem[50];
+
+
+   QTableWidgetItem  CP_waferNumItem[50];
+   QTableWidgetItem  CP_productModelItem[50];
+   QTableWidgetItem  CP_test_numItem[50];
+   QTableWidgetItem  CP_chipNumItem[50];
+   QTableWidgetItem  CP_test_specificationItem[50];
+   QTableWidgetItem  CP_investmentItem[50];
+   QTableWidgetItem  CP_process_demandItem[50];
+   QTableWidgetItem  CP_outputItem[50];
+   QTableWidgetItem  CP_yieldItem[50];
+   QTableWidgetItem  CP_isChipedItem[50];
+   QTableWidgetItem  CP_chip_yieldItem[50];
+   QTableWidgetItem  CP_isBatchedItem[50];
+   QTableWidgetItem  CP_batch_yieldItem[50];
+   QTableWidgetItem  CP_operatorItem[50];
+   QTableWidgetItem  CP_updateTimeItem[50];
+   QTableWidgetItem  CP_noteItem[50];
+
 
    QStringList allDataList;
-
    int onePageNotesNum;     //一页显示的条目数量  初始化为50
    QLabel *lable1 ;
-
    int currentClickIndex;   //当前选中的TableWidget的行号：
+
+
+
+
+   //PK查询界面相关的
+   PageWidget *PK_pageWidget;
+   QLabel *PK_label;
+   add_PK_Dialog addPk_dia;
+
+
+
+   //FT查询界面相关的
+   PageWidget *FT_pageWidget;
+   QLabel *FT_label;
 
    //入库查询界面
    QTableWidgetItem  inBound_userTypeItem[50];
@@ -146,24 +161,28 @@ private slots:
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();
     void on_btnMenu_Close_clicked();
-    void on_addMaterial_pushButton_clicked();
-    void on_managerQuery_pushButton_clicked();
+    void on_CP_addMaterial_pushButton_clicked();
+    void on_CP_managerQuery_pushButton_clicked();
 
     void selectResult_slot(QStringList);    //物资管理 接收查询条件界面的查询信息的槽函数
 
     void showSpecifiedPage(int pageNum);   //物资管理 显示指定页数的槽函数
 
-    void on_returnALL_pushButton_clicked();
+    void on_CP_returnALL_pushButton_clicked();
 
     void on_CP_tableWidget_clicked(const QModelIndex &index);
 
-    void on_alterMaterial_pushButton_clicked();
+    void on_CP_alterMaterial_pushButton_clicked();
 
     void on_inBound_pushButton_clicked();
 
     void on_outBound_pushButton_clicked();
 
-    void alterMaterial_slot(QString,QString,QString,QString,QString,float,float);
+    void alterMaterial_slot(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString);
+
+    void delMaterial_slot();
+
+    void on_CP_managerOutExcel_pushBotton_clicked();   //文件导出
 
 
     /**********入库相关槽函数*****************/
@@ -202,11 +221,15 @@ private slots:
 
     void loginUserName_slot(QString,QString);
 
-    void on_managerOutExcel_pushBotton_clicked();
+
 
     void on_inBoundOutExecel_pushButton_clicked();
 
     void on_outBoundOutExcel_pushButton_clicked();
+
+    void on_PK_addMaterial_pushButton_clicked();
+
+
 
 signals:
     void setMaxPage_signal(int);

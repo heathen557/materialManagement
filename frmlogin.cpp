@@ -142,7 +142,8 @@ void frmLogin::on_btnLogin_clicked() //用户按下登录按钮
         QString authority = TempUserType[index];
         emit loginUserName_signal(ui->txtUserName->currentText(),authority);
 
-        accept();
+//        accept();
+        this->hide();
 //
     }else{
         QMessageBox::information(NULL,QStringLiteral("告警"),QStringLiteral("密码错误,请重新输入!"));

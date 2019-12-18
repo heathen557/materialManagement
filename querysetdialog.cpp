@@ -14,80 +14,101 @@ querySetDialog::querySetDialog(QWidget *parent) :
 
 void querySetDialog::initSelect()
 {
-    //查询所有的用途
-    sqlStr = "SELECT DISTINCT USE_TYPE FROM INVENTORY_TABLE ";
+    //查询所有的晶圆批号
+    sqlStr = "SELECT DISTINCT waferNum FROM CP_TABLE; ";
     bool buscess =  sql_query.exec(sqlStr);
     if(!buscess)
     {
-        qDebug()<<"select error"<<endl;
+        qDebug()<<"select waferNum error"<<endl;
         return;
     }
-    QStringList useTypeList;
+    QStringList waferNumList;
+    waferNumList.append("");
     while(sql_query.next())
     {
         QString tmpStr = sql_query.value(0).toString();
-        useTypeList.append(tmpStr);
+        waferNumList.append(tmpStr);
     }
-    ui->useType_comboBox->clear();
-    ui->useType_comboBox->addItems(useTypeList);
+    ui->CP_waferNum_comboBox->clear();
+    ui->CP_waferNum_comboBox->addItems(waferNumList);
 
 
-    //查询所有的名称
-    sqlStr = "SELECT DISTINCT MATERIAL_NAME FROM INVENTORY_TABLE ";
+
+    //查询所有的产品型号
+    sqlStr = "SELECT DISTINCT productModel FROM CP_TABLE; ";
+    buscess =  sql_query.exec(sqlStr);
+    if(!buscess)
+    {
+        qDebug()<<"select productModel error"<<endl;
+        return;
+    }
+    QStringList productModelList;
+    productModelList.append("");
+    while(sql_query.next())
+    {
+        QString tmpStr = sql_query.value(0).toString();
+        productModelList.append(tmpStr);
+    }
+    ui->productModel_comboBox->clear();
+    ui->productModel_comboBox->addItems(productModelList);
+
+
+    //查询所有的测试单号
+    sqlStr = "SELECT DISTINCT CPtest_num FROM CP_TABLE; ";
     buscess =  sql_query.exec(sqlStr);
     if(!buscess)
     {
         qDebug()<<"select error"<<endl;
         return;
     }
-    QStringList  materialList;
-    materialList.append("");
+    QStringList  CPtest_numList;
+    CPtest_numList.append("");
     while(sql_query.next())
     {
         QString tmpStr = sql_query.value(0).toString();
-        materialList.append(tmpStr);
+        CPtest_numList.append(tmpStr);
     }
-    ui->name_comboBox->clear();
-    ui->name_comboBox->addItems(materialList);
+    ui->CP_testNum_comboBox->clear();
+    ui->CP_testNum_comboBox->addItems(CPtest_numList);
 
-    //查询所有的型号
-    sqlStr = "SELECT DISTINCT MATERIAL_MODEL FROM INVENTORY_TABLE ";
+    //查询所有的用户
+    sqlStr = "SELECT DISTINCT operator FROM CP_TABLE; ";
     buscess =  sql_query.exec(sqlStr);
     if(!buscess)
     {
         qDebug()<<"select error"<<endl;
         return;
     }
-    QStringList  materialModelList;
-    materialModelList.append("");
+    QStringList  operatorList;
+    operatorList.append("");
     while(sql_query.next())
     {
         QString tmpStr = sql_query.value(0).toString();
-        materialModelList.append(tmpStr);
+        operatorList.append(tmpStr);
     }
-    ui->model_comboBox->clear();
-    ui->model_comboBox->addItems(materialModelList);
+    ui->operator_comboBox->clear();
+    ui->operator_comboBox->addItems(operatorList);
 
-    //查询所有的厂家
-    sqlStr = "SELECT DISTINCT MANUFACTOR FROM INVENTORY_TABLE ";
-    buscess =  sql_query.exec(sqlStr);
+
+    //查询最早的日期 以及最新的日期，更新控件上的日期的时间间隔
+    sqlStr = "SELECT MIN(updateTime),MAX(updateTime) FROM CP_TABLE;";
+    buscess = sql_query.exec(sqlStr);
     if(!buscess)
     {
-        qDebug()<<"select error"<<endl;
+        qDebug()<<"querySetDialog::initSelect() ,selcet updateTime error! "<<endl;
         return;
     }
-    QStringList  manuFactorList;
-    manuFactorList.append("");
     while(sql_query.next())
     {
-        QString tmpStr = sql_query.value(0).toString();
-        manuFactorList.append(tmpStr);
+        QDateTime beginTime = sql_query.value(0).toDateTime();
+        QDateTime endTime = sql_query.value(1).toDateTime();
+        ui->dateEdit->setDateTime(beginTime);
+        ui->dateEdit_2->setDateTime(endTime);
     }
-    ui->factory_comboBox->clear();
-    ui->factory_comboBox->addItems(manuFactorList);
 
 
 }
+
 
 void querySetDialog::initTableWidget()
 {
@@ -102,18 +123,18 @@ void querySetDialog::initTableWidget()
 
     for(int i=0;i<50;i++)
     {
-        ui->tableWidget->setItem(i,0,&userTypeItem[i]);
-        ui->tableWidget->setItem(i,1,&materialNameItem[i]);
-        ui->tableWidget->setItem(i,2,&materialModelItem[i]);
-        ui->tableWidget->setItem(i,3,&factoryItem[i]);
-        ui->tableWidget->setItem(i,4,&numItem[i]);
+        ui->tableWidget->setItem(i,0,&waferNumItem[i]);
+        ui->tableWidget->setItem(i,1,&productNumItem[i]);
+        ui->tableWidget->setItem(i,2,&CP_testNumItem[i]);
+        ui->tableWidget->setItem(i,3,&operatorItem[i]);
+        ui->tableWidget->setItem(i,4,&operationTimeItem[i]);
         ui->tableWidget->setItem(i,5,&noteItem[i]);
 
-        userTypeItem[i].setTextAlignment(Qt::AlignCenter);
-        materialNameItem[i].setTextAlignment(Qt::AlignCenter);
-        materialModelItem[i].setTextAlignment(Qt::AlignCenter);
-        factoryItem[i].setTextAlignment(Qt::AlignCenter);
-        numItem[i].setTextAlignment(Qt::AlignCenter);
+        waferNumItem[i].setTextAlignment(Qt::AlignCenter);
+        productNumItem[i].setTextAlignment(Qt::AlignCenter);
+        CP_testNumItem[i].setTextAlignment(Qt::AlignCenter);
+        operatorItem[i].setTextAlignment(Qt::AlignCenter);
+        operationTimeItem[i].setTextAlignment(Qt::AlignCenter);
         noteItem[i].setTextAlignment(Qt::AlignCenter);
     }
 }
@@ -127,70 +148,81 @@ querySetDialog::~querySetDialog()
 //点击确认按钮，忘TABLEWIDGET上添加数据
 void querySetDialog::on_pushButton_clicked()
 {
-    QString str[5];
+    QString str[6];
 
-    str[0] = ui->useType_comboBox->currentText();
-    str[1] = ui->name_comboBox->currentText();
-    str[2] = ui->model_comboBox->currentText();
-    str[3] = ui->factory_comboBox->currentText();
-    int num = ui->number_lineEdit->text().toInt();
-    str[4] = ui->note_lineEdit->text();
+    str[0] = ui->CP_waferNum_comboBox->currentText();
+    str[1] = ui->productModel_comboBox->currentText();
+    str[2] = ui->CP_testNum_comboBox->currentText();
+    str[3] = ui->operator_comboBox->currentText();
+    str[4] = ui->dateEdit->date().toString("yyyy-MM-dd/").append(ui->dateEdit_2->date().toString("yyyy-MM-dd"));
+    str[5] = ui->note_lineEdit->text();
 
-   for(int i=0;i<5; i++)
-       if(str[i].isEmpty())
-           str[i] = "-";
+    for(int i=0;i<6; i++)
+        if(str[i].isEmpty())
+            str[i] = "-";
 
-    userTypeItem[currentItemIndex].setText(str[0]);
-    materialNameItem[currentItemIndex].setText(str[1]);
-    materialModelItem[currentItemIndex].setText(str[2]);
-    factoryItem[currentItemIndex].setText(str[3]);
-    numItem[currentItemIndex].setText(QString::number(num));
-    noteItem[currentItemIndex].setText(str[4]);
+    waferNumItem[currentItemIndex].setText(str[0]);
+    productNumItem[currentItemIndex].setText(str[1]);
+    CP_testNumItem[currentItemIndex].setText(str[2]);
+    operatorItem[currentItemIndex].setText(str[3]);
+    operationTimeItem[currentItemIndex].setText(str[4]);
+    noteItem[currentItemIndex].setText(str[5]);
 
     currentItemIndex++;
 
-    ui->number_lineEdit->clear();
     ui->note_lineEdit->clear();
+
 }
 
 //查询按键
+
+//! \brief querySetDialog::on_select_pushButton_clicked
+//!  将查询语句封装成 QString=list 传递给主函数  主函数根据查询语句进行查询
 void querySetDialog::on_select_pushButton_clicked()
 {
+
+
     QStringList sqlList;
     QString sqlStr,tmpStr;
-    QString userType,materialName,materialModel,factory,note;
+    QString waferNum,productModel,CPTestNum,operatorName,note,beginTime,endTime;
     int num;
 
     this->hide();
 
     for(int i=0; i<currentItemIndex; i++)
     {
-        userType = userTypeItem[i].text();
-        materialName = materialNameItem[i].text();
-        materialModel = materialModelItem[i].text();
-        factory = factoryItem[i].text();
-        num = numItem[i].text().toInt();
+        waferNum = waferNumItem[i].text();
+        productModel = productNumItem[i].text();
+        CPTestNum = CP_testNumItem[i].text();
+        operatorName = operatorItem[i].text();
+        beginTime = operationTimeItem[i].text().left(10) + " 00:00:00";
+        endTime = operationTimeItem[i].text().left(10) + " 23:59:59";
         note = noteItem[i].text();
 
-        sqlStr = "SELECT * FROM INVENTORY_TABLE WHERE USE_TYPE='"+userType+"' and NUMBER>="+QString::number(num);
-        if("-" != materialName)
+        sqlStr = "SELECT * FROM CP_TABLE WHERE updateTime>= '" +beginTime + "' and updateTime<='"+endTime+"' ";
+        if("-" != waferNum)
         {
-            tmpStr = " and MATERIAL_NAME='"+materialName+"'";
+            tmpStr = " and waferNum='"+waferNum+"'";
             sqlStr.append(tmpStr);
         }
-        if("-" != materialModel)
+        if("-" != productModel)
         {
-            tmpStr = " and MATERIAL_MODEL='"+materialModel+"'";
+            tmpStr = " and productModel='"+productModel+"'";
             sqlStr.append(tmpStr);
         }
-        if("-" != factory)
+        if("-" != CPTestNum)
         {
-            tmpStr = " and MANUFACTOR='"+factory+"'";
+            tmpStr = " and CPtest_num='"+CPTestNum+"'";
+            sqlStr.append(tmpStr);
+        }
+        if("-" != operatorName)
+        {
+            tmpStr = " and operator='"+operatorName+"'";
             sqlStr.append(tmpStr);
         }
         if("-" != note)
         {
-            tmpStr = " and NOTE LIKE '%"+note+"%';";
+            tmpStr = " and note LIKE '%"+note+"%';";
             sqlStr.append(tmpStr);
         }
 
@@ -198,7 +230,7 @@ void querySetDialog::on_select_pushButton_clicked()
 
     }
 
-//    qDebug()<<sqlList<<endl;
+    qDebug()<<sqlList<<endl;
 
     //将此列表发送给主线程
     emit selectResult_signal(sqlList);
@@ -206,15 +238,14 @@ void querySetDialog::on_select_pushButton_clicked()
     //清空tableWidget上面的数据
     for(int i=0; i<currentItemIndex; i++)
     {
-        userTypeItem[i].setText("");
-        materialNameItem[i].setText("");
-        materialModelItem[i].setText("");
-        factoryItem[i].setText("");
-        numItem[i].setText("");
+        waferNumItem[i].setText("");
+        productNumItem[i].setText("");
+        CP_testNumItem[i].setText("");
+        operatorItem[i].setText("");
+        operationTimeItem[i].setText("");
         noteItem[i].setText("");
     }
     currentItemIndex = 0;
-
 }
 
 

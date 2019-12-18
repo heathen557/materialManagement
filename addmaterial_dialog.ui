@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>519</height>
+    <width>980</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>订单号：</string>
+           <string>  晶圆批号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -37,12 +37,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="userType_lineEdit"/>
+         <widget class="QLineEdit" name="waferNum_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>产品型号：</string>
+           <string> 产品型号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -50,12 +50,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="materialName_lineEdit"/>
+         <widget class="QLineEdit" name="productModel_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>晶圆型号：</string>
+           <string>   CP测试单号：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -63,7 +63,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="materialModel_lineEdit"/>
+         <widget class="QLineEdit" name="CPtest_num_lineEdit"/>
         </item>
         <item>
          <widget class="QLabel" name="label_5">
@@ -76,12 +76,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="factory_lineEdit"/>
+         <widget class="QLineEdit" name="chipNum_lineEdit"/>
         </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>封装形式：</string>
+           <string>CP测试规范：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -89,19 +93,97 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="price_lineEdit"/>
+         <widget class="QLineEdit" name="CP_test_specification_lineEdit"/>
         </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>CP测试单号：</string>
+           <string>  CP投入：</string>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="CP_investment_lineEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>特殊加工需求：</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="process_demand_lineEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>CP产出：</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="CP_output_lineEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1,2,1,1,10,2">
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>是否已结片：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="isChiped_comboBox">
+          <item>
+           <property name="text">
+            <string>否</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>是</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>    是否已结批：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="isBatched_comboBox">
+          <item>
+           <property name="text">
+            <string>否</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>是</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>    备注：</string>
           </property>
          </widget>
         </item>
@@ -128,27 +210,52 @@
     <widget class="QTableWidget" name="tableWidget">
      <column>
       <property name="text">
-       <string>用途</string>
+       <string>晶圆批号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>名称</string>
+       <string>产品型号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>型号</string>
+       <string>CP测试单号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>厂家</string>
+       <string>芯片片号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>单价</string>
+       <string>CP测试规范</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>CP投入</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>特殊加工需求</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>CP产出</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>是否结片</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>是否结批</string>
       </property>
      </column>
      <column>
@@ -174,7 +281,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="add_pushButton">
        <property name="text">
         <string>添加</string>
        </property>
